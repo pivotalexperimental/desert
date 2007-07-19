@@ -2,10 +2,7 @@ require "spec/spec_helper"
 
 module ComponentFu
 describe ComponentManager, :shared => true do
-  before do
-    @manager = ComponentManager.new
-    ComponentManager.instance = @manager
-  end
+  it_should_behave_like "ComponentFu::ComponentManager fixture"
 end
 
 describe ComponentManager, ".method_missing" do
