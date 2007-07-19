@@ -14,9 +14,7 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   end
   
   it "adds constant to autoloaded_constants" do
-    @dependencies.autoloaded_constants.should == [
-      "SpiffyHelper"
-    ]
+    @dependencies.autoloaded_constants.should == [ "SpiffyHelper" ]
   end
 end
 
