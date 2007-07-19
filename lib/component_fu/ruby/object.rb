@@ -1,15 +1,19 @@
 class Object
-  def require(file)
+  def require_with_component_fu(file)
     __component_fu_get_file(file) do |file|
-      super file
+      require_without_component_fu file
     end
   end
+  alias_method :require_without_component_fu, :require
+  alias_method :require, :require_with_component_fu
 
-  def load(file)
+  def load_with_component_fu(file)
     __component_fu_get_file(file) do |file|
-      super file
+      load_without_component_fu file
     end
   end
+  alias_method :load_without_component_fu, :load
+  alias_method :load, :load_with_component_fu
 
   private
   def __component_fu_get_file(file)
