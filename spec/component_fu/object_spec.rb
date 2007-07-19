@@ -4,9 +4,6 @@ describe Object, "#require" do
   it_should_behave_like "ComponentFu::ComponentManager fixture"
   
   before do
-    if Object.const_defined?(:RetardedHelper)
-      Object.send(:remove_const, :RetardedHelper)
-    end
     @fixture = Object.new
   end
   
