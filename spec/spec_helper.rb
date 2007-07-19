@@ -10,7 +10,7 @@ require "rr/adapters/rspec"
 require "active_support"
 require "initializer"
 require "component_fu"
-
+require "ruby-debug"
 require "spec/spec_helpers/component_manager_fixture"
 
 Spec::Runner.configure do |config|
