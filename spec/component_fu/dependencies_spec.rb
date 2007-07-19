@@ -12,6 +12,12 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   it "loads the project" do
     @fixture.loaded_project?.should be_true
   end
+  
+  it "adds constant to autoloaded_constants" do
+    @dependencies.autoloaded_constants.should == [
+      "SpiffyHelper"
+    ]
+  end
 end
 
 describe Dependencies, "#load_missing_constant with one plugin" do
