@@ -1,0 +1,1 @@
+require "spec/component_fu_integration/integration_spec_helper"
