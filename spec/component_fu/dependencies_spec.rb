@@ -15,11 +15,11 @@ describe Dependencies, "#load_missing_constant with one plugin" do
 
   before do
     @manager.components << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
+    @dependencies.load_missing_constant(Object, :SpiffyHelper)
+    @fixture.extend SpiffyHelper
   end
 
   it "requires the files that the constant points to" do
-    @dependencies.load_missing_constant(Object, :SpiffyHelper)
-    @fixture.extend SpiffyHelper
     @fixture.loaded_acts_as_spiffy?.should be_true
     @fixture.duhh.should == "duhh from acts_as_spiffy"
   end
@@ -51,5 +51,17 @@ describe Dependencies, "#load_missing_constant with two plugins and project" do
   before do
     @manager.components << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @manager.components << "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
+    @dependencies.load_missing_constant(Object, :SpiffyHelper)
+    @fixture.extend SpiffyHelper
   end
+
+  it "requires the files that the constant points to" #do
+#    @fixture.loaded_acts_as_spiffy?.should be_true
+#    @fixture.loaded_super_spiffy?.should be_true
+#    @fixture.loaded_project?.should be_true
+#  end
+
+  it "lets plugins loaded later overwrite methods" #do
+#    @fixture.duhh.should == "duhh from project"
+#  end
 end
