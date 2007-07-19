@@ -7,7 +7,11 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     @dependencies = Object.new
     @dependencies.extend Dependencies
     @fixture = Object.new
-  end  
+  end
+
+  it "loads the project" do
+    @fixture.loaded_project?.should be_true
+  end
 end
 
 describe Dependencies, "#load_missing_constant with one plugin" do
@@ -19,9 +23,16 @@ describe Dependencies, "#load_missing_constant with one plugin" do
     @fixture.extend SpiffyHelper
   end
 
-  it "requires the files that the constant points to" do
+  it "loads the plugin" do
     @fixture.loaded_acts_as_spiffy?.should be_true
-    @fixture.duhh.should == "duhh from acts_as_spiffy"
+  end
+
+  it "lets the project override method from plugin" do
+    @fixture.duhh.should == "duhh from project"
+  end
+
+  it "lets method defined in plugin stick around" do
+    @fixture.im_spiffy.should == "im_spiffy from acts_as_spiffy"
   end
 end
 
@@ -35,33 +46,16 @@ describe Dependencies, "#load_missing_constant with two plugins" do
     @fixture.extend SpiffyHelper
   end
 
-  it "requires the files that the constant points to" do
+  it "loads the both plugins" do
     @fixture.loaded_acts_as_spiffy?.should be_true
     @fixture.loaded_super_spiffy?.should be_true
   end
 
-  it "lets plugins loaded later overwrite methods" do
-    @fixture.duhh.should == "duhh from super_spiffy"
-  end
-end
-
-describe Dependencies, "#load_missing_constant with two plugins and project" do
-  it_should_behave_like "Dependencies#load_missing_constant"
-
-  before do
-    @manager.components << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
-    @manager.components << "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
-    @dependencies.load_missing_constant(Object, :SpiffyHelper)
-    @fixture.extend SpiffyHelper
+  it "lets the project override methods from both plugins" do
+    @fixture.duhh.should == "duhh from project"
   end
 
-  it "requires the files that the constant points to" #do
-#    @fixture.loaded_acts_as_spiffy?.should be_true
-#    @fixture.loaded_super_spiffy?.should be_true
-#    @fixture.loaded_project?.should be_true
-#  end
-
-  it "lets plugins loaded later overwrite methods" #do
-#    @fixture.duhh.should == "duhh from project"
-#  end
+  it "lets the later plugin override methods" do
+    @fixture.im_spiffy.should == "im_spiffy from super_spiffy"
+  end
 end

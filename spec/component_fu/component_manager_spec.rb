@@ -28,7 +28,7 @@ end
 describe ComponentManager, "#load_paths" do
   it_should_behave_like "ComponentFu::ComponentManager"
 
-  it "returns all of the load paths ordered by components" do
+  it "returns all of the load paths ordered by components and then Rails directories" do
     plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @manager.components << plugin_root
 
@@ -38,6 +38,11 @@ describe ComponentManager, "#load_paths" do
       "#{plugin_root}/app/controllers",
       "#{plugin_root}/app/helpers",
       "#{plugin_root}/lib",
+      "#{RAILS_ROOT}/app",
+      "#{RAILS_ROOT}/app/models",
+      "#{RAILS_ROOT}/app/controllers",
+      "#{RAILS_ROOT}/app/helpers",
+      "#{RAILS_ROOT}/lib",
     ]
   end
 end

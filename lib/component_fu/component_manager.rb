@@ -20,7 +20,7 @@ module ComponentFu
 
     def load_paths
       paths = []
-      components.each do |component_root|
+      (components + [RAILS_ROOT]).each do |component_root|
         paths << "#{component_root}/app"
         paths << "#{component_root}/app/models"
         paths << "#{component_root}/app/controllers"
