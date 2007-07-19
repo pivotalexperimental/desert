@@ -29,7 +29,7 @@ describe ComponentManager, "#load_paths" do
   it_should_behave_like "ComponentFu::ComponentManager"
 
   it "returns all of the load paths ordered by components" do
-    plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_retarded"
+    plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @manager.components << plugin_root
 
     @manager.load_paths.should == [

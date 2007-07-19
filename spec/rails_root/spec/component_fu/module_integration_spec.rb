@@ -5,11 +5,11 @@ describe Module, "#const_missing" do
   it_should_behave_like "Remove Project Constants"
   before do
     components = ComponentFu::ComponentManager.components
-    components.should include("#{RAILS_ROOT}/vendor/plugins/acts_as_retarded")
+    components.should include("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
   end
 
   it "loads component app file" do
-    Object.const_defined?(:RetardedHelper).should be_false
-    RetardedHelper.instance_methods.should include('duhh')
+    Object.const_defined?(:SpiffyHelper).should be_false
+    SpiffyHelper.instance_methods.should include('duhh')
   end
 end

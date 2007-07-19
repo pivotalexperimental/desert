@@ -4,8 +4,8 @@ require "#{dir}/../rails_spec_helper"
 describe "ComponentFu plugins" do
   it "registers componentized plugins" do
     components = ComponentFu::ComponentManager.components
-    components.should include("#{RAILS_ROOT}/vendor/plugins/acts_as_retarded")
-    components.should include("#{RAILS_ROOT}/vendor/plugins/super_retarded")
+    components.should include("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
+    components.should include("#{RAILS_ROOT}/vendor/plugins/super_spiffy")
   end
 
   it "does not register non-componentized plugins" do

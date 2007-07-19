@@ -8,20 +8,20 @@ describe Object, "#require" do
   end
   
   it "requires Compentized plugins" do
-    plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_retarded"
+    plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @manager.components << plugin_root
 
-    @fixture.require 'retarded_helper'
+    @fixture.require 'spiffy_helper'
 
-    Object.const_defined?(:RetardedHelper).should == true
+    Object.const_defined?(:SpiffyHelper).should == true
   end
 
   it "loads Compentized plugins" do
-    plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_retarded"
+    plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @manager.components << plugin_root
 
-    @fixture.load 'retarded_helper'
+    @fixture.load 'spiffy_helper'
 
-    Object.const_defined?(:RetardedHelper).should == true
+    Object.const_defined?(:SpiffyHelper).should == true
   end
 end
