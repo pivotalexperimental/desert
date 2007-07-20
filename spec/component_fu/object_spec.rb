@@ -73,6 +73,10 @@ describe Object, "#require" do
     SpiffyHelper.duhh.should == "duhh from project"
     SpiffyHelper.respond_to?(:external_file_loaded?).should be_false
   end
+
+  it "returns true when when file contained in app" do
+    require("spiffy_helper").should be_true
+  end
 end
 
 describe Object, "#require with one plugin" do

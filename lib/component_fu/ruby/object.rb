@@ -21,6 +21,7 @@ class Object
       yield(component_file)
     end
 
-    yield(file) unless component_fu_file_exists
+    return true if component_fu_file_exists
+    yield(file) 
   end
 end
