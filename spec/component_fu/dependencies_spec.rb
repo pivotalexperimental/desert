@@ -12,7 +12,14 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   end
   
   it "adds constant to autoloaded_constants" do
-    Dependencies.autoloaded_constants.should == [ "SpiffyHelper" ]
+    SpiffyHelper
+    Spiffy::SpiffyController
+    Dependencies.autoloaded_constants.should == [
+      "SpiffyHelper",
+      "Spiffy",
+      "ApplicationController",
+      "Spiffy::SpiffyController",
+    ]
   end
 
   it "does not add constants on the load_once_paths to autoloaded_constants" do
@@ -40,6 +47,10 @@ describe Dependencies, "#load_missing_constant with one plugin" do
 
   it "lets method defined in plugin stick around" do
     SpiffyHelper.im_spiffy.should == "im_spiffy from acts_as_spiffy"
+  end
+
+  it "loads constants within a module" do
+    Spiffy::SpiffyController.acts_as_spiffy_loaded?.should be_true
   end
 end
 
