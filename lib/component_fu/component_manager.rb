@@ -34,7 +34,7 @@ module ComponentFu
       component_fu_file_exists = false
       load_paths = []
       ComponentFu::ComponentManager.load_paths.each do |path|
-        full_path = File.join(path, File.basename(file))
+        full_path = File.join(path, file)
         full_path_rb = "#{full_path}.rb"
         load_paths << full_path_rb if File.exists?(full_path_rb)
       end

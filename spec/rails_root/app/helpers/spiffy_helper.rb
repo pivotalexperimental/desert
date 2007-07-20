@@ -1,9 +1,11 @@
 module SpiffyHelper
-  def duhh
-    "duhh from project"
-  end
+  class << self
+    def duhh
+      "duhh from project"
+    end
 
-  def loaded_project?
-    true
+    def loaded_project?
+      true
+    end
   end
 end

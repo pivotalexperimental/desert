@@ -17,13 +17,10 @@ class Object
   def __component_fu_get_file(file)
     files = ComponentFu::ComponentManager.instance.files_on_load_path(file)
     component_fu_file_exists = files.empty? ? false : true
-    files.each do |file|
-      yield(file)
+    files.each do |component_file|
+      yield(component_file)
     end
-    begin
-      yield(file)
-    rescue Exception => e
-      raise(e) unless component_fu_file_exists
-    end
+
+    yield(file) unless component_fu_file_exists
   end
 end

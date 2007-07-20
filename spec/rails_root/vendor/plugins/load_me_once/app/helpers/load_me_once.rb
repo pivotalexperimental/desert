@@ -1,5 +1,7 @@
 module LoadMeOnce
-  def loaded?
-    true
+  class << self
+    def loaded?
+      true
+    end
   end
 end

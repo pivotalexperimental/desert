@@ -10,6 +10,6 @@ describe Module, "#const_missing" do
 
   it "loads component app file" do
     Object.const_defined?(:SpiffyHelper).should be_false
-    SpiffyHelper.instance_methods.should include('duhh')
+    SpiffyHelper.methods.should include('duhh')
   end
 end
