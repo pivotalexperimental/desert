@@ -19,7 +19,7 @@ module Dependencies
 
   def add_to_autoloaded_constants(qualified_name, file)
     return if autoloaded_constants.include?(qualified_name)
-    return if load_once_path?(File.dirname(file))
+    return if load_once_path?(file)
     autoloaded_constants << qualified_name
   end
 end
