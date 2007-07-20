@@ -4,7 +4,7 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   it_should_behave_like "ComponentFu::ComponentManager fixture"
 
   before do
-    Dependencies.load_once_paths << "load_me_once"
+    Dependencies.load_once_paths << "#{RAILS_ROOT}/vendor/plugins/load_me_once"
     @fixture = Object.new
   end
 

@@ -32,12 +32,13 @@ module ComponentFu
 
     def files_on_load_path(file)
       component_fu_file_exists = false
-      ComponentFu::ComponentManager.load_paths.inject([]) do |files, path|
+      load_paths = []
+      ComponentFu::ComponentManager.load_paths.each do |path|
         full_path = File.join(path, File.basename(file))
         full_path_rb = "#{full_path}.rb"
-        files << full_path_rb if File.exists?(full_path_rb)
-        files
+        load_paths << full_path_rb if File.exists?(full_path_rb)
       end
+      load_paths
     end
   end
 end

@@ -6,22 +6,20 @@ module Dependencies
 
     qualified_name = qualified_name_for(from_mod, const_name)
     files.each do |file|
-      load_file_if_not_load_once file, qualified_name
+      load file
+      add_to_autoloaded_constants qualified_name, file
     end
 
-    return from_mod.const_get(const_name) if from_mod.const_defined?(const_name)
-    return nil
+    unless from_mod.const_defined?(const_name)
+      raise "Constant #{from_mod}::#{const_name} Not found"
+    end
+    from_mod.const_get(const_name)
   end
   alias_method_chain :load_missing_constant, :component_fu
 
-  def load_file_if_not_load_once(file, qualified_name)
-    return if load_once_paths.any? do |load_once_path|
-      File.dirname(file).include?(load_once_path)
-    end
-    
-    load file
-    unless autoloaded_constants.include?(qualified_name)
-      autoloaded_constants << qualified_name
-    end
+  def add_to_autoloaded_constants(qualified_name, file)
+    return if autoloaded_constants.include?(qualified_name)
+    return if load_once_path?(File.dirname(file))
+    autoloaded_constants << qualified_name
   end
 end
