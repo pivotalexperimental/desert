@@ -1,9 +1,11 @@
 require "rubygems"
+require "logger"
 dir = File.dirname(__FILE__)
 $LOAD_PATH.unshift("#{dir}/../lib")
-$LOAD_PATH << "#{dir}/external_files" 
+$LOAD_PATH << "#{dir}/external_files"
 
 RAILS_ROOT = "#{dir}/rails_root"
+RAILS_DEFAULT_LOGGER = Logger.new(StringIO.new(""))
 
 require "spec"
 require "rr"

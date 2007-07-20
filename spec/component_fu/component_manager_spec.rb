@@ -46,4 +46,17 @@ describe ComponentManager, "#load_paths" do
     ]
   end
 end
+
+describe ComponentManager, "#plugin_path" do
+  it_should_behave_like "ComponentFu::ComponentManager"
+
+  before do
+    @plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
+    @manager.plugins << @plugin_root
+  end
+
+  it "returns the path for the passed in plugin name" do
+    @manager.plugin_path('acts_as_spiffy').should == "#{@plugin_root}"
+  end
+end
 end

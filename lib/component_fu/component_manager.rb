@@ -30,6 +30,12 @@ module ComponentFu
       paths
     end
 
+    def plugin_path(name)
+      plugins.find do |plugin|
+        File.basename(plugin) == name
+      end
+    end
+
     def files_on_load_path(file)
       component_fu_file_exists = false
       load_paths = []
