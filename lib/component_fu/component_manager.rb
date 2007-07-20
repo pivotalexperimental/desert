@@ -12,15 +12,15 @@ module ComponentFu
       end
     end
 
-    attr_reader :components, :loading_plugin
+    attr_reader :plugins, :loading_plugin
     
     def initialize
-      @components = []
+      @plugins = []
     end
 
     def load_paths
       paths = []
-      (components + [RAILS_ROOT]).each do |component_root|
+      (plugins + [RAILS_ROOT]).each do |component_root|
         paths << "#{component_root}/app"
         paths << "#{component_root}/app/models"
         paths << "#{component_root}/app/controllers"

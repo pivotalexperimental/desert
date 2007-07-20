@@ -4,8 +4,8 @@ require "#{dir}/../rails_spec_helper"
 describe Module, "#const_missing" do
   it_should_behave_like "Remove Project Constants"
   before do
-    components = ComponentFu::ComponentManager.components
-    components.should include("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
+    plugins = ComponentFu::ComponentManager.plugins
+    plugins.should include("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
   end
 
   it "loads component app file" do

@@ -17,7 +17,7 @@ describe Object, " one plugin", :shared => true do
   it_should_behave_like "Object"
 
   before do
-    @manager.components << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
+    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
   end
 
   it "loads the plugin" do
@@ -37,8 +37,8 @@ describe Object, " two plugins", :shared => true do
   it_should_behave_like "Object"
 
   before do
-    @manager.components << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
-    @manager.components << "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
+    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
+    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
   end
 
   it "loads the both plugins" do

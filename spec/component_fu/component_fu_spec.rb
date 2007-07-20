@@ -14,10 +14,10 @@ end
 describe Initializer, "#load_plugin" do
   it_should_behave_like "Rails::Initializer"
 
-  it "adds the plugin to the components registry" do
+  it "adds the plugin to the plugins registry" do
     dir = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @initializer.load_plugin dir
-    ComponentFu::ComponentManager.components.should include(dir)
+    ComponentFu::ComponentManager.plugins.should include(dir)
   end
 end
 end

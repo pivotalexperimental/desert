@@ -16,7 +16,7 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   end
 
   it "does not add constants on the load_once_paths to autoloaded_constants" do
-    @manager.components << "#{RAILS_ROOT}/vendor/plugins/load_me_once"
+    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/load_me_once"
     LoadMeOnce
     Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
   end
@@ -26,7 +26,7 @@ describe Dependencies, "#load_missing_constant with one plugin" do
   it_should_behave_like "Dependencies#load_missing_constant"
 
   before do
-    @manager.components << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
+    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     Dependencies.load_missing_constant(Object, :SpiffyHelper)
   end
 
@@ -47,8 +47,8 @@ describe Dependencies, "#load_missing_constant with two plugins" do
   it_should_behave_like "Dependencies#load_missing_constant"
 
   before do
-    @manager.components << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
-    @manager.components << "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
+    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
+    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
     Dependencies.load_missing_constant(Object, :SpiffyHelper)
   end
 

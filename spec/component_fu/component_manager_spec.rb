@@ -9,7 +9,7 @@ describe ComponentManager, ".method_missing" do
   it_should_behave_like "ComponentFu::ComponentManager"
 
   it "proxies to ComponentManager instance" do
-    ComponentFu::ComponentManager.components.should === ComponentFu::ComponentManager.instance.components
+    ComponentFu::ComponentManager.plugins.should === ComponentFu::ComponentManager.instance.plugins
   end
 end
 
@@ -28,9 +28,9 @@ end
 describe ComponentManager, "#load_paths" do
   it_should_behave_like "ComponentFu::ComponentManager"
 
-  it "returns all of the load paths ordered by components and then Rails directories" do
+  it "returns all of the load paths ordered by plugins and then Rails directories" do
     plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
-    @manager.components << plugin_root
+    @manager.plugins << plugin_root
 
     @manager.load_paths.should == [
       "#{plugin_root}/app",
