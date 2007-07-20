@@ -4,8 +4,7 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   it_should_behave_like "ComponentFu::ComponentManager fixture"
 
   before do
-    @dependencies = Object.new
-    @dependencies.extend Dependencies
+    Dependencies.load_once_paths << "load_me_once"
     @fixture = Object.new
   end
 
@@ -14,7 +13,13 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   end
   
   it "adds constant to autoloaded_constants" do
-    @dependencies.autoloaded_constants.should == [ "SpiffyHelper" ]
+    Dependencies.autoloaded_constants.should == [ "SpiffyHelper" ]
+  end
+
+  it "does not add constants on the load_once_paths to autoloaded_constants" do
+    @manager.components << "#{RAILS_ROOT}/vendor/plugins/load_me_once"
+    LoadMeOnce
+    Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
   end
 end
 
@@ -23,7 +28,7 @@ describe Dependencies, "#load_missing_constant with one plugin" do
 
   before do
     @manager.components << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
-    @dependencies.load_missing_constant(Object, :SpiffyHelper)
+    Dependencies.load_missing_constant(Object, :SpiffyHelper)
     @fixture.extend SpiffyHelper
   end
 
@@ -46,7 +51,7 @@ describe Dependencies, "#load_missing_constant with two plugins" do
   before do
     @manager.components << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @manager.components << "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
-    @dependencies.load_missing_constant(Object, :SpiffyHelper)
+    Dependencies.load_missing_constant(Object, :SpiffyHelper)
     @fixture.extend SpiffyHelper
   end
 

@@ -29,5 +29,15 @@ module ComponentFu
       end
       paths
     end
+
+    def files_on_load_path(file)
+      component_fu_file_exists = false
+      ComponentFu::ComponentManager.load_paths.inject([]) do |files, path|
+        full_path = File.join(path, File.basename(file))
+        full_path_rb = "#{full_path}.rb"
+        files << full_path_rb if File.exists?(full_path_rb)
+        files
+      end
+    end
   end
 end
