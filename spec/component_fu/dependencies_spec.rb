@@ -27,6 +27,12 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     LoadMeOnce
     Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
   end
+
+  it "raises error constant is chained and there is no file" #do
+#    proc do
+#      Spiffy::NoModuleExists
+#    end.should raise_error(NameError, "Constant Spiffy::NoModuleExists not found")
+#  end
 end
 
 describe Dependencies, "#load_missing_constant with one plugin" do

@@ -25,11 +25,8 @@ module Dependencies
 
   def define_missing_constant(from_mod, const_name, qualified_name)
     parent_mod = from_mod.parent
-    if from_mod.parents.any? {|parent| parent.const_defined?(const_name)}
-      raise "Constant #{from_mod}::#{const_name} Not found"
-    end
     if parent_mod != from_mod
-      return parent.const_missing(const_name)
+      return parent_mod.const_missing(const_name)
     end
     from_mod.const_set(const_name, Module.new)
     unless autoloaded_constants.include?(qualified_name)
