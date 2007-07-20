@@ -14,6 +14,7 @@ class RouteSet
       map = ActionController::Routing::RouteSet::Mapper.new(nil)
       mock(map).named_route(
         "show_poobah",
+        "/poobahs/grand/show",
         {:controller => "grand_poobah", :action => "show"}
       )
       map.routes_from_plugin('the_grand_poobah')

@@ -1,4 +1,5 @@
 require "active_support"
+require "action_controller"
 
 require "component_fu/component_manager"
 require "component_fu/rails/initializer"

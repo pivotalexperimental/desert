@@ -15,8 +15,13 @@ ActionController::Routing::Routes.draw do |map|
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
-  map.connect ':controller/service.wsdl', :action => 'wsdl'
 
+  map.routes_from_plugin :load_me_once
+  map.routes_from_plugin :super_spiffy
+  map.routes_from_plugin :acts_as_spiffy
+  map.routes_from_plugin :the_grand_poobah
+
+  map.connect ':controller/service.wsdl', :action => 'wsdl'
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id'
