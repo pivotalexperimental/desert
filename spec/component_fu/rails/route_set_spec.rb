@@ -13,7 +13,7 @@ class RouteSet
     it "adds a named route from the plugin" do
       map = ActionController::Routing::RouteSet::Mapper.new(nil)
       mock(map).named_route(
-        "show_poobah",
+        "show_grand_poobah",
         "/poobahs/grand/show",
         {:controller => "grand_poobah", :action => "show"}
       )
