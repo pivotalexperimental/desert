@@ -18,8 +18,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.routes_from_plugin :load_me_once
   map.routes_from_plugin :super_spiffy
-  map.routes_from_plugin :acts_as_spiffy
-  map.routes_from_plugin :the_grand_poobah
 
   map.connect ':controller/service.wsdl', :action => 'wsdl'
   # Install the default route as the lowest priority.
