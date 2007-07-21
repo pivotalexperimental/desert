@@ -9,5 +9,9 @@ module Spiffy
         "Super Spiffy"
       end
     end
+
+    def super_spiffy
+      render :text => "Im super spiffy"
+    end
   end
 end
