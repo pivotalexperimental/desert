@@ -12,6 +12,5 @@ require "component_fu/ruby/class"
 
 require "component_fu/rails/route_set"
 
-require "component_fu/plugin_migrations/plugin_migrations"
 require "component_fu/plugin_migrations/migrator"
 require "component_fu/plugin_migrations/extensions/schema_statements"
