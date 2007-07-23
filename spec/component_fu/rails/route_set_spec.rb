@@ -7,7 +7,7 @@ class RouteSet
     it_should_behave_like "ComponentFu::ComponentManager fixture"
 
     before do
-      @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/the_grand_poobah"
+      @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/the_grand_poobah"
     end
 
     it "adds a named route from the plugin" do

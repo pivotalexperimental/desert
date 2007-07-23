@@ -3,8 +3,7 @@ require "#{dir}/../rails_spec_helper"
 
 describe "ComponentFu plugins" do
   it "registers all plugins" do
-    plugins = ComponentFu::ComponentManager.plugins
-    plugins.should include("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
-    plugins.should include("#{RAILS_ROOT}/vendor/plugins/super_spiffy")
+    ComponentFu::ComponentManager.plugin_exists?('acts_as_spiffy').should be_true
+    ComponentFu::ComponentManager.plugin_exists?('super_spiffy').should be_true
   end
 end

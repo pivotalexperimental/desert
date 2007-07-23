@@ -5,7 +5,7 @@ describe Module, "#const_missing" do
   it_should_behave_like "Remove Project Constants"
   before do
     plugins = ComponentFu::ComponentManager.plugins
-    plugins.should include("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
+    ComponentFu::ComponentManager.plugin_exists?('acts_as_spiffy').should be_true
   end
 
   it "loads component app file" do

@@ -22,11 +22,11 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     ]
   end
 
-  it "does not add constants on the load_once_paths to autoloaded_constants" do
-    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/load_me_once"
-    LoadMeOnce
-    Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
-  end
+#  it "does not add constants on the load_once_paths to autoloaded_constants" do
+#    @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/load_me_once"
+#    LoadMeOnce
+#    Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
+#  end
 
   it "raises error when constant is chained and there is no file" do
     proc do
@@ -46,7 +46,7 @@ describe Dependencies, "#load_missing_constant with one plugin" do
   it_should_behave_like "Dependencies#load_missing_constant"
 
   before do
-    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
+    @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     Dependencies.load_missing_constant(Object, :SpiffyHelper)
   end
 
@@ -71,8 +71,8 @@ describe Dependencies, "#load_missing_constant with two plugins" do
   it_should_behave_like "Dependencies#load_missing_constant"
 
   before do
-    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
-    @manager.plugins << "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
+    @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
+    @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
     Dependencies.load_missing_constant(Object, :SpiffyHelper)
   end
 
@@ -87,5 +87,11 @@ describe Dependencies, "#load_missing_constant with two plugins" do
 
   it "lets the later plugin override methods" do
     SpiffyHelper.im_spiffy.should == "im_spiffy from super_spiffy"
+  end
+  
+  it "does not add constants on the load_once_paths to autoloaded_constants" do
+    @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/load_me_once"
+    LoadMeOnce
+    Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
   end
 end

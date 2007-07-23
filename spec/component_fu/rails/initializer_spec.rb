@@ -19,7 +19,7 @@ describe Initializer, "#load_plugin" do
   it "adds the plugin to the plugins registry" do
     dir = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @initializer.load_plugin dir
-    ComponentFu::ComponentManager.plugins.should include(dir)
+    ComponentFu::ComponentManager.find_plugin('acts_as_spiffy').should_not be_nil
   end
 end
 
@@ -35,19 +35,20 @@ describe Initializer, "#require_plugin" do
   it "adds the plugin to the plugins registry" do
     @initializer.load_plugin "#{RAILS_ROOT}/vendor/plugins/aa_depends_on_acts_as_spiffy"
     ComponentFu::ComponentManager.plugins.should == [
-      "#{RAILS_ROOT}/vendor/plugins/the_grand_poobah",
-      "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy",
-      "#{RAILS_ROOT}/vendor/plugins/aa_depends_on_acts_as_spiffy",
+      ComponentFu::ComponentManager.find_plugin('the_grand_poobah'),
+      ComponentFu::ComponentManager.find_plugin('acts_as_spiffy'),
+      ComponentFu::ComponentManager.find_plugin('aa_depends_on_acts_as_spiffy'),
     ]
   end
 
   it "does not add plugin twice" do
     @initializer.load_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @initializer.load_plugin "#{RAILS_ROOT}/vendor/plugins/aa_depends_on_acts_as_spiffy"
+
     ComponentFu::ComponentManager.plugins.should == [
-      "#{RAILS_ROOT}/vendor/plugins/the_grand_poobah",
-      "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy",
-      "#{RAILS_ROOT}/vendor/plugins/aa_depends_on_acts_as_spiffy",
+      ComponentFu::ComponentManager.find_plugin('the_grand_poobah'),
+      ComponentFu::ComponentManager.find_plugin('acts_as_spiffy'),
+      ComponentFu::ComponentManager.find_plugin('aa_depends_on_acts_as_spiffy'),
     ]
   end
 end

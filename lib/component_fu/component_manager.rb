@@ -12,15 +12,21 @@ module ComponentFu
       end
     end
 
-    attr_reader :plugins, :loading_plugin
+    attr_reader :loading_plugin
     
     def initialize
       @plugins = []
     end
 
+    def plugins
+      @plugins.dup
+    end
+
     def load_paths
       paths = []
-      (plugins + [RAILS_ROOT]).each do |component_root|
+      plugin_paths = plugins.collect {|plugin| plugin.path}
+      plugin_paths << File.expand_path(RAILS_ROOT)
+      plugin_paths.each do |component_root|
         paths << "#{component_root}/app"
         paths << "#{component_root}/app/models"
         paths << "#{component_root}/app/controllers"
@@ -30,10 +36,32 @@ module ComponentFu
       paths
     end
 
-    def plugin_path(name)
-      plugins.find do |plugin|
-        File.basename(plugin) == name
+    def register_plugin(plugin_path)
+      plugin = Plugin.new(plugin_path)
+
+      if existing_plugin = find_plugin(plugin.name)
+        return existing_plugin
       end
+
+      @plugins << plugin
+      plugin
+    end
+
+    def find_plugin(name_or_directory)
+      name = File.basename(File.expand_path(name_or_directory))
+      plugins.find do |plugin|
+        plugin.name == name
+      end
+    end
+
+    def plugin_exists?(name_or_directory)
+      !find_plugin(name_or_directory).nil?
+    end
+
+    def plugin_path(name)
+      plugin = find_plugin(name)
+      return nil unless plugin
+      plugin.path
     end
 
     def files_on_load_path(file)

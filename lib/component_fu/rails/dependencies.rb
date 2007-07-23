@@ -10,6 +10,10 @@ module Dependencies
   end
   alias_method_chain :load_missing_constant, :component_fu
 
+  def load_once_path?(path)
+    load_once_paths.any? { |base| File.expand_path(path).starts_with? File.expand_path(base) }
+  end
+
   protected
   def define_constant_from_file(from_mod, const_name, qualified_name)
     path_suffix = qualified_name.underscore
