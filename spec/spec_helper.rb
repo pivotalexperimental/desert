@@ -9,7 +9,6 @@ RAILS_DEFAULT_LOGGER = Logger.new(StringIO.new(""))
 
 require "spec"
 require "rr"
-require "rr/adapters/rspec"
 require "active_support"
 require "initializer"
 require "action_controller"
