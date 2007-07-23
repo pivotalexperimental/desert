@@ -47,6 +47,25 @@ describe ComponentManager, "#load_paths" do
   end
 end
 
+describe ComponentManager, "#directory_on_load_path?" do
+  it_should_behave_like "ComponentFu::ComponentManager"
+
+  it "returns true when there is a directory on the Rails load path" do
+    ComponentFu::ComponentManager.
+      directory_on_load_path?("spiffy").should be_true
+  end
+
+  it "returns false when there is a file but no directory on load path" do
+    ComponentFu::ComponentManager.
+      directory_on_load_path?("spiffy_helper").should be_false
+  end
+
+  it "returns false when there is no directory on load path" do
+    ComponentFu::ComponentManager.
+      directory_on_load_path?("i_dont_exist").should be_false
+  end
+end
+
 describe ComponentManager, "#plugin_path" do
   it_should_behave_like "ComponentFu::ComponentManager"
 
