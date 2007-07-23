@@ -24,8 +24,6 @@ module ComponentFu
 
     def load_paths
       paths = []
-      plugin_paths = plugins.collect {|plugin| plugin.path}
-      plugin_paths << File.expand_path(RAILS_ROOT)
       plugin_paths.each do |component_root|
         paths << "#{component_root}/app"
         paths << "#{component_root}/app/models"
@@ -80,6 +78,22 @@ module ComponentFu
         return true if File.directory?(File.join(path, dir_suffix))
       end
       return false
+    end
+
+    def layout_paths
+      layout_paths = plugins.reverse.collect do |plugin|
+        plugin.layouts_path
+      end
+      layout_paths
+    end
+
+    protected
+    def plugin_paths
+      plugins_and_app.collect { |plugin| plugin.path }
+    end
+
+    def plugins_and_app
+      plugins + [Plugin.new(RAILS_ROOT)]
     end
   end
 end

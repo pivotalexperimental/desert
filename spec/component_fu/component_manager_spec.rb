@@ -179,4 +179,22 @@ describe ComponentManager, "#files_on_load_path" do
     ]
   end
 end
+
+describe ComponentManager, "#layout_paths" do
+  it_should_behave_like "ComponentFu::ComponentManager"
+
+  before do
+    @acts_as_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
+    @manager.register_plugin @acts_as_spiffy_path
+    @super_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/super_spiffy")
+    @manager.register_plugin @super_spiffy_path
+  end
+
+  it "returns the layout paths ordered by precedence" do
+    @manager.layout_paths.should == [
+      "#{@super_spiffy_path}/app/views/layouts",
+      "#{@acts_as_spiffy_path}/app/views/layouts",
+    ]
+  end
+end
 end
