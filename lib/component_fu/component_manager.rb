@@ -46,5 +46,12 @@ module ComponentFu
       end
       load_paths
     end
+
+    def directory_on_load_path?(dir_suffix)
+      ComponentFu::ComponentManager.load_paths.each do |path|
+        return true if File.directory?(File.join(path, dir_suffix))
+      end
+      return false
+    end
   end
 end

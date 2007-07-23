@@ -28,10 +28,17 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
   end
 
-  it "raises error constant is chained and there is no file" #do
+  it "raises error when constant is chained and there is no file" do
+    proc do
+      Spiffy::NoModuleExists
+    end.should raise_error(NameError, "Constant Spiffy::NoModuleExists not found")
+  end
+
+  # This does not work because Rails catches NameErrors in Class#const_missing
+  it "raises error when constant is chained and there is a match in a different directory" #do
 #    proc do
-#      Spiffy::NoModuleExists
-#    end.should raise_error(NameError, "Constant Spiffy::NoModuleExists not found")
+#      Spiffy::SpiffyController::LibModule
+#    end.should raise_error(NameError, "Constant Spiffy::SpiffyController::LibModule not found")
 #  end
 end
 

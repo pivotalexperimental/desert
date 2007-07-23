@@ -1,5 +1,5 @@
 module Spiffy
-  class SpiffyController < ApplicationController
+  class SpiffyController < ::ApplicationController
     class << self
       def acts_as_spiffy_loaded?
         true
