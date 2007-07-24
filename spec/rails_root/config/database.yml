@@ -3,4 +3,4 @@ test:
   host: localhost
   username: root
   password: password
-  database: component_fu_test
+  database: desert_test
