@@ -1,5 +1,5 @@
 module Desert
-  class Manager
+  class Manager # nodoc
     class << self
       def instance
         @instance ||= new

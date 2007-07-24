@@ -1,5 +1,5 @@
 module Desert
-  class Plugin
+  class Plugin # nodoc
     attr_reader :name, :path
     def initialize(path)
       @path = File.expand_path(path)
