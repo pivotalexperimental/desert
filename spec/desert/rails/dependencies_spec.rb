@@ -28,6 +28,15 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
   end
 
+  it "raises error when constant file cannot be loaded from Object" do
+    proc do
+      NoModuleExists
+    end.should raise_error(
+      NameError,
+      "Constant NoModuleExists from no_module_exists.rb not found"
+    )
+  end
+
   it "raises error when constant is chained and there is no file" do
     proc do
       Spiffy::NoModuleExists

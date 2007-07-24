@@ -6,7 +6,7 @@ module Dependencies
     unless define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
       unless define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
         if from_mod == Object
-          raise NameError, "Constant #{qualified_name} not found"
+          raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
         else
           begin
             return Object.const_missing(const_name)
