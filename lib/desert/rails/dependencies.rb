@@ -12,15 +12,15 @@ module Dependencies
     
     if from_mod == Object
       raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
-    else
-      begin
-        return Object.const_missing(const_name)
-      rescue NameError => e
-        raise(
-          NameError,
-          "Constants #{qualified_name} from #{path_suffix}.rb and #{const_name} from #{const_name.to_s.underscore}.rb not found"
-        )
-      end
+    end
+    
+    begin
+      return Object.const_missing(const_name)
+    rescue NameError => e
+      raise(
+        NameError,
+        "Constants #{qualified_name} from #{path_suffix}.rb and #{const_name} from #{const_name.to_s.underscore}.rb not found"
+      )
     end
   end
   alias_method_chain :load_missing_constant, :desert
