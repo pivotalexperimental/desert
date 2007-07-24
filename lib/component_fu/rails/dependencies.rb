@@ -3,7 +3,9 @@ module Dependencies
     qualified_name = qualified_name_for from_mod, const_name
 
     unless define_constant_from_file(from_mod, const_name, qualified_name)
-      define_constant_from_directory from_mod, const_name, qualified_name
+      unless define_constant_from_directory(from_mod, const_name, qualified_name)
+        raise NameError, "Constant #{qualified_name} not found"
+      end
     end
     from_mod.const_get(const_name)
   end
@@ -40,12 +42,13 @@ module Dependencies
     path_suffix = qualified_name.underscore
 
     unless ComponentFu::ComponentManager.directory_on_load_path?(path_suffix)
-      raise NameError, "Constant #{qualified_name} not found"
+      return false
     end
 
     from_mod.const_set(const_name, Module.new)
     unless autoloaded_constants.include?(qualified_name)
       autoloaded_constants << qualified_name
     end
+    return true
   end
 end
