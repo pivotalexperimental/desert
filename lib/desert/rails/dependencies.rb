@@ -3,10 +3,11 @@ module Dependencies
     qualified_name = qualified_name_for from_mod, const_name
     path_suffix = qualified_name.underscore
 
-    if(
-      define_constant_from_file(from_mod, const_name, qualified_name, path_suffix) ||
-      define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
-    )
+    if define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
+      return from_mod.const_get(const_name)
+    end
+
+    if define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
       return from_mod.const_get(const_name)
     end
     
