@@ -41,9 +41,7 @@ module Dependencies
   def define_constant_from_directory(from_mod, const_name, qualified_name)
     path_suffix = qualified_name.underscore
 
-    unless ComponentFu::ComponentManager.directory_on_load_path?(path_suffix)
-      return false
-    end
+    return false unless ComponentFu::ComponentManager.directory_on_load_path?(path_suffix)
 
     from_mod.const_set(const_name, Module.new)
     unless autoloaded_constants.include?(qualified_name)
