@@ -9,5 +9,9 @@ module Spiffy
         "Project"
       end
     end
+
+    def index
+      render :nothing => true
+    end
   end
 end
