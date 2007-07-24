@@ -1,0 +1,56 @@
+= Desert
+Desert is a component framework for Rails that allows you to seamlessly define in your plugins:
+* Models
+* Controllers
+* Views
+* Helpers
+* Routes
+* Migrations
+* Plugin Dependencies
+
+Classes are automatically mixed in with your own or other plugins' classes.
+This allows you to make full featured composable components.
+Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable_plugins).
+
+To use Desert, all you need to do is require 'desert' before Rails::Initializer.run in environment.rb
+
+environment.rb
+  require 'desert'
+  Rails::Initializer.run do
+  end
+
+== Example
+Say you want to create a plugin named acts_as_spiffy.
+Desert allows Spiffy to have a set of features that can be reused and extended in several projects.
+
+The Spiffy project has a:
+* SpiffyController
+* Spiffy model
+* SpiffyHelper
+* spiffy.rhtml
+* SpiffyLib library class
+
+The Spiffy plugin acts as its own mini Rails application.
+Here is the directory structure:
+  RAILS_ROOT/vendor/plugins/spiffy/app/controllers/spiffy_controller.rb
+  RAILS_ROOT/vendor/plugins/spiffy/app/models/spiffy.rb
+  RAILS_ROOT/vendor/plugins/spiffy/app/helpers/spiffy_helper.rb
+  RAILS_ROOT/vendor/plugins/spiffy/app/views/spiffy/spiffy.rhtml
+  RAILS_ROOT/vendor/plugins/spiffy/lib/spiffy_lib.rb
+
+Now, say there is a Spiffy Store rails application that uses acts_as_spiffy.
+The Rails app can open up any of the Spiffy classes and override any of the methods.
+
+Say spiffy.rb in the Spiffy plugin is defined as:
+  class Spiffy < ActiveRecord::Base
+    def why?
+      "I just am Spiffy"
+    end
+  end
+
+The Spiffy#why method can be overridden in RAILS_ROOT/app/models/spiffy.rb
+  class Spiffy < ActiveRecord::Base
+    def why?
+      "I sell Spiffy stuff"
+    end
+  end
