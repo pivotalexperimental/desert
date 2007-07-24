@@ -3,23 +3,25 @@ module Dependencies
     qualified_name = qualified_name_for from_mod, const_name
     path_suffix = qualified_name.underscore
 
-    unless define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
-      unless define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
-        if from_mod == Object
-          raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
-        else
-          begin
-            return Object.const_missing(const_name)
-          rescue NameError => e
-            raise(
-              NameError,
-              "Constants #{qualified_name} from #{path_suffix}.rb and #{const_name} from #{const_name.to_s.underscore}.rb not found"
-            )
-          end
-        end
+    if(
+      define_constant_from_file(from_mod, const_name, qualified_name, path_suffix) ||
+      define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
+    )
+      return from_mod.const_get(const_name)
+    end
+    
+    if from_mod == Object
+      raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
+    else
+      begin
+        return Object.const_missing(const_name)
+      rescue NameError => e
+        raise(
+          NameError,
+          "Constants #{qualified_name} from #{path_suffix}.rb and #{const_name} from #{const_name.to_s.underscore}.rb not found"
+        )
       end
     end
-    from_mod.const_get(const_name)
   end
   alias_method_chain :load_missing_constant, :desert
 
