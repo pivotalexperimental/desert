@@ -16,6 +16,7 @@ module ComponentFu
     
     def initialize
       @plugins = []
+      @plugins_in_registration = []
     end
 
     def plugins
@@ -36,6 +37,11 @@ module ComponentFu
 
     def register_plugin(plugin_path)
       plugin = Plugin.new(plugin_path)
+      @plugins_in_registration << plugin
+
+      yield if block_given?
+
+      @plugins_in_registration.pop
 
       if existing_plugin = find_plugin(plugin.name)
         return existing_plugin
@@ -64,13 +70,13 @@ module ComponentFu
 
     def files_on_load_path(file)
       component_fu_file_exists = false
-      load_paths = []
-      ComponentFu::ComponentManager.load_paths.each do |path|
+      files = []
+      load_paths.each do |path|
         full_path = File.join(path, file)
         full_path_rb = "#{full_path}.rb"
-        load_paths << full_path_rb if File.exists?(full_path_rb)
+        files << full_path_rb if File.exists?(full_path_rb)
       end
-      load_paths
+      files
     end
 
     def directory_on_load_path?(dir_suffix)
@@ -93,7 +99,7 @@ module ComponentFu
     end
 
     def plugins_and_app
-      plugins + [Plugin.new(RAILS_ROOT)]
+      plugins + @plugins_in_registration + [Plugin.new(RAILS_ROOT)]
     end
   end
 end

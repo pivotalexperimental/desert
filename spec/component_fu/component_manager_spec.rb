@@ -46,6 +46,14 @@ describe ComponentManager, "#register_plugin" do
     @plugin = @manager.register_plugin(@plugin_root)
     @manager.plugins.should == [@plugin]
   end
+
+  it "allows pending plugin registration when a block is passed in" do
+    plugin2_root = "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
+    @manager.register_plugin(plugin2_root) do
+      @manager.plugins.should_not include(Plugin.new(plugin2_root))
+      @manager.load_paths.should include("#{File.expand_path(plugin2_root)}/lib")
+    end
+  end
 end
 
 describe ComponentManager, "#load_paths" do

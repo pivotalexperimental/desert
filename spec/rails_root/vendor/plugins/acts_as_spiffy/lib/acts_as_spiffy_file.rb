@@ -1,0 +1,2 @@
+class ActsAsSpiffyFile
+end

@@ -2,8 +2,9 @@ module Rails
   class Initializer
     def load_plugin_with_component_fu(directory)
       return if ComponentFu::ComponentManager.plugin_exists?(directory)
-      load_plugin_without_component_fu(directory)
-      ComponentFu::ComponentManager.register_plugin directory
+      ComponentFu::ComponentManager.register_plugin(directory) do
+        load_plugin_without_component_fu(directory)
+      end
     end
     alias_method_chain :load_plugin, :component_fu
 
