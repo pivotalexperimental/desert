@@ -20,7 +20,7 @@ def run_suite
   system("ruby #{dir}/examples/example_suite.rb") || raise("Example Suite failed")
 end
 
-PKG_NAME = "component_fu"
+PKG_NAME = "desert"
 PKG_VERSION = "0.1.0"
 PKG_FILES = FileList[
   '[A-Z]*',
@@ -32,7 +32,7 @@ PKG_FILES = FileList[
 spec = Gem::Specification.new do |s|
   s.name = PKG_NAME
   s.version = PKG_VERSION
-  s.summary = "Summary"
+  s.summary = "Desert is a component framework for Rails that allows your plugins to be packaged as mini Rails apps."
   s.test_files = "examples/spec_suite.rb"
   s.description = s.summary
 
@@ -45,7 +45,7 @@ spec = Gem::Specification.new do |s|
 
   s.test_files = Dir.glob('spec/*_spec.rb')
   s.require_path = 'lib'
-  s.autorequire = 'component_fu'
+  s.autorequire = 'desert'
   s.author = "Pivotal Labs"
   s.email = "opensource@pivotallabs.com"
   s.homepage = "http://pivotallabs.com"
