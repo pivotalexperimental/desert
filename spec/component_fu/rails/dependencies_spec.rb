@@ -22,32 +22,22 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     ]
   end
 
-#  it "does not add constants on the load_once_paths to autoloaded_constants" do
-#    @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/load_me_once"
-#    LoadMeOnce
-#    Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
-#  end
+  it "does not add constants on the load_once_paths to autoloaded_constants" do
+    @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/load_me_once"
+    LoadMeOnce
+    Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
+  end
 
   it "raises error when constant is chained and there is no file" do
     proc do
       Spiffy::NoModuleExists
     end.should raise_error(NameError, "Constant Spiffy::NoModuleExists not found")
   end
-
-  # This does not work because Rails catches NameErrors in Class#const_missing
-  it "raises error when constant is chained and there is a match in a different directory" #do
-#    proc do
-#      Spiffy::SpiffyController::LibModule
-#    end.should raise_error(NameError, "Constant Spiffy::SpiffyController::LibModule not found")
-#  end
 end
 
-describe Dependencies, "#load_missing_constant with one plugin" do
-  it_should_behave_like "Dependencies#load_missing_constant"
-
+describe Dependencies, " with one plugin", :shared => true do
   before do
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
-    Dependencies.load_missing_constant(Object, :SpiffyHelper)
   end
 
   it "loads the plugin" do
@@ -67,13 +57,29 @@ describe Dependencies, "#load_missing_constant with one plugin" do
   end
 end
 
-describe Dependencies, "#load_missing_constant with two plugins" do
+describe Dependencies, "#load_missing_constant with one plugin" do
   it_should_behave_like "Dependencies#load_missing_constant"
+  it_should_behave_like "Dependencies with one plugin"
 
+  before do
+    Dependencies.load_missing_constant(Object, :SpiffyHelper)
+  end
+end
+
+describe Dependencies, "#depend_on with one plugin" do
+  it_should_behave_like "ComponentFu::ComponentManager fixture"
+  it_should_behave_like "Dependencies with one plugin"
+
+  before do
+    Dependencies.depend_on "spiffy_helper"
+    Object.should be_const_defined(:SpiffyHelper)
+  end
+end
+
+describe Dependencies, " with two plugins", :shared => true do
   before do
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
-    Dependencies.load_missing_constant(Object, :SpiffyHelper)
   end
 
   it "loads the both plugins" do
@@ -88,7 +94,45 @@ describe Dependencies, "#load_missing_constant with two plugins" do
   it "lets the later plugin override methods" do
     SpiffyHelper.im_spiffy.should == "im_spiffy from super_spiffy"
   end
-  
+
+  it "does not add constants on the load_once_paths to autoloaded_constants" do
+    @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/load_me_once"
+    LoadMeOnce
+    Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
+  end
+end
+
+describe Dependencies, "#load_missing_constant with two plugins" do
+  it_should_behave_like "Dependencies#load_missing_constant"
+  it_should_behave_like "Dependencies with two plugins"
+
+  before do
+    Dependencies.load_missing_constant(Object, :SpiffyHelper)
+  end
+end
+
+describe Dependencies, "#depend_on with two plugins" do
+  it_should_behave_like "ComponentFu::ComponentManager fixture"
+  it_should_behave_like "Dependencies with two plugins"
+
+  before do
+    Dependencies.depend_on "spiffy_helper"
+    Object.should be_const_defined(:SpiffyHelper)
+  end
+
+  it "loads the both plugins" do
+    SpiffyHelper.loaded_acts_as_spiffy?.should be_true
+    SpiffyHelper.loaded_super_spiffy?.should be_true
+  end
+
+  it "lets the project override methods from both plugins" do
+    SpiffyHelper.duhh.should == "duhh from project"
+  end
+
+  it "lets the later plugin override methods" do
+    SpiffyHelper.im_spiffy.should == "im_spiffy from super_spiffy"
+  end
+
   it "does not add constants on the load_once_paths to autoloaded_constants" do
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/load_me_once"
     LoadMeOnce

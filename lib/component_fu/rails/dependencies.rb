@@ -14,6 +14,16 @@ module Dependencies
     load_once_paths.any? { |base| File.expand_path(path).starts_with? File.expand_path(base) }
   end
 
+  def depend_on_with_component_fu(file_name, swallow_load_errors = false)
+    ComponentFu::ComponentManager.files_on_load_path(file_name).each do |file|
+      require_or_load(file)
+    end
+    require file_name
+  rescue LoadError
+    raise unless swallow_load_errors
+  end
+  alias_method_chain :depend_on, :component_fu
+
   protected
   def define_constant_from_file(from_mod, const_name, qualified_name)
     path_suffix = qualified_name.underscore

@@ -13,5 +13,6 @@ describe "Remove Project Constants", :shared => true do
     Dependencies.autoloaded_constants.clear
     $".delete_if {|path| path.include?('spiffy_helper')}
     Dependencies.load_once_paths.clear
+    Dependencies.loaded.clear
   end
 end
