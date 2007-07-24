@@ -4,7 +4,11 @@ module Dependencies
 
     unless define_constant_from_file(from_mod, const_name, qualified_name)
       unless define_constant_from_directory(from_mod, const_name, qualified_name)
-        raise NameError, "Constant #{qualified_name} not found"
+        if from_mod == Object
+          raise NameError, "Constant #{qualified_name} not found"
+        else
+          Object.const_missing(const_name)
+        end
       end
     end
     from_mod.const_get(const_name)

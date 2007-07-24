@@ -31,7 +31,7 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   it "raises error when constant is chained and there is no file" do
     proc do
       Spiffy::NoModuleExists
-    end.should raise_error(NameError, "Constant Spiffy::NoModuleExists not found")
+    end.should raise_error(NameError, "Constant NoModuleExists not found")
   end
 end
 
@@ -54,6 +54,12 @@ describe Dependencies, " with one plugin", :shared => true do
 
   it "loads constants within a module" do
     Spiffy::SpiffyController.acts_as_spiffy_loaded?.should be_true
+  end
+
+  it "loads constants from Object when referenced in a module" do
+    module SpiffyHelper
+      ActsAsSpiffyFile.class.should == Class
+    end
   end
 end
 
@@ -99,6 +105,12 @@ describe Dependencies, " with two plugins", :shared => true do
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/load_me_once"
     LoadMeOnce
     Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
+  end
+
+  it "loads constants from Object when referenced in a module" do
+    module SpiffyHelper
+      ActsAsSpiffyFile.class.should == Class
+    end
   end
 end
 
