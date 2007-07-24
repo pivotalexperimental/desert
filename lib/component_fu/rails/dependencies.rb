@@ -2,8 +2,7 @@ module Dependencies
   def load_missing_constant_with_component_fu(from_mod, const_name)
     qualified_name = qualified_name_for from_mod, const_name
 
-    define_constant_from_file from_mod, const_name, qualified_name
-    unless from_mod.const_defined?(const_name)
+    unless define_constant_from_file(from_mod, const_name, qualified_name)
       define_constant_from_directory from_mod, const_name, qualified_name
     end
     from_mod.const_get(const_name)
@@ -34,6 +33,7 @@ module Dependencies
       next if load_once_path?(file)
       autoloaded_constants << qualified_name
     end
+    from_mod.const_defined?(const_name)
   end
 
   def define_constant_from_directory(from_mod, const_name, qualified_name)
