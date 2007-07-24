@@ -31,7 +31,7 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   it "raises error when constant is chained and there is no file" do
     proc do
       Spiffy::NoModuleExists
-    end.should raise_error(NameError, "Constant NoModuleExists not found")
+    end.should raise_error(NameError, "Constants Spiffy::NoModuleExists and NoModuleExists not found")
   end
 end
 

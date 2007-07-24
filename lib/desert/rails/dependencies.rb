@@ -7,7 +7,11 @@ module Dependencies
         if from_mod == Object
           raise NameError, "Constant #{qualified_name} not found"
         else
-          Object.const_missing(const_name)
+          begin
+            return Object.const_missing(const_name)
+          rescue NameError => e
+            raise NameError, "Constants #{qualified_name} and #{const_name} not found"
+          end
         end
       end
     end
