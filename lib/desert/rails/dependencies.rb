@@ -1,16 +1,20 @@
 module Dependencies
   def load_missing_constant_with_desert(from_mod, const_name)
     qualified_name = qualified_name_for from_mod, const_name
+    path_suffix = qualified_name.underscore
 
-    unless define_constant_from_file(from_mod, const_name, qualified_name)
-      unless define_constant_from_directory(from_mod, const_name, qualified_name)
+    unless define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
+      unless define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
         if from_mod == Object
           raise NameError, "Constant #{qualified_name} not found"
         else
           begin
             return Object.const_missing(const_name)
           rescue NameError => e
-            raise NameError, "Constants #{qualified_name} and #{const_name} not found"
+            raise(
+              NameError,
+              "Constants #{qualified_name} from #{path_suffix}.rb and #{const_name} from #{const_name.to_s.underscore}.rb not found"
+            )
           end
         end
       end
@@ -34,8 +38,7 @@ module Dependencies
   alias_method_chain :depend_on, :desert
 
   protected
-  def define_constant_from_file(from_mod, const_name, qualified_name)
-    path_suffix = qualified_name.underscore
+  def define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
     files = Desert::Manager.files_on_load_path(path_suffix)
     files.each do |file|
       load file
@@ -46,9 +49,7 @@ module Dependencies
     from_mod.const_defined?(const_name)
   end
 
-  def define_constant_from_directory(from_mod, const_name, qualified_name)
-    path_suffix = qualified_name.underscore
-
+  def define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
     return false unless Desert::Manager.directory_on_load_path?(path_suffix)
 
     from_mod.const_set(const_name, Module.new)
