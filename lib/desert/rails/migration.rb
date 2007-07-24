@@ -1,5 +1,5 @@
 class ActiveRecord::Migration
-  module ComponentFuMigration
+  module DesertMigration
     def migrate_plugin(plugin_name, version)
       plugin = find_plugin(plugin_name)
       PluginAWeek::PluginMigrations::Migrator.migrate_plugin(
@@ -16,10 +16,10 @@ class ActiveRecord::Migration
 
     protected
     def find_plugin(plugin_name)
-      plugin = ComponentFu::ComponentManager.find_plugin(plugin_name)
+      plugin = Desert::ComponentManager.find_plugin(plugin_name)
       return plugin if plugin
       raise ArgumentError, "No plugin found named #{plugin_name}"
     end
   end
-  extend ComponentFuMigration
+  extend DesertMigration
 end

@@ -4,8 +4,8 @@ require "#{dir}/../rails_spec_helper"
 describe Module, "#const_missing" do
   it_should_behave_like "Remove Project Constants"
   before do
-    plugins = ComponentFu::ComponentManager.plugins
-    ComponentFu::ComponentManager.plugin_exists?('acts_as_spiffy').should be_true
+    plugins = Desert::ComponentManager.plugins
+    Desert::ComponentManager.plugin_exists?('acts_as_spiffy').should be_true
   end
 
   it "loads component app file" do

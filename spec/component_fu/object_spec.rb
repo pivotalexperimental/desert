@@ -1,7 +1,7 @@
 require "spec/spec_helper"
 
 describe Object, :shared => true do
-  it_should_behave_like "ComponentFu::ComponentManager fixture"
+  it_should_behave_like "Desert::ComponentManager fixture"
 
   before do
     Object.const_defined?(:SpiffyHelper).should == false
@@ -56,7 +56,7 @@ describe Object, " two plugins", :shared => true do
 end
 
 describe Object, "#require" do
-  it_should_behave_like "ComponentFu::ComponentManager fixture"
+  it_should_behave_like "Desert::ComponentManager fixture"
   
   it "loads the project" do
     require 'not_in_app'

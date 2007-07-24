@@ -1,32 +1,32 @@
 require "spec/spec_helper"
 
-module ComponentFu
+module Desert
 describe ComponentManager, :shared => true do
-  it_should_behave_like "ComponentFu::ComponentManager fixture"
+  it_should_behave_like "Desert::ComponentManager fixture"
 end
 
 describe ComponentManager, ".method_missing" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   it "proxies to ComponentManager instance" do
-    ComponentFu::ComponentManager.plugins.should === ComponentFu::ComponentManager.instance.plugins
+    Desert::ComponentManager.plugins.should === Desert::ComponentManager.instance.plugins
   end
 end
 
 describe ComponentManager, "#instance" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   it "is a ComponenManager object" do
-    ComponentFu::ComponentManager.instance.is_a?(ComponentFu::ComponentManager).should == true
+    Desert::ComponentManager.instance.is_a?(Desert::ComponentManager).should == true
   end
 
   it "is a singleton" do
-    ComponentFu::ComponentManager.instance.should === ComponentFu::ComponentManager.instance
+    Desert::ComponentManager.instance.should === Desert::ComponentManager.instance
   end
 end
 
 describe ComponentManager, "#register_plugin" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   before do
     @plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
@@ -57,7 +57,7 @@ describe ComponentManager, "#register_plugin" do
 end
 
 describe ComponentManager, "#load_paths" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   it "returns all of the load paths ordered by plugins and then Rails directories" do
     plugin_root = File.expand_path("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
@@ -80,26 +80,26 @@ describe ComponentManager, "#load_paths" do
 end
 
 describe ComponentManager, "#directory_on_load_path?" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   it "returns true when there is a directory on the Rails load path" do
-    ComponentFu::ComponentManager.
+    Desert::ComponentManager.
       directory_on_load_path?("spiffy").should be_true
   end
 
   it "returns false when there is a file but no directory on load path" do
-    ComponentFu::ComponentManager.
+    Desert::ComponentManager.
       directory_on_load_path?("spiffy_helper").should be_false
   end
 
   it "returns false when there is no directory on load path" do
-    ComponentFu::ComponentManager.
+    Desert::ComponentManager.
       directory_on_load_path?("i_dont_exist").should be_false
   end
 end
 
 describe ComponentManager, "#find_plugin" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   before do
     @plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
@@ -128,7 +128,7 @@ describe ComponentManager, "#find_plugin" do
 end
 
 describe ComponentManager, "#plugin_exists?" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   before do
     @plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
@@ -153,7 +153,7 @@ describe ComponentManager, "#plugin_exists?" do
 end
 
 describe ComponentManager, "#plugin_path" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   before do
     @plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
@@ -170,7 +170,7 @@ describe ComponentManager, "#plugin_path" do
 end
 
 describe ComponentManager, "#files_on_load_path" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   before do
     @acts_as_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
@@ -189,7 +189,7 @@ describe ComponentManager, "#files_on_load_path" do
 end
 
 describe ComponentManager, "#layout_paths" do
-  it_should_behave_like "ComponentFu::ComponentManager"
+  it_should_behave_like "Desert::ComponentManager"
 
   before do
     @acts_as_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")

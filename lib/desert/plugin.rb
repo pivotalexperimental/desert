@@ -1,4 +1,4 @@
-module ComponentFu
+module Desert
   class Plugin
     attr_reader :name, :path
     def initialize(path)

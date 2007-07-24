@@ -1,4 +1,4 @@
-module ComponentFu
+module Desert
 describe ComponentManager, " fixture", :shared => true do
   it_should_behave_like "Remove Project Constants"
   before do

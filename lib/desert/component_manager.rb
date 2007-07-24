@@ -1,4 +1,4 @@
-module ComponentFu
+module Desert
   class ComponentManager
     class << self
       def instance
@@ -69,7 +69,7 @@ module ComponentFu
     end
 
     def files_on_load_path(file)
-      component_fu_file_exists = false
+      desert_file_exists = false
       files = []
       load_paths.each do |path|
         full_path = File.join(path, file)
@@ -80,7 +80,7 @@ module ComponentFu
     end
 
     def directory_on_load_path?(dir_suffix)
-      ComponentFu::ComponentManager.load_paths.each do |path|
+      Desert::ComponentManager.load_paths.each do |path|
         return true if File.directory?(File.join(path, dir_suffix))
       end
       return false

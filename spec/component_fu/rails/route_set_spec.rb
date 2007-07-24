@@ -4,7 +4,7 @@ module ActionController
 module Routing
 class RouteSet
   describe Mapper, "#routes_from_plugin" do
-    it_should_behave_like "ComponentFu::ComponentManager fixture"
+    it_should_behave_like "Desert::ComponentManager fixture"
 
     before do
       @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/the_grand_poobah"

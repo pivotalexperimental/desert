@@ -1,4 +1,4 @@
-module ComponentFu
+module Desert
   module Rails
     module RouteSet
       # Loads the set of routes from within a plugin and evaluates them at this
@@ -8,7 +8,7 @@ module ComponentFu
       def routes_from_plugin(name)
         name = name.to_s
         routes_path = File.join(
-          ComponentFu::ComponentManager.plugin_path(name),
+          Desert::ComponentManager.plugin_path(name),
           "config/routes.rb"
         )
         RAILS_DEFAULT_LOGGER.debug "Loading routes from #{routes_path}."
@@ -19,5 +19,5 @@ module ComponentFu
 end
 
 class ActionController::Routing::RouteSet::Mapper
-  include ComponentFu::Rails::RouteSet
+  include Desert::Rails::RouteSet
 end
