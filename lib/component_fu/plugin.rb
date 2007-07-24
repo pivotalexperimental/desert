@@ -22,8 +22,8 @@ module ComponentFu
 
     # Finds a template with the specified path
     def find_template(template)
-      path = "#{templates_path}/#{template}"
-      File.exists?(path) ? path : nil
+      template_path = "#{templates_path}/#{template}"
+      File.exists?(template_path) ? template_path : nil
     end    
 
     def ==(other)

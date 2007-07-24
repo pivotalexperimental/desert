@@ -12,8 +12,8 @@ describe Base, "#render partial" do
     @base.render(:partial => "spiffy").should == "From App"
   end
 
-  it "gives priority to plugins added later" #do
-#    @base.render(:partial => "acts_as_spiffy").should == "From Super Spiffy"
-#  end
+  it "gives priority to plugins added later" do
+    @base.render(:partial => "acts_as_spiffy").should == "From Super Spiffy"
+  end
 end
 end

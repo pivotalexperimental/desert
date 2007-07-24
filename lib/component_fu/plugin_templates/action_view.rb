@@ -6,7 +6,7 @@ module ActionView #:nodoc:
         
         unless File.exist?(full_template_path)
           # Look through the plugins for the template
-          ComponentFu::ComponentManager.plugins.reverse do |plugin|
+          ComponentFu::ComponentManager.plugins.reverse.each do |plugin|
             if plugin_template_path = plugin.find_template("#{template_path}.#{extension}")
               full_template_path = plugin_template_path
               break
