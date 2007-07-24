@@ -3,7 +3,7 @@ module ActionMailer #:nodoc
     private
       def template_path_with_plugin_routing
         template_paths = [template_path_without_plugin_routing]
-        Desert::ComponentManager.plugins.reverse.each do |plugin|
+        Desert::Manager.plugins.reverse.each do |plugin|
           template_paths << "#{plugin.templates_path}/#{mailer_name}"
         end
         "{#{template_paths * ','}}"

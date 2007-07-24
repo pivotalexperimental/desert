@@ -1,5 +1,5 @@
 module Desert
-  class ComponentManager
+  class Manager
     class << self
       def instance
         @instance ||= new
@@ -80,7 +80,7 @@ module Desert
     end
 
     def directory_on_load_path?(dir_suffix)
-      Desert::ComponentManager.load_paths.each do |path|
+      Desert::Manager.load_paths.each do |path|
         return true if File.directory?(File.join(path, dir_suffix))
       end
       return false

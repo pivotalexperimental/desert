@@ -1,8 +1,8 @@
 module Rails
   class Initializer
     def load_plugin_with_desert(directory)
-      return if Desert::ComponentManager.plugin_exists?(directory)
-      Desert::ComponentManager.register_plugin(directory) do
+      return if Desert::Manager.plugin_exists?(directory)
+      Desert::Manager.register_plugin(directory) do
         load_plugin_without_desert(directory)
       end
     end

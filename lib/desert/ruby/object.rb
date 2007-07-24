@@ -15,7 +15,7 @@ class Object
 
   private
   def __desert_get_file(file)
-    files = Desert::ComponentManager.instance.files_on_load_path(file)
+    files = Desert::Manager.instance.files_on_load_path(file)
     desert_file_exists = files.empty? ? false : true
     files.each do |component_file|
       yield(component_file)

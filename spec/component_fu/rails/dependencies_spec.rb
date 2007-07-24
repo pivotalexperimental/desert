@@ -1,7 +1,7 @@
 require "spec/spec_helper"
 
 describe Dependencies, "#load_missing_constant", :shared => true do
-  it_should_behave_like "Desert::ComponentManager fixture"
+  it_should_behave_like "Desert::Manager fixture"
 
   before do
     Dependencies.load_once_paths << "#{RAILS_ROOT}/vendor/plugins/load_me_once"
@@ -73,7 +73,7 @@ describe Dependencies, "#load_missing_constant with one plugin" do
 end
 
 describe Dependencies, "#depend_on with one plugin" do
-  it_should_behave_like "Desert::ComponentManager fixture"
+  it_should_behave_like "Desert::Manager fixture"
   it_should_behave_like "Dependencies with one plugin"
 
   before do
@@ -124,7 +124,7 @@ describe Dependencies, "#load_missing_constant with two plugins" do
 end
 
 describe Dependencies, "#depend_on with two plugins" do
-  it_should_behave_like "Desert::ComponentManager fixture"
+  it_should_behave_like "Desert::Manager fixture"
   it_should_behave_like "Dependencies with two plugins"
 
   before do

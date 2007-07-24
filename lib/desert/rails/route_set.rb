@@ -8,7 +8,7 @@ module Desert
       def routes_from_plugin(name)
         name = name.to_s
         routes_path = File.join(
-          Desert::ComponentManager.plugin_path(name),
+          Desert::Manager.plugin_path(name),
           "config/routes.rb"
         )
         RAILS_DEFAULT_LOGGER.debug "Loading routes from #{routes_path}."

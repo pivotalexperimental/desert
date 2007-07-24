@@ -2,7 +2,7 @@ require "spec/spec_helper"
 
 module Desert
 describe Plugin, "#==" do
-  it_should_behave_like "Desert::ComponentManager fixture"
+  it_should_behave_like "Desert::Manager fixture"
 
   it "returns true when the paths are ==" do
     plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
@@ -11,7 +11,7 @@ describe Plugin, "#==" do
 end
 
 describe Plugin, "#migration_path" do
-  it_should_behave_like "Desert::ComponentManager fixture"
+  it_should_behave_like "Desert::Manager fixture"
   
   it "returns the migration path based on the passed in plugin path" do
     plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"

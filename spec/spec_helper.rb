@@ -12,10 +12,10 @@ require "rr"
 require "active_support"
 require "initializer"
 require "action_controller"
-require "component_fu"
+require "desert"
 require "ruby-debug"
 require "spec/spec_helpers/remove_project_constants_helper"
-require "spec/spec_helpers/component_manager_fixture"
+require "spec/spec_helpers/manager_fixture"
 
 Spec::Runner.configure do |config|
   config.mock_with RR::Adapters::Rspec

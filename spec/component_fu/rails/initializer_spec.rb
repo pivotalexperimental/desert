@@ -2,7 +2,7 @@ require "spec/spec_helper"
 
 module Rails
 describe Initializer, :shared => true do
-  it_should_behave_like "Desert::ComponentManager fixture"
+  it_should_behave_like "Desert::Manager fixture"
 
   before do
     @configuration = Configuration.new
@@ -19,7 +19,7 @@ describe Initializer, "#load_plugin" do
   it "adds the plugin to the plugins registry" do
     dir = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @initializer.load_plugin dir
-    Desert::ComponentManager.find_plugin('acts_as_spiffy').should_not be_nil
+    Desert::Manager.find_plugin('acts_as_spiffy').should_not be_nil
   end
 end
 
@@ -34,10 +34,10 @@ describe Initializer, "#require_plugin" do
 
   it "adds the plugin to the plugins registry" do
     @initializer.load_plugin "#{RAILS_ROOT}/vendor/plugins/aa_depends_on_acts_as_spiffy"
-    Desert::ComponentManager.plugins.should == [
-      Desert::ComponentManager.find_plugin('the_grand_poobah'),
-      Desert::ComponentManager.find_plugin('acts_as_spiffy'),
-      Desert::ComponentManager.find_plugin('aa_depends_on_acts_as_spiffy'),
+    Desert::Manager.plugins.should == [
+      Desert::Manager.find_plugin('the_grand_poobah'),
+      Desert::Manager.find_plugin('acts_as_spiffy'),
+      Desert::Manager.find_plugin('aa_depends_on_acts_as_spiffy'),
     ]
   end
 
@@ -45,10 +45,10 @@ describe Initializer, "#require_plugin" do
     @initializer.load_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @initializer.load_plugin "#{RAILS_ROOT}/vendor/plugins/aa_depends_on_acts_as_spiffy"
 
-    Desert::ComponentManager.plugins.should == [
-      Desert::ComponentManager.find_plugin('the_grand_poobah'),
-      Desert::ComponentManager.find_plugin('acts_as_spiffy'),
-      Desert::ComponentManager.find_plugin('aa_depends_on_acts_as_spiffy'),
+    Desert::Manager.plugins.should == [
+      Desert::Manager.find_plugin('the_grand_poobah'),
+      Desert::Manager.find_plugin('acts_as_spiffy'),
+      Desert::Manager.find_plugin('aa_depends_on_acts_as_spiffy'),
     ]
   end
 end

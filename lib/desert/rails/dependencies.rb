@@ -20,7 +20,7 @@ module Dependencies
   end
 
   def depend_on_with_desert(file_name, swallow_load_errors = false)
-    Desert::ComponentManager.files_on_load_path(file_name).each do |file|
+    Desert::Manager.files_on_load_path(file_name).each do |file|
       require_or_load(file)
     end
     require file_name
@@ -32,7 +32,7 @@ module Dependencies
   protected
   def define_constant_from_file(from_mod, const_name, qualified_name)
     path_suffix = qualified_name.underscore
-    files = Desert::ComponentManager.files_on_load_path(path_suffix)
+    files = Desert::Manager.files_on_load_path(path_suffix)
     files.each do |file|
       load file
       next if autoloaded_constants.include?(qualified_name)
@@ -45,7 +45,7 @@ module Dependencies
   def define_constant_from_directory(from_mod, const_name, qualified_name)
     path_suffix = qualified_name.underscore
 
-    return false unless Desert::ComponentManager.directory_on_load_path?(path_suffix)
+    return false unless Desert::Manager.directory_on_load_path?(path_suffix)
 
     from_mod.const_set(const_name, Module.new)
     unless autoloaded_constants.include?(qualified_name)

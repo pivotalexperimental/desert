@@ -4,7 +4,7 @@ require "active_record"
 require "action_mailer"
 
 require "desert/plugin"
-require "desert/component_manager"
+require "desert/manager"
 require "desert/rails/initializer"
 require "desert/rails/dependencies"
 require "desert/rails/migration"
