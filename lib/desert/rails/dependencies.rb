@@ -1,6 +1,6 @@
 module Dependencies
   def load_missing_constant_with_desert(from_mod, const_name)
-    from_mod = from_mod.parent if from_mod.name.blank?
+    from_mod = guard_against_anonymous_module(from_mod)
     qualified_name = qualified_name_for from_mod, const_name
     path_suffix = qualified_name.underscore
 
@@ -42,6 +42,12 @@ module Dependencies
   alias_method_chain :depend_on, :desert
 
   protected
+  def guard_against_anonymous_module(from_mod)
+    return Object if from_mod.name.blank?
+    return from_mod
+  end
+  
+
   def define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
     files = Desert::Manager.files_on_load_path(path_suffix)
     files.each do |file|

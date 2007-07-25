@@ -74,14 +74,6 @@ describe Dependencies, " with one plugin", :shared => true do
     end
   end
 
-  it "loads constants from module when referenced in an anonymous classes" #do
-#    module Spiffy
-#      class << self
-#        SpiffyController.acts_as_spiffy_loaded?.should be_true
-#      end
-#    end
-#  end
-
   it "loads constants from Object when referenced in an anonymous classes" do
     class << Object.new
       ActsAsSpiffyFile.class.should == Class
@@ -96,15 +88,6 @@ describe Dependencies, "#load_missing_constant with one plugin" do
   before do
     Dependencies.load_missing_constant(Object, :SpiffyHelper)
   end
-
-  it "loads constants from module when referenced in an anonymous classes" #do
-#    module Spiffy
-#      class << self
-#        p nesting
-#        SpiffyController.acts_as_spiffy_loaded?.should be_true
-#      end
-#    end
-#  end
 end
 
 describe Dependencies, "#depend_on with one plugin" do
