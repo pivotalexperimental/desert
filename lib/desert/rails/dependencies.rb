@@ -1,5 +1,6 @@
 module Dependencies
   def load_missing_constant_with_desert(from_mod, const_name)
+    from_mod = from_mod.parent if from_mod.name.blank?
     qualified_name = qualified_name_for from_mod, const_name
     path_suffix = qualified_name.underscore
 
