@@ -32,6 +32,13 @@ module Desert
         paths << "#{component_root}/app/helpers"
         paths << "#{component_root}/lib"
       end
+      rails_root = File.expand_path(RAILS_ROOT)
+      $LOAD_PATH.each do |load_path|
+        load_path = File.expand_path(load_path)
+        next unless load_path.include?(rails_root)
+        next if paths.include?(load_path)
+        paths << load_path
+      end
       paths
     end
 

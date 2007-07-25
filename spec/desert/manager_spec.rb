@@ -59,7 +59,16 @@ end
 describe Manager, "#load_paths" do
   it_should_behave_like "Desert::Manager"
 
-  it "returns all of the load paths ordered by plugins and then Rails directories" do
+  before do
+    @other_load_path = "#{RAILS_ROOT}/app/helpers/another_dir"
+    $LOAD_PATH << @other_load_path
+  end
+
+  after do
+    $LOAD_PATH.delete(@other_load_path)
+  end
+
+  it "returns all of the load paths ordered by plugins and then Rails directories and then additional project load paths" do
     plugin_root = File.expand_path("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
     @manager.register_plugin plugin_root
     rails_root = File.expand_path(RAILS_ROOT)
@@ -75,6 +84,7 @@ describe Manager, "#load_paths" do
       "#{rails_root}/app/controllers",
       "#{rails_root}/app/helpers",
       "#{rails_root}/lib",
+      File.expand_path(@other_load_path)
     ]
   end
 end
