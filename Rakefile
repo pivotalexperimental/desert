@@ -17,7 +17,7 @@ end
 
 def run_suite
   dir = File.dirname(__FILE__)
-  system("ruby #{dir}/examples/example_suite.rb") || raise("Example Suite failed")
+  system("ruby #{dir}/spec/spec_suite.rb") || raise("Example Suite failed")
 end
 
 PKG_NAME = "desert"
