@@ -17,11 +17,11 @@ module Dependencies
     end
     
     begin
-      return Object.const_missing(const_name)
+      return from_mod.parent.const_missing(const_name)
     rescue NameError => e
       raise(
         NameError,
-        "Constants #{qualified_name} from #{path_suffix}.rb and #{const_name} from #{const_name.to_s.underscore}.rb not found"
+        "Constant #{qualified_name} from #{path_suffix}.rb not found\n#{e.message}"
       )
     end
   end

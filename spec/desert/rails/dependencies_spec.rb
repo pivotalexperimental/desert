@@ -28,6 +28,12 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
   end
 
+  it "returns module defined in parent module" do
+    fixture = Object.new
+    fixture.extend Spiffy::Something
+    fixture.unspiffy.should == Spiffy::UnspiffyController
+  end
+
   it "raises error when constant file cannot be loaded from Object" do
     proc do
       NoModuleExists
@@ -42,7 +48,8 @@ describe Dependencies, "#load_missing_constant", :shared => true do
       Spiffy::NoModuleExists
     end.should raise_error(
       NameError,
-     "Constants Spiffy::NoModuleExists from spiffy/no_module_exists.rb and NoModuleExists from no_module_exists.rb not found"
+      "Constant Spiffy::NoModuleExists from spiffy/no_module_exists.rb not found\n" <<
+      "Constant NoModuleExists from no_module_exists.rb not found"
     )
   end
 end
