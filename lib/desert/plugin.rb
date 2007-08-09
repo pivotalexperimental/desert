@@ -15,7 +15,6 @@ module Desert
       "#{@path}/app/views"
     end
 
-    # TODO: Test Me
     def controllers_path
       "#{@path}/app/controllers"
     end

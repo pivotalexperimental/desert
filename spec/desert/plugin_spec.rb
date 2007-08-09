@@ -20,4 +20,15 @@ describe Plugin, "#migration_path" do
     plugin.migration_path.should == "#{File.expand_path(plugin_root)}/db/migrate"
   end
 end
+
+describe Plugin, "#controllers_path" do
+  it_should_behave_like "Desert::Manager fixture"
+
+  it "returns the controller path base on the passed in plugin" do
+    plugin_root = "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
+    @manager.register_plugin plugin_root
+    plugin = @manager.find_plugin('acts_as_spiffy')
+    plugin.controllers_path.should == "#{File.expand_path(plugin_root)}/app/controllers"
+  end
+end
 end
