@@ -35,8 +35,8 @@ module Dependencies
     Desert::Manager.files_on_load_path(file_name).each do |file|
       require_or_load(file)
     end
-    require file_name unless loaded.include?(file_name)
-    loaded << file_name
+    require_or_load file_name
+    loaded << File.expand_path(file_name)
   rescue LoadError
     raise unless swallow_load_errors
   end
@@ -47,7 +47,6 @@ module Dependencies
     return Object if from_mod.name.blank?
     return from_mod
   end
-  
 
   def define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
     files = Desert::Manager.files_on_load_path(path_suffix)
@@ -58,7 +57,7 @@ module Dependencies
       next if load_once_path?(file)
       autoloaded_constants << qualified_name
     end
-    loaded << path_suffix
+    loaded << File.expand_path(path_suffix)
     from_mod.const_defined?(const_name)
   end
 
