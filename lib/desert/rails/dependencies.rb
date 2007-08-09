@@ -35,7 +35,8 @@ module Dependencies
     Desert::Manager.files_on_load_path(file_name).each do |file|
       require_or_load(file)
     end
-    require file_name
+    require file_name unless loaded.include?(file_name)
+    loaded << file_name
   rescue LoadError
     raise unless swallow_load_errors
   end
@@ -52,10 +53,12 @@ module Dependencies
     files = Desert::Manager.files_on_load_path(path_suffix)
     files.each do |file|
       load file
+      loaded << file.gsub(/\.rb$/, '')
       next if autoloaded_constants.include?(qualified_name)
       next if load_once_path?(file)
       autoloaded_constants << qualified_name
     end
+    loaded << path_suffix
     from_mod.const_defined?(const_name)
   end
 
