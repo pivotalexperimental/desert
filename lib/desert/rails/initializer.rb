@@ -2,9 +2,10 @@ module Rails
   class Initializer
     def load_plugin_with_desert(directory)
       return if Desert::Manager.plugin_exists?(directory)
-      Desert::Manager.register_plugin(directory) do
+      plugin = Desert::Manager.register_plugin(directory) do
         load_plugin_without_desert(directory)
       end
+      configuration.controller_paths << plugin.controllers_path
     end
     alias_method_chain :load_plugin, :desert
 

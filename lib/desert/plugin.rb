@@ -15,6 +15,11 @@ module Desert
       "#{@path}/app/views"
     end
 
+    # TODO: Test Me
+    def controllers_path
+      "#{@path}/app/controllers"
+    end
+
     # The path to the layout for this plugin
     def layouts_path
       "#{templates_path}/layouts"
