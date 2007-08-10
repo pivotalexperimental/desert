@@ -25,23 +25,26 @@ describe Dependencies, ".require_dependency when constants are unloaded" do
     Object.const_defined?(:SpiffyHelper).should be_false
     require_dependency 'spiffy_helper'
     Object.const_defined?(:SpiffyHelper).should be_true
-    Dependencies.remove_unloadable_constants!
+    Dependencies.clear
     Object.const_defined?(:SpiffyHelper).should be_false
   end
 
   it "loads the both plugins" do
     require_dependency 'spiffy_helper'
+    Object.const_defined?(:SpiffyHelper).should be_true
     SpiffyHelper.loaded_acts_as_spiffy?.should be_true
     SpiffyHelper.loaded_super_spiffy?.should be_true
   end
 
   it "lets the project override methods from both plugins" do
     require_dependency 'spiffy_helper'
+    Object.const_defined?(:SpiffyHelper).should == true
     SpiffyHelper.duhh.should == "duhh from project"
   end
 
   it "lets the later plugin override methods" do
     require_dependency 'spiffy_helper'
+    Object.const_defined?(:SpiffyHelper).should == true
     SpiffyHelper.im_spiffy.should == "im_spiffy from super_spiffy"
   end
 end
