@@ -4,6 +4,7 @@ describe "Remove Project Constants", :shared => true do
       :SpiffyHelper,
       :Spiffy,
       :ApplicationController,
+      :ApplicationHelper,
       :LibModule
     ].each do |mod_name|
       if Object.const_defined?(mod_name)

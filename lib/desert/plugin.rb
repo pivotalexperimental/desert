@@ -19,6 +19,16 @@ module Desert
       "#{@path}/app/controllers"
     end
 
+    # TODO: Test me
+    def models_path
+      "#{@path}/app/models"
+    end
+
+    # TODO: Test me
+    def helpers_path
+      "#{@path}/app/helpers"
+    end
+
     # The path to the layout for this plugin
     def layouts_path
       "#{templates_path}/layouts"
@@ -28,7 +38,20 @@ module Desert
     def find_template(template)
       template_path = "#{templates_path}/#{template}"
       File.exists?(template_path) ? template_path : nil
-    end    
+    end
+
+    def framework_paths
+      # TODO: Don't include dirs for frameworks that are not used
+      %w(
+        railties
+        railties/lib
+        actionpack/lib
+        activesupport/lib
+        activerecord/lib
+        actionmailer/lib
+        actionwebservice/lib
+      ).map { |dir| "#{framework_root_path}/#{dir}" }.select { |dir| File.directory?(dir) }
+    end
 
     def ==(other)
       self.path == other.path

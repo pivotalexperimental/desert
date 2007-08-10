@@ -17,6 +17,7 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     Dependencies.autoloaded_constants.should == [
       "SpiffyHelper",
       "Spiffy",
+      "ApplicationHelper",
       "ApplicationController",
       "Spiffy::SpiffyController",
     ]

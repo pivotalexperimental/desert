@@ -5,6 +5,10 @@ module Rails
       plugin = Desert::Manager.register_plugin(directory) do
         load_plugin_without_desert(directory)
       end
+      # TODO: Can we use Initializer::Configuration#default_load_paths to do this?
+      Dependencies.load_paths << plugin.models_path
+      Dependencies.load_paths << plugin.controllers_path
+      Dependencies.load_paths << plugin.helpers_path
       configuration.controller_paths << plugin.controllers_path
     end
     alias_method_chain :load_plugin, :desert
