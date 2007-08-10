@@ -51,7 +51,7 @@ module Dependencies
   def define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
     files = Desert::Manager.files_on_load_path(path_suffix)
     files.each do |file|
-      load file
+      require_or_load file
       loaded << file.gsub(/\.rb$/, '')
       next if autoloaded_constants.include?(qualified_name)
       next if load_once_path?(file)
