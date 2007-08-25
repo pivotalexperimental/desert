@@ -32,16 +32,16 @@ module Dependencies
   end
 
   def depend_on_with_desert(file_name, swallow_load_errors = false)
-    successful_load = false
+    successfully_loaded_in_plugin = false
     Desert::Manager.files_on_load_path(file_name).each do |file|
       require_or_load(file)
-      successful_load = true
+      successfully_loaded_in_plugin = true
     end
     begin
       require_or_load file_name
       loaded << File.expand_path(file_name)
     rescue LoadError
-      if !swallow_load_errors && !successful_load
+      if !swallow_load_errors && !successfully_loaded_in_plugin
         raise
       end
     end
