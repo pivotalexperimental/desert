@@ -9,6 +9,7 @@ module Spiffy
         "Acts As Spiffy"
       end
     end
+    helper :controller_requested
 
     def acts_as_spiffy
       render :text => "Acting Spiffy"

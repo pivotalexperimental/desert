@@ -14,13 +14,19 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   it "adds constant to autoloaded_constants" do
     SpiffyHelper
     Spiffy::SpiffyController
-    Dependencies.autoloaded_constants.should == [
+    expected_constant_order = [
       "SpiffyHelper",
       "Spiffy",
       "ApplicationHelper",
       "ApplicationController",
       "Spiffy::SpiffyController",
     ]
+
+    constants_to_check = Dependencies.autoloaded_constants
+    constants_to_check.delete_if do |name|
+      !expected_constant_order.include?(name)
+    end
+    constants_to_check.should == expected_constant_order
   end
 
   it "does not add constants on the load_once_paths to autoloaded_constants" do

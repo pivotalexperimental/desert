@@ -1,0 +1,1 @@
+- Fixed [#13346] ActionController::Base.helper raises error when helper is only in plugin
