@@ -9,6 +9,7 @@ require "#{dir}/desert/manager"
 require "#{dir}/desert/rails/initializer"
 require "#{dir}/desert/rails/dependencies"
 require "#{dir}/desert/rails/migration"
+require "#{dir}/desert/rails/migrator"
 require "#{dir}/desert/ruby/object"
 require "#{dir}/desert/ruby/class"
 

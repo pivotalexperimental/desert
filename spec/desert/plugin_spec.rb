@@ -31,4 +31,35 @@ describe Plugin, "#controllers_path" do
     plugin.controllers_path.should == "#{File.expand_path(plugin_root)}/app/controllers"
   end
 end
+
+describe Plugin, '#up_to_date?' do
+  it_should_behave_like "Desert::Manager fixture"
+
+  before do
+    @mock_migrator = Object.new
+    stub(@mock_migrator).latest_version.returns(1)
+    stub(PluginAWeek::PluginMigrations::Migrator).new { @mock_migrator }
+  end
+
+  it "returns true if the schema version of the plugin equals the latest migration number" do
+    stub(@mock_migrator).current_version.returns(1)
+    plugin = Plugin.new("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
+    plugin.should be_up_to_date
+  end
+
+  it "returns false if the schema version of the plugin is less than the latest migration number" do
+    stub(@mock_migrator).current_version.returns(0)
+    plugin = Plugin.new("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
+    plugin.should_not be_up_to_date
+  end
+
+  it "should not affect the current plugin of the PluginAWeek Migrator" do
+    my_current_plugin = Object.new
+    PluginAWeek::PluginMigrations::Migrator.current_plugin = my_current_plugin
+    stub(@mock_migrator).current_version.returns(1)
+    plugin = Plugin.new("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
+    plugin.should be_up_to_date
+    PluginAWeek::PluginMigrations::Migrator.current_plugin.should == my_current_plugin
+  end
+end
 end

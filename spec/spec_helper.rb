@@ -16,6 +16,7 @@ require "desert"
 require "ruby-debug"
 require "spec/spec_helpers/remove_project_constants_helper"
 require "spec/spec_helpers/manager_fixture"
+require "spec/spec_helpers/mock_connection"
 
 Spec::Runner.configure do |config|
   config.mock_with RR::Adapters::Rspec

@@ -10,6 +10,9 @@ describe Initializer, :shared => true do
     class << @initializer
       public :load_plugin
     end
+
+    mock_plugin = 'mock plugin'
+    stub.instance_of(Desert::Plugin).up_to_date?.returns(true)
   end
 end
 
