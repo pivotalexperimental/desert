@@ -11,11 +11,11 @@ module Dependencies
     if define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
       return from_mod.const_get(const_name)
     end
-    
+
     if from_mod == Object
       raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
     end
-    
+
     begin
       return from_mod.parent.const_missing(const_name)
     rescue NameError => e
@@ -38,8 +38,10 @@ module Dependencies
       successfully_loaded_in_plugin = true
     end
     begin
-      require_or_load file_name
-      loaded << File.expand_path(file_name)
+      unless successfully_loaded_in_plugin
+        require_or_load file_name
+        loaded << File.expand_path(file_name)
+      end
     rescue LoadError
       if !swallow_load_errors && !successfully_loaded_in_plugin
         raise
@@ -57,7 +59,9 @@ module Dependencies
   def define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
     files = Desert::Manager.files_on_load_path(path_suffix)
     files.each do |file|
-      require_or_load file
+      # TODO: JLM/BT -- figure out why require_or_load does not work on Windows.
+#      require_or_load file
+      load file
       loaded << file.gsub(/\.rb$/, '')
       next if autoloaded_constants.include?(qualified_name)
       next if load_once_path?(file)

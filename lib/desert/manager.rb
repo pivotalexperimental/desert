@@ -13,7 +13,7 @@ module Desert
     end
 
     attr_reader :loading_plugin
-    
+
     def initialize
       @plugins = []
       @plugins_in_registration = []
@@ -26,11 +26,11 @@ module Desert
     def load_paths
       paths = []
       plugin_paths.each do |component_root|
-        paths << "#{component_root}/app"
-        paths << "#{component_root}/app/models"
-        paths << "#{component_root}/app/controllers"
-        paths << "#{component_root}/app/helpers"
-        paths << "#{component_root}/lib"
+        paths << File.join(component_root, 'app')
+        paths << File.join(component_root, 'app','models')
+        paths << File.join(component_root, 'app','controllers')
+        paths << File.join(component_root, 'app','helpers')
+        paths << File.join(component_root, 'lib')
       end
       rails_root = File.expand_path(RAILS_ROOT)
       $LOAD_PATH.each do |load_path|
@@ -47,6 +47,10 @@ module Desert
       @plugins_in_registration << plugin
 
       yield if block_given?
+
+      Dependencies.load_paths << plugin.models_path
+      Dependencies.load_paths << plugin.controllers_path
+      Dependencies.load_paths << plugin.helpers_path
 
       @plugins_in_registration.pop
 
@@ -80,8 +84,8 @@ module Desert
       files = []
       load_paths.each do |path|
         full_path = File.join(path, file)
-        full_path_rb = "#{full_path}.rb"
-        files << full_path_rb if File.exists?(full_path_rb)
+        full_path << '.rb' unless File.extname(full_path) == '.rb'
+        files << full_path if File.exists?(full_path)
       end
       files
     end

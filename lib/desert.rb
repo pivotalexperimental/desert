@@ -1,6 +1,6 @@
 require "active_support"
-require "action_controller"
 require "active_record"
+require "action_controller"
 require "action_mailer"
 
 dir = File.dirname(__FILE__)
