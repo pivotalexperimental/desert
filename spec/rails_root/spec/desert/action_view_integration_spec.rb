@@ -5,6 +5,10 @@ module ActionView
 describe Base, "#render partial" do
   before do
     @controller = ::Spiffy::SpiffyController.new
+    @request = ActionController::TestRequest.new
+    @response = ActionController::TestResponse.new
+    @controller.send(:initialize_template_class, @response)
+    @controller.send(:assign_shortcuts, @request, @response)
     @base = ActionView::Base.new("#{RAILS_ROOT}/app/views", {}, @controller)
   end
 

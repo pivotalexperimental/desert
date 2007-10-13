@@ -6,12 +6,17 @@ require "action_mailer"
 dir = File.dirname(__FILE__)
 require "#{dir}/desert/plugin"
 require "#{dir}/desert/manager"
-require "#{dir}/desert/rails/initializer"
+if Rails.const_defined?(:Plugin)
+  Desert::RAILS_VERSION = 2
+  require "#{dir}/desert/rails/2.0/loader"
+else
+  Desert::RAILS_VERSION = 1
+  require "#{dir}/desert/rails/1.x/initializer"
+end
 require "#{dir}/desert/rails/dependencies"
 require "#{dir}/desert/rails/migration"
 require "#{dir}/desert/rails/migrator"
 require "#{dir}/desert/ruby/object"
-require "#{dir}/desert/ruby/class"
 
 require "#{dir}/desert/rails/route_set"
 

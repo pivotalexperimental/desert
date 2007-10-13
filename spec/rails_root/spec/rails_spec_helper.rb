@@ -1,8 +1,10 @@
 ENV["RAILS_ENV"] ||= "test"
 dir = File.dirname(__FILE__)
-$LOAD_PATH << "#{dir}/../../../lib"
+RAILS_GEM_VERSION = '1.2.3'
+$LOAD_PATH.unshift("#{dir}/../../../lib")
 require "#{dir}/../config/environment"
 
+require "action_controller/test_process"
 require "spec"
 require "ruby-debug"
 require "rr"

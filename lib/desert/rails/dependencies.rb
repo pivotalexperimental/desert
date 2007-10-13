@@ -13,9 +13,13 @@ module Dependencies
     end
 
     if from_mod == Object
-      raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
+      begin
+        require path_suffix
+      rescue LoadError => e
+        raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
+      end
     end
-
+    
     begin
       return from_mod.parent.const_missing(const_name)
     rescue NameError => e
@@ -60,7 +64,7 @@ module Dependencies
     files = Desert::Manager.files_on_load_path(path_suffix)
     files.each do |file|
       # TODO: JLM/BT -- figure out why require_or_load does not work on Windows.
-#      require_or_load file
+      #      require_or_load file
       load file
       loaded << file.gsub(/\.rb$/, '')
       next if autoloaded_constants.include?(qualified_name)

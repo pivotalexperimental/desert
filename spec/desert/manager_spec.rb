@@ -83,8 +83,7 @@ describe Manager, "#load_paths" do
       "#{rails_root}/app/models",
       "#{rails_root}/app/controllers",
       "#{rails_root}/app/helpers",
-      "#{rails_root}/lib",
-      File.expand_path(@other_load_path)
+      "#{rails_root}/lib"
     ]
   end
 end
