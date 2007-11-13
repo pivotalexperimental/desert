@@ -1,0 +1,6 @@
+---
+defaults:
+  install_options: --include-dependencies
+gems:
+- name: rr
+  version: 0.3.11
