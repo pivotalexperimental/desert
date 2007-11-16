@@ -1,4 +1,6 @@
-require File.expand_path("#{File.dirname(__FILE__)}/../../spec_helper")
+require File.expand_path("#{File.dirname(__FILE__)}/../../../spec_helper")
+
+if Desert::RAILS_VERSION == 1
 
 module Rails
 describe Initializer, :shared => true do
@@ -55,4 +57,6 @@ describe Initializer, "#require_plugin" do
     ]
   end
 end
+end
+
 end

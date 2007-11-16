@@ -8,7 +8,7 @@ require "#{dir}/desert/plugin"
 require "#{dir}/desert/manager"
 if Rails.const_defined?(:Plugin)
   Desert::RAILS_VERSION = 2
-  require "#{dir}/desert/rails/2.0/loader"
+  require "#{dir}/desert/rails/2.0/plugin"
 else
   Desert::RAILS_VERSION = 1
   require "#{dir}/desert/rails/1.x/initializer"
