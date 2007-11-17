@@ -7,6 +7,4 @@ class RailsSpecSuite
   end
 end
 
-if $0 == __FILE__
-  RailsSpecSuite.new.run
-end
+RailsSpecSuite.new.run

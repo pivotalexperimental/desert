@@ -28,7 +28,6 @@ module Desert
       plugin_paths.each do |component_root|
         paths << File.join(component_root, 'app')
         paths << File.join(component_root, 'app','models')
-        paths += Dir[File.join(component_root, 'app', 'models', '**').select { |f| File.directory?(f) }]
         paths << File.join(component_root, 'app','controllers')
         paths << File.join(component_root, 'app','helpers')
         paths << File.join(component_root, 'lib')

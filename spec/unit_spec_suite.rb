@@ -7,6 +7,4 @@ class UnitSpecSuite
   end
 end
 
-if $0 == __FILE__
-  UnitSpecSuite.new.run
-end
+UnitSpecSuite.new.run
