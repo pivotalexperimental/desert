@@ -1,5 +1,6 @@
 #Desert -- It doesn't get any DRYer than this
-Desert takes Rails plugins to the extreme, making it easy to share models, views, controllers, helpers, routes, and migrations across your applications. With Desert, reusability doesn't come at the cost of extensibility: it's trivial to extend the functionality of a Desert plugin--both in your application _and_ in other Desert plugins.
+Desert is a Rails plugin framework that makes it easy to share models, views, controllers, helpers, routes, and migrations across your applications.
+With Desert, reusability doesn't come at the cost of extensibility: it's trivial to extend the functionality of a plugin--both in your application _and_ in other plugins.
 
 
 "I tried generators, but all I got was a bunch of code duplication. With Desert, I've been able to re-use all of my social networking functionality without a single duplicated character! Thanks Desert!"
@@ -15,7 +16,8 @@ Desert takes Rails plugins to the extreme, making it easy to share models, views
 -- Nathan Sobo, Programmer
 
 ##Anatomy of a Desert Plugin
-Desert plugins contain the standard Rails directory structure. When you want to extract part of your application into a plugin, just drag files into the `vendor/plugins` directory.
+Desert enables your plugins to contain the standard Rails directory structure.
+When you want to extract part of your application into a plugin, just drag files into the `vendor/plugins` directory.
 
     rails_root/
       app/
@@ -55,12 +57,17 @@ Desert plugins contain the standard Rails directory structure. When you want to 
             lib/
               current_user.rb
 
-Load Desert by placing the following code at the __TOP__ of `config/environment.rb`:
+##Installation
+    gem install desert
+
+##Loading Desert
+Require desert above the Rails Initializer at the __TOP__ of `config/environment.rb`:
 
 `config/environment.rb`
-
-    $LOAD_PATH.unshift File.expand_path("#{RAILS_ROOT}/vendor/desert/lib")
     require "desert"
+    Rails::Initializer.run do |config|
+      ...
+    end
   
 
 Note: __AT THE TOP__
@@ -68,17 +75,18 @@ Note: __AT THE TOP__
 
 
 ##Managing Plugin Dependencies
-By default, Rails loads plugins in alphabetical order, making it tedious to manage dependencies. Desert will automatically load plugins in the proper order when you declare their dependencies like this:
+By default, Rails loads plugins in alphabetical order, making it tedious to manage dependencies.
+Desert will automatically load plugins in the proper order when you declare their dependencies like this:
 
 `vendor/plugins/blogs/init.rb`
 
     require_plugin 'user'
     require_plugin 'will_paginate'
 
-Here `user` and `will_paginate` will always be loaded before `blogs`. Note that both Desert and non-Desert plugins can be declared as dependencies.
+Here `user` and `will_paginate` will always be loaded before `blogs`. Note that any plugin can be declared as a dependency.
 
 ##Designed For Extensibility
-One of Ruby's key features is the ability to reopen classes and customize their behavior. Desert plugins give you this same power.
+One of Ruby's key features is the ability to reopen classes and customize their behavior. Desert gives your plugins the same power.
 
 In the user plugin:
 `vendor/plugins/user/app/models/user.rb`
@@ -114,7 +122,9 @@ In the application:
     end
 
 
-Here the `blogs` plugin overrides a method in the `User` class that's defined in the `user` plugin. The `blogs` plugin also adds a `has_one :blog` declaration to `User`. The application overrides the `blog_title` template method, defined in the `blogs` plugin.
+Here the `blogs` plugin overrides a method in the `User` class that's defined in the `user` plugin.
+The `blogs` plugin also adds a `has_one :blog` declaration to `User`.
+The application overrides the `blog_title` template method, defined in the `blogs` plugin.
 
 Note that controllers and helpers can be extended in the same way.
 
@@ -139,7 +149,8 @@ In the application:
       map.routes_from_plugin :user
     end
 
-Here the application adds the `users` resource from the `user` plugin and the `blogs` resource from the `blogs` plugin. Notice that there is no need to call methods on map in the plugin route files, because they are instance eval'd in the map object.
+Here the application adds the `users` resource from the `user` plugin and the `blogs` resource from the `blogs` plugin.
+Notice that there is no need to call methods on map in the plugin route files, because they are instance eval'd in the map object.
 
 ##Sharing Migrations
 Sharing models means sharing schema fragments, and that means sharing migrations:
@@ -155,7 +166,9 @@ In the `blogs` plugin:
       001_create_user_table.rb
       002_add_became_a_blogger_at_to_user.rb
 
-Here the `blogs` plugin needs to add a column to the `users` table. No problem! It just includes a migration in its `db/migrate` directory, just like a regular Rails application. When the application developer installs the plugin, he migrates the plugin in his own migration:
+Here the `blogs` plugin needs to add a column to the `users` table. No problem!
+It just includes a migration in its `db/migrate` directory, just like a regular Rails application.
+When the application developer installs the plugin, he migrates the plugin in his own migration:
       
 `application_root/db/migrate/009_install_user_and_blogs_plugins.rb`
   
@@ -171,7 +184,8 @@ Here the `blogs` plugin needs to add a column to the `users` table. No problem! 
       end
     end
     
-Here the application migrates the `user` plugin to version 1 and the `blogs` plugin to version 2. If a subsequent version of the plugin introduces new migrations, the application developer has full control over when to apply them to his schema.
+Here the application migrates the `user` plugin to version 1 and the `blogs` plugin to version 2.
+If a subsequent version of the plugin introduces new migrations, the application developer has full control over when to apply them to his schema.
 
 ##Share Views
 To share views, just create templates and partials in the plugin's `app/views` directory, just as you would with a Rails application.
@@ -182,8 +196,8 @@ To share views, just create templates and partials in the plugin's `app/views` d
       ...
     <% end %>
 
-class InstallUserAndBlogsPlugins < ActiveRecord::Migration
-def self.up
-  migrate_plugin 'user', 1
-  migrate_plugin 'blogs', 2
-end
+    class InstallUserAndBlogsPlugins < ActiveRecord::Migration
+    def self.up
+      migrate_plugin 'user', 1
+      migrate_plugin 'blogs', 2
+    end
