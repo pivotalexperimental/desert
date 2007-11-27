@@ -1,1 +1,2 @@
 - Fixed [#13346] ActionController::Base.helper raises error when helper is only in plugin
+- Desert does not require files that have been required before Desert was loaded
