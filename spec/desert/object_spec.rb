@@ -63,18 +63,30 @@ describe Object, "#require" do
     NotInApp.should be_loaded
   end
 
-  it "loads external files when given full path" do
+  it "when given full path, loads external files" do
     require 'spec/external_files/spiffy_helper'
     SpiffyHelper.external_file_loaded?.should be_true
   end
 
-  it "does not load file match not in app when file contained in app" do
+  it "when relative path already on required files collection, does not load files" do
+    Object.const_defined?(:SpiffyHelper).should be_false
+    require "spiffy_helper"
+    class << SpiffyHelper
+      remove_method :duhh
+    end
+    $".include?("spiffy_helper.rb").should be_true
+
+    require "spiffy_helper"
+    SpiffyHelper.methods.should_not include('duhh')
+  end
+
+  it "when file contained in app, does not load file match not in app" do
     require "spiffy_helper"
     SpiffyHelper.duhh.should == "duhh from project"
     SpiffyHelper.respond_to?(:external_file_loaded?).should be_false
   end
 
-  it "returns true when when file contained in app" do
+  it "when file contained in app and requiring for the first time, returns true" do
     require("spiffy_helper").should be_true
   end
 end

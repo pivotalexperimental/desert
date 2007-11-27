@@ -462,3 +462,620 @@ Migrating to CreateEmployees (2)
   [4;36;1mSQL (0.000557)[0m   [0;1mdrop table `schema_info`[0m
   [4;35;1mSQL (0.000255)[0m   [0mshow tables[0m
   [4;36;1mSQL (0.000197)[0m   [0;1mshow tables[0m
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00124)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00115)
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:21:24) [GET]
+  Session ID: 16d1523711cc628ed8fc0db81a163fee
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:21:24) [GET]
+  Session ID: 709b43a27e43d922631ff6b8e4ee297d
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00042)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00037)
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:21:28) [GET]
+  Session ID: 5198d472e894dbceee9a96e7b8678413
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:21:28) [GET]
+  Session ID: e0ca2f3e93fc44b2aa5c8bf10ebad79d
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00248)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00229)
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+  [4;36;1mSQL (0.000123)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000287)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.011034)[0m   [0;1mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;35;1mSQL (0.000318)[0m   [0mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;36;1mSQL (0.002457)[0m   [0;1mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000341)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE `schema_info` (version int(11))[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000184)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;35;1mSQL (0.003203)[0m   [0mCREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000258)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000156)[0m   [0mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;36;1mSQL (0.000283)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;35;1mSQL (0.007359)[0m   [0mCREATE TABLE `employees` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000221)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000170)[0m   [0mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000400)[0m   [0;1mselect * from plugin_schema_info;[0m
+  [4;35;1mSQL (0.000372)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.001063)[0m   [0;1mdrop table `companies`[0m
+  [4;35;1mSQL (0.000917)[0m   [0mdrop table `employees`[0m
+  [4;36;1mSQL (0.000194)[0m   [0;1mdrop table `plugin_schema_info`[0m
+  [4;35;1mSQL (0.000289)[0m   [0mdrop table `schema_info`[0m
+  [4;36;1mSQL (0.000273)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.002306)[0m   [0mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000206)[0m   [0;1mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;35;1mSQL (0.002174)[0m   [0mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000293)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000229)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;36;1mSQL (0.007368)[0m   [0;1mCREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000276)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000171)[0m   [0;1mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;35;1mSQL (0.000272)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;36;1mSQL (0.002745)[0m   [0;1mCREATE TABLE `employees` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000197)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000148)[0m   [0;1mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000429)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000384)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.000845)[0m   [0mdrop table `companies`[0m
+  [4;36;1mSQL (0.000858)[0m   [0;1mdrop table `employees`[0m
+  [4;35;1mSQL (0.000192)[0m   [0mdrop table `plugin_schema_info`[0m
+  [4;36;1mSQL (0.000199)[0m   [0;1mdrop table `schema_info`[0m
+  [4;35;1mSQL (0.000306)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000277)[0m   [0;1mshow tables[0m
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:21:56) [GET]
+  Session ID: 8a8a4f2c49fb84fe1377dbf4776f1c7f
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:21:56) [GET]
+  Session ID: 85caea0f4a54579072c4dfcc82554bf8
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00053)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00044)
+  [4;36;1mSQL (0.000192)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000326)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.010578)[0m   [0;1mCREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000391)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.002399)[0m   [0;1mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000451)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000260)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;35;1mSQL (0.003743)[0m   [0mCREATE TABLE companies (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000225)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000325)[0m   [0mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;36;1mSQL (0.000459)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;35;1mSQL (0.002886)[0m   [0mCREATE TABLE employees (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000274)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000383)[0m   [0mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000337)[0m   [0;1mselect * from plugin_schema_info;[0m
+  [4;35;1mSQL (0.000429)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.029532)[0m   [0;1mdrop table `companies`[0m
+  [4;35;1mSQL (0.001042)[0m   [0mdrop table `employees`[0m
+  [4;36;1mSQL (0.000208)[0m   [0;1mdrop table `plugin_schema_info`[0m
+  [4;35;1mSQL (0.000190)[0m   [0mdrop table `schema_info`[0m
+  [4;36;1mSQL (0.000321)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.002933)[0m   [0mCREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000221)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.002223)[0m   [0mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000329)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000210)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;36;1mSQL (0.003054)[0m   [0;1mCREATE TABLE companies (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000183)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000179)[0m   [0;1mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;35;1mSQL (0.000269)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;36;1mSQL (0.003116)[0m   [0;1mCREATE TABLE employees (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000195)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000196)[0m   [0;1mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000416)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000365)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.000974)[0m   [0mdrop table `companies`[0m
+  [4;36;1mSQL (0.000955)[0m   [0;1mdrop table `employees`[0m
+  [4;35;1mSQL (0.000185)[0m   [0mdrop table `plugin_schema_info`[0m
+  [4;36;1mSQL (0.000180)[0m   [0;1mdrop table `schema_info`[0m
+  [4;35;1mSQL (0.000244)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000355)[0m   [0;1mshow tables[0m
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:22:01) [GET]
+  Session ID: 8d082fc20ebbeebc46880d75afa62e4b
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:22:01) [GET]
+  Session ID: 8a6f71b72abd5aa4a6365b6597f23aa7
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00112)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00107)
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+  [4;36;1mSQL (0.000134)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000303)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.006807)[0m   [0;1mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;35;1mSQL (0.000235)[0m   [0mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;36;1mSQL (0.002336)[0m   [0;1mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000311)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE `schema_info` (version int(11))[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000194)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;35;1mSQL (0.014977)[0m   [0mCREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000191)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000195)[0m   [0mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;36;1mSQL (0.000291)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;35;1mSQL (0.005266)[0m   [0mCREATE TABLE `employees` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000199)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000187)[0m   [0mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000329)[0m   [0;1mselect * from plugin_schema_info;[0m
+  [4;35;1mSQL (0.000341)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.001010)[0m   [0;1mdrop table `companies`[0m
+  [4;35;1mSQL (0.000885)[0m   [0mdrop table `employees`[0m
+  [4;36;1mSQL (0.000222)[0m   [0;1mdrop table `plugin_schema_info`[0m
+  [4;35;1mSQL (0.000210)[0m   [0mdrop table `schema_info`[0m
+  [4;36;1mSQL (0.000283)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.002321)[0m   [0mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000214)[0m   [0;1mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;35;1mSQL (0.002221)[0m   [0mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000313)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000194)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;36;1mSQL (0.010014)[0m   [0;1mCREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000183)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000257)[0m   [0;1mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;35;1mSQL (0.000267)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;36;1mSQL (0.003147)[0m   [0;1mCREATE TABLE `employees` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000197)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000156)[0m   [0;1mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000369)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000315)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.002085)[0m   [0mdrop table `companies`[0m
+  [4;36;1mSQL (0.000889)[0m   [0;1mdrop table `employees`[0m
+  [4;35;1mSQL (0.000207)[0m   [0mdrop table `plugin_schema_info`[0m
+  [4;36;1mSQL (0.000188)[0m   [0;1mdrop table `schema_info`[0m
+  [4;35;1mSQL (0.000247)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000279)[0m   [0;1mshow tables[0m
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:45:36) [GET]
+  Session ID: 6eb0b5c7a1d12ab9ef191227c58e9aad
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:45:36) [GET]
+  Session ID: dd130ccedf8340f5522b9950476eb6ad
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00083)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00083)
+  [4;36;1mSQL (0.000184)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000537)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.010137)[0m   [0;1mCREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000263)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.002600)[0m   [0;1mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000324)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000193)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;35;1mSQL (0.004095)[0m   [0mCREATE TABLE companies (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000216)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000218)[0m   [0mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;36;1mSQL (0.000460)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;35;1mSQL (0.003668)[0m   [0mCREATE TABLE employees (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000225)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000177)[0m   [0mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000300)[0m   [0;1mselect * from plugin_schema_info;[0m
+  [4;35;1mSQL (0.000374)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.001039)[0m   [0;1mdrop table `companies`[0m
+  [4;35;1mSQL (0.000922)[0m   [0mdrop table `employees`[0m
+  [4;36;1mSQL (0.000193)[0m   [0;1mdrop table `plugin_schema_info`[0m
+  [4;35;1mSQL (0.000185)[0m   [0mdrop table `schema_info`[0m
+  [4;36;1mSQL (0.000286)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.007935)[0m   [0mCREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000211)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.002382)[0m   [0mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000312)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000228)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;36;1mSQL (0.024700)[0m   [0;1mCREATE TABLE companies (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000203)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000196)[0m   [0;1mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;35;1mSQL (0.000417)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;36;1mSQL (0.002807)[0m   [0;1mCREATE TABLE employees (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000193)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000160)[0m   [0;1mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000340)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000325)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.001784)[0m   [0mdrop table `companies`[0m
+  [4;36;1mSQL (0.001168)[0m   [0;1mdrop table `employees`[0m
+  [4;35;1mSQL (0.000191)[0m   [0mdrop table `plugin_schema_info`[0m
+  [4;36;1mSQL (0.000184)[0m   [0;1mdrop table `schema_info`[0m
+  [4;35;1mSQL (0.000260)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000215)[0m   [0;1mshow tables[0m
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:45:41) [GET]
+  Session ID: 8d971189528bfd4a1c1eb22f9aae6162
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:45:41) [GET]
+  Session ID: 05fcca18121be947700fc58583cb8f5e
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00127)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00131)
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+  [4;36;1mSQL (0.000153)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000356)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.009997)[0m   [0;1mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;35;1mSQL (0.000337)[0m   [0mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;36;1mSQL (0.002523)[0m   [0;1mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000424)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE `schema_info` (version int(11))[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000979)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;35;1mSQL (0.056407)[0m   [0mCREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000289)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000280)[0m   [0mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;36;1mSQL (0.000373)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;35;1mSQL (0.029203)[0m   [0mCREATE TABLE `employees` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000233)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000399)[0m   [0mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000318)[0m   [0;1mselect * from plugin_schema_info;[0m
+  [4;35;1mSQL (0.000418)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.001081)[0m   [0;1mdrop table `companies`[0m
+  [4;35;1mSQL (0.000899)[0m   [0mdrop table `employees`[0m
+  [4;36;1mSQL (0.000196)[0m   [0;1mdrop table `plugin_schema_info`[0m
+  [4;35;1mSQL (0.000184)[0m   [0mdrop table `schema_info`[0m
+  [4;36;1mSQL (0.000259)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.002424)[0m   [0mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000246)[0m   [0;1mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;35;1mSQL (0.002719)[0m   [0mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000297)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000221)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;36;1mSQL (0.004892)[0m   [0;1mCREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000184)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000200)[0m   [0;1mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;35;1mSQL (0.000277)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;36;1mSQL (0.002953)[0m   [0;1mCREATE TABLE `employees` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000205)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000164)[0m   [0;1mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000453)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000317)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.001079)[0m   [0mdrop table `companies`[0m
+  [4;36;1mSQL (0.000877)[0m   [0;1mdrop table `employees`[0m
+  [4;35;1mSQL (0.000224)[0m   [0mdrop table `plugin_schema_info`[0m
+  [4;36;1mSQL (0.000210)[0m   [0;1mdrop table `schema_info`[0m
+  [4;35;1mSQL (0.000251)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000226)[0m   [0;1mshow tables[0m
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:47:15) [GET]
+  Session ID: a5ceb020e856b4168cc1a3bbd8c847c8
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:47:15) [GET]
+  Session ID: b2157a462c8efa0b772ebca1d4417933
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00042)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00048)
+  [4;36;1mSQL (0.000134)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000310)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.009591)[0m   [0;1mCREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000307)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.002717)[0m   [0;1mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000399)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000284)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;35;1mSQL (0.003834)[0m   [0mCREATE TABLE companies (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000196)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000201)[0m   [0mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;36;1mSQL (0.000288)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;35;1mSQL (0.002970)[0m   [0mCREATE TABLE employees (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000200)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000170)[0m   [0mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000302)[0m   [0;1mselect * from plugin_schema_info;[0m
+  [4;35;1mSQL (0.000355)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.009175)[0m   [0;1mdrop table `companies`[0m
+  [4;35;1mSQL (0.000938)[0m   [0mdrop table `employees`[0m
+  [4;36;1mSQL (0.000205)[0m   [0;1mdrop table `plugin_schema_info`[0m
+  [4;35;1mSQL (0.000215)[0m   [0mdrop table `schema_info`[0m
+  [4;36;1mSQL (0.000348)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.002129)[0m   [0mCREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000220)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.002218)[0m   [0mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000345)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000214)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;36;1mSQL (0.002442)[0m   [0;1mCREATE TABLE companies (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000186)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000290)[0m   [0;1mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;35;1mSQL (0.000276)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;36;1mSQL (0.016004)[0m   [0;1mCREATE TABLE employees (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000318)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000175)[0m   [0;1mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000353)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000324)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.000758)[0m   [0mdrop table `companies`[0m
+  [4;36;1mSQL (0.000649)[0m   [0;1mdrop table `employees`[0m
+  [4;35;1mSQL (0.000236)[0m   [0mdrop table `plugin_schema_info`[0m
+  [4;36;1mSQL (0.000194)[0m   [0;1mdrop table `schema_info`[0m
+  [4;35;1mSQL (0.000229)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000210)[0m   [0;1mshow tables[0m
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:47:20) [GET]
+  Session ID: 857bc4ded8199c10850fa32e797704e4
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:47:20) [GET]
+  Session ID: a0d8f52da62f41c3fcbf00b3b15d4b4d
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00109)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00111)
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+  [4;36;1mSQL (0.000138)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000437)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.011395)[0m   [0;1mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;35;1mSQL (0.000218)[0m   [0mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;36;1mSQL (0.002303)[0m   [0;1mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000334)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE `schema_info` (version int(11))[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000181)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;35;1mSQL (0.003394)[0m   [0mCREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000198)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000241)[0m   [0mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;36;1mSQL (0.000295)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;35;1mSQL (0.002806)[0m   [0mCREATE TABLE `employees` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000186)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000147)[0m   [0mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000307)[0m   [0;1mselect * from plugin_schema_info;[0m
+  [4;35;1mSQL (0.000328)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000955)[0m   [0;1mdrop table `companies`[0m
+  [4;35;1mSQL (0.000831)[0m   [0mdrop table `employees`[0m
+  [4;36;1mSQL (0.000180)[0m   [0;1mdrop table `plugin_schema_info`[0m
+  [4;35;1mSQL (0.000179)[0m   [0mdrop table `schema_info`[0m
+  [4;36;1mSQL (0.000244)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.008454)[0m   [0mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000222)[0m   [0;1mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;35;1mSQL (0.002426)[0m   [0mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000315)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000178)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;36;1mSQL (0.014342)[0m   [0;1mCREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000173)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000160)[0m   [0;1mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;35;1mSQL (0.000339)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;36;1mSQL (0.002989)[0m   [0;1mCREATE TABLE `employees` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000186)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000150)[0m   [0;1mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000378)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000417)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.002081)[0m   [0mdrop table `companies`[0m
+  [4;36;1mSQL (0.000888)[0m   [0;1mdrop table `employees`[0m
+  [4;35;1mSQL (0.000213)[0m   [0mdrop table `plugin_schema_info`[0m
+  [4;36;1mSQL (0.000202)[0m   [0;1mdrop table `schema_info`[0m
+  [4;35;1mSQL (0.000262)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000212)[0m   [0;1mshow tables[0m
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:47:39) [GET]
+  Session ID: 0856e2aa53b6eabe143bed41c727a39c
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:47:39) [GET]
+  Session ID: 66b1b73f4d1c4fd4f87084440265bc58
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+Rendered spiffy/spiffy/_spiffy (0.00040)
+Rendered spiffy/spiffy/_acts_as_spiffy (0.00036)
+  [4;36;1mSQL (0.000138)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000335)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.021192)[0m   [0;1mCREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000260)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.002333)[0m   [0;1mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000328)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000233)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;35;1mSQL (0.003747)[0m   [0mCREATE TABLE companies (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000210)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000188)[0m   [0mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;36;1mSQL (0.000305)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;35;1mSQL (0.003681)[0m   [0mCREATE TABLE employees (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000208)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000174)[0m   [0mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000324)[0m   [0;1mselect * from plugin_schema_info;[0m
+  [4;35;1mSQL (0.000359)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.001028)[0m   [0;1mdrop table `companies`[0m
+  [4;35;1mSQL (0.000959)[0m   [0mdrop table `employees`[0m
+  [4;36;1mSQL (0.000192)[0m   [0;1mdrop table `plugin_schema_info`[0m
+  [4;35;1mSQL (0.000183)[0m   [0mdrop table `schema_info`[0m
+  [4;36;1mSQL (0.000300)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.002237)[0m   [0mCREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000232)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.002558)[0m   [0mCREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;36;1mSQL (0.000375)[0m   [0;1mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'plugin_schema_info' already exists: CREATE TABLE plugin_schema_info (plugin_name varchar(255), version int(11))[0m
+  [4;35;1mSQL (0.000200)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateCompanies (1)
+  [4;36;1mSQL (0.028563)[0m   [0;1mCREATE TABLE companies (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000184)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000184)[0m   [0;1mINSERT INTO plugin_schema_info (version, plugin_name) VALUES (1,'acts_as_spiffy')[0m
+  [4;35;1mSQL (0.000301)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+Migrating to CreateEmployees (2)
+  [4;36;1mSQL (0.002820)[0m   [0;1mCREATE TABLE employees (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `company_id` int(11) NOT NULL, `first_name` varchar(255) NOT NULL, `last_name` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000196)[0m   [0mSELECT version FROM plugin_schema_info WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;36;1mSQL (0.000174)[0m   [0;1mUPDATE plugin_schema_info SET version = 2 WHERE plugin_name = 'acts_as_spiffy'[0m
+  [4;35;1mSQL (0.000371)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000308)[0m   [0;1mshow tables[0m
+  [4;35;1mSQL (0.011128)[0m   [0mdrop table `companies`[0m
+  [4;36;1mSQL (0.000906)[0m   [0;1mdrop table `employees`[0m
+  [4;35;1mSQL (0.000189)[0m   [0mdrop table `plugin_schema_info`[0m
+  [4;36;1mSQL (0.000213)[0m   [0;1mdrop table `schema_info`[0m
+  [4;35;1mSQL (0.000250)[0m   [0mshow tables[0m
+  [4;36;1mSQL (0.000246)[0m   [0;1mshow tables[0m
+Spiffy::SpiffyController: missing default helper path spiffy/spiffy_helper
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:47:44) [GET]
+  Session ID: 2b059eac69ec25f6e3da519bb2c75c01
+  Parameters: {}
+Rendering spiffy/spiffy/spiffy
+
+
+Processing SpiffyController#index (for 127.0.0.0 at 2007-11-27 13:47:44) [GET]
+  Session ID: 0692b63808e9a91a9fa7f73908f09d18
+  Parameters: {}
+Rendering spiffy/spiffy/acts_as_spiffy
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/load_me_once/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/super_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/acts_as_spiffy/config/routes.rb.
+Loading routes from /home/pivotal/workspace/desert/spec/rails_root/vendor/plugins/the_grand_poobah/config/routes.rb.
