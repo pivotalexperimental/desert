@@ -41,6 +41,19 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     fixture.unspiffy.should == Spiffy::UnspiffyController
   end
 
+  it "when required file is outside of Rails project, returns module" do
+    NotInApp.should be_loaded
+  end
+
+  it "when required file is outside of Rails project and it does not define expected constant, raise friendly error message" do
+    proc do
+      FileWithoutModule
+    end.should raise_error(
+      NameError,
+      "Loaded file_without_module.rb, but FileWithoutModule was not defined"
+    )
+  end
+
   it "raises error when constant file cannot be loaded from Object" do
     proc do
       NoModuleExists

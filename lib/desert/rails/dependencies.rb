@@ -7,18 +7,12 @@ module Dependencies
     if define_constant_with_desert_loading(from_mod, const_name, qualified_name, path_suffix)
       return from_mod.const_get(const_name)
     end
-
-    if from_mod == Object
-      unless attempt_standard_require(path_suffix)
-        raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
-      end
+  
+    if has_parent_module?(from_mod)
+      look_for_constant_in_parent_module(from_mod, const_name, qualified_name, path_suffix)
     else
-      begin
-        return from_mod.parent.const_missing(const_name)
-      rescue NameError => e
-        raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found\n#{e.message}"
-      end
-    end
+      attempt_standard_require(from_mod, const_name, qualified_name, path_suffix)
+    end    
   end
   alias_method_chain :load_missing_constant, :desert
 
@@ -50,14 +44,25 @@ module Dependencies
     define_constant_from_file(from_mod, const_name, qualified_name, path_suffix) ||
       define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
   end
+
+  def has_parent_module?(mod)
+    mod != Object
+  end
+
+  def look_for_constant_in_parent_module(from_mod, const_name, qualified_name, path_suffix)
+    return from_mod.parent.const_missing(const_name)
+  rescue NameError => e
+    raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found\n#{e.message}"
+  end
   
-  def attempt_standard_require(path)
-    begin
-      require_without_desert path
-    rescue LoadError => e
-      return false
+  def attempt_standard_require(from_mod, const_name, qualified_name, path_suffix)
+    require_without_desert path_suffix
+    unless from_mod.const_defined?(const_name)
+      raise NameError, "Loaded #{path_suffix}.rb, but #{qualified_name} was not defined"
     end
-    return true
+    from_mod.const_get(const_name)
+  rescue LoadError => e
+    raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
   end
 
   def guard_against_anonymous_module(from_mod)
