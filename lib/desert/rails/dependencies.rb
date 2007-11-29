@@ -4,11 +4,7 @@ module Dependencies
     qualified_name = qualified_name_for from_mod, const_name
     path_suffix = qualified_name.underscore
 
-    if define_constant_from_file(from_mod, const_name, qualified_name, path_suffix)
-      return from_mod.const_get(const_name)
-    end
-
-    if define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
+    if define_constant_with_desert_loading(from_mod, const_name, qualified_name, path_suffix)
       return from_mod.const_get(const_name)
     end
 
@@ -50,6 +46,11 @@ module Dependencies
   alias_method_chain :depend_on, :desert
 
   protected
+  def define_constant_with_desert_loading(from_mod, const_name, qualified_name, path_suffix)
+    define_constant_from_file(from_mod, const_name, qualified_name, path_suffix) ||
+      define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
+  end
+  
   def attempt_standard_require(path)
     begin
       require_without_desert path
@@ -82,10 +83,11 @@ module Dependencies
   def define_constant_from_directory(from_mod, const_name, qualified_name, path_suffix)
     return false unless Desert::Manager.directory_on_load_path?(path_suffix)
 
-    from_mod.const_set(const_name, Module.new)
-    unless autoloaded_constants.include?(qualified_name)
-      autoloaded_constants << qualified_name
+    if autoloaded_constants.include?(qualified_name)
+      raise "Constant #{qualified_name} is already autoloaded but is not defined as a constant"
     end
+    from_mod.const_set(const_name, Module.new)
+    autoloaded_constants << qualified_name
     return true
   end
 end
