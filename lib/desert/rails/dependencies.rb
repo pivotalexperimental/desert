@@ -13,20 +13,15 @@ module Dependencies
     end
 
     if from_mod == Object
-      begin
-        require path_suffix
-      rescue LoadError => e
+      unless attempt_standard_require(path_suffix)
         raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
       end
-    end
-    
-    begin
-      return from_mod.parent.const_missing(const_name)
-    rescue NameError => e
-      raise(
-        NameError,
-        "Constant #{qualified_name} from #{path_suffix}.rb not found\n#{e.message}"
-      )
+    else
+      begin
+        return from_mod.parent.const_missing(const_name)
+      rescue NameError => e
+        raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found\n#{e.message}"
+      end
     end
   end
   alias_method_chain :load_missing_constant, :desert
@@ -55,6 +50,15 @@ module Dependencies
   alias_method_chain :depend_on, :desert
 
   protected
+  def attempt_standard_require(path)
+    begin
+      require_without_desert path
+    rescue LoadError => e
+      return false
+    end
+    return true
+  end
+
   def guard_against_anonymous_module(from_mod)
     return Object if from_mod.name.blank?
     return from_mod
