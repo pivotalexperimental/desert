@@ -1,4 +1,5 @@
 = Desert
+
 Desert is a component framework for Rails that allows you to seamlessly define in your plugins:
 * Models
 * Controllers
