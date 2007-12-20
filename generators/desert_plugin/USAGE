@@ -1,0 +1,14 @@
+NAME
+     desert_plugin - creates a directory structure and starter files for a new desert plugin
+
+SYNOPSIS
+     desert_plugin [plugin name]
+
+DESCRIPTION
+     |-- vendor
+        `-- plugins
+           `-- [plugin name]
+
+EXAMPLE
+      ./script/generate desert_plugin spiffy
+
