@@ -26,6 +26,8 @@ PKG_FILES = FileList[
   '[A-Z]*',
   '*.rb',
   'lib/**/*.rb',
+  'lib/generators/**/*',
+  'lib/generators/**/templates/*',
   'examples/**/*.rb'
 ]
 
