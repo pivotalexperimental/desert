@@ -13,12 +13,22 @@ Classes are automatically mixed in with your own or other plugins' classes.
 This allows you to make full featured composable components.
 Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable_plugins).
 
-To use Desert, all you need to do is require 'desert' before Rails::Initializer.run in environment.rb
 
-environment.rb
-  require 'desert'
-  Rails::Initializer.run do
-  end
+== Using desert
+
+To use Desert, you need to do only a few things:
+
+* require 'desert' before Rails::Initializer.run in environment.rb
+
+  environment.rb
+    require 'desert'
+    Rails::Initializer.run do
+    end
+
+* Install your desert plugin routes in routes.rb
+
+  map.routes_from_plugin(:spiffy)
+
 
 == Example
 Say you want to create a plugin named acts_as_spiffy.
@@ -55,3 +65,13 @@ The Spiffy#why method can be overridden in RAILS_ROOT/app/models/spiffy.rb
       "I sell Spiffy stuff"
     end
   end
+
+
+== Running plugin tests
+
+You can run your plugin tests like so:
+
+  rake desert:testspec:plugins PLUGIN=spiffy
+
+Leaving off the PLUGIN environment variable will cause it to run all the test/specs for
+all installed plugins, which may not be what you want.
