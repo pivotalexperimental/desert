@@ -69,7 +69,7 @@ The Spiffy#why method can be overridden in RAILS_ROOT/app/models/spiffy.rb
 
 == Running plugin tests
 
-You can run your plugin tests like so:
+You can run your plugin tests/specs like so:
 
   rake desert:testspec:plugins PLUGIN=spiffy
 
