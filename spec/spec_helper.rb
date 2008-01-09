@@ -11,6 +11,7 @@ RAILS_DEFAULT_LOGGER = Logger.new(StringIO.new(""))
 require "test/unit"
 require "spec"
 require "rr"
+require "pp"
 require "active_support"
 require "initializer"
 require "action_controller"

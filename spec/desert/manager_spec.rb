@@ -3,6 +3,17 @@ require File.expand_path("#{File.dirname(__FILE__)}/../spec_helper")
 module Desert
 describe Manager, :shared => true do
   it_should_behave_like "Desert::Manager fixture"
+
+  def register_all_plugins
+    roots = []
+    Dir["#{RAILS_ROOT}/vendor/plugins/*"].each do |dir|
+      unless dir =~ /\.svn/
+        roots << dir
+        manager.register_plugin dir
+      end
+    end
+    roots
+  end
 end
 
 describe Manager, ".method_missing" do
@@ -58,8 +69,11 @@ end
 
 describe Manager, "#load_paths" do
   it_should_behave_like "Desert::Manager"
+  attr_accessor :manager
 
   before do
+    Dependencies.load_paths << "#{RAILS_ROOT}/spec/external_files"
+
     @other_load_path = "#{RAILS_ROOT}/app/helpers/another_dir"
     $LOAD_PATH << @other_load_path
   end
@@ -68,23 +82,30 @@ describe Manager, "#load_paths" do
     $LOAD_PATH.delete(@other_load_path)
   end
 
-  it "returns all of the load paths ordered by plugins and then Rails directories and then additional project load paths" do
-    plugin_root = File.expand_path("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
-    @manager.register_plugin plugin_root
-    rails_root = File.expand_path(RAILS_ROOT)
+  it "returns all of the load paths ordered by plugins and then Rails directories" do
+    roots = register_all_plugins
 
-    @manager.load_paths.should == [
-      "#{plugin_root}/app",
-      "#{plugin_root}/app/models",
-      "#{plugin_root}/app/controllers",
-      "#{plugin_root}/app/helpers",
-      "#{plugin_root}/lib",
+    expected_load_paths = []
+    roots.each do |plugin_root|
+      expected_load_paths.concat [
+        "#{plugin_root}/app",
+        "#{plugin_root}/app/models",
+        "#{plugin_root}/app/controllers",
+        "#{plugin_root}/app/helpers",
+        "#{plugin_root}/lib"
+      ]
+    end
+
+    rails_root = File.expand_path(RAILS_ROOT)
+    expected_load_paths.concat [
       "#{rails_root}/app",
       "#{rails_root}/app/models",
       "#{rails_root}/app/controllers",
       "#{rails_root}/app/helpers",
-      "#{rails_root}/lib"
+      "#{rails_root}/lib",
+      "#{rails_root}/spec/external_files"
     ]
+    manager.load_paths.should == expected_load_paths
   end
 end
 
@@ -180,19 +201,24 @@ end
 
 describe Manager, "#files_on_load_path" do
   it_should_behave_like "Desert::Manager"
+  attr_reader :roots, :manager, :plugin_root
 
   before do
+    @roots = register_all_plugins
     @acts_as_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
     @manager.register_plugin @acts_as_spiffy_path
     @super_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/super_spiffy")
     @manager.register_plugin @super_spiffy_path
+    @plugin_root = "#{RAILS_ROOT}/vendor/plugins"
   end
   
   it "returns the list of file paths that match the passed in value" do
-    @manager.files_on_load_path("spiffy_helper").should == [
-      "#{@acts_as_spiffy_path}/app/helpers/spiffy_helper.rb",
-      "#{@super_spiffy_path}/app/helpers/spiffy_helper.rb",  
-      File.expand_path("#{RAILS_ROOT}/app/helpers/spiffy_helper.rb"),
+    manager.files_on_load_path("spiffy_helper").should == [
+      "#{plugin_root}/acts_as_spiffy/app/helpers/spiffy_helper.rb",
+      "#{plugin_root}/aa_depends_on_acts_as_spiffy/app/helpers/spiffy_helper.rb",
+      "#{plugin_root}/the_grand_poobah/app/helpers/spiffy_helper.rb",
+      "#{plugin_root}/super_spiffy/app/helpers/spiffy_helper.rb",
+      "#{RAILS_ROOT}/app/helpers/spiffy_helper.rb"
     ]
   end
 end

@@ -41,19 +41,6 @@ describe Dependencies, "#load_missing_constant", :shared => true do
     fixture.unspiffy.should == Spiffy::UnspiffyController
   end
 
-  it "when required file is outside of Rails project, returns module" do
-    NotInApp.should be_loaded
-  end
-
-  it "when required file is outside of Rails project and it does not define expected constant, raise friendly error message" do
-    proc do
-      FileWithoutModule
-    end.should raise_error(
-      NameError,
-      "Loaded file_without_module.rb, but FileWithoutModule was not defined"
-    )
-  end
-
   it "raises error when constant file cannot be loaded from Object" do
     proc do
       NoModuleExists
@@ -76,6 +63,7 @@ end
 
 describe Dependencies, " with one plugin", :shared => true do
   before do
+    Dependencies.load_paths.clear
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
   end
 
@@ -132,7 +120,7 @@ describe Dependencies, "#depend_on with one plugin" do
     require_dependency 'not_in_app'
     NotInApp.should be_loaded
   end
-   
+
   it "does not load file when it exists in the plugin" do
     require_dependency 'spiffy_helper'
     SpiffyHelper.methods.should_not include('external_file_loaded?')
@@ -193,5 +181,50 @@ describe Dependencies, "#depend_on with two plugins" do
   before do
     Dependencies.depend_on "spiffy_helper"
     Object.should be_const_defined(:SpiffyHelper)
+  end
+end
+
+describe Dependencies, "#load_missing_constant when referencing a file defined outside of the standard Rails directory structure" +
+                       " and the referenced constant is defined in Object" do
+  it_should_behave_like "Desert::Manager fixture"
+
+  before do
+    Dependencies.load_paths << "#{RAILS_ROOT}/spec/external_files"
+  end
+
+  it "when the referenced constant is defined within the file, returns that constant" do
+    NotInApp.should be_loaded
+  end
+  it "when the referenced constant is not defined within the file, raises an error" do
+    proc do
+      FileWithoutModule
+    end.should raise_error(
+      NameError,
+      "Constant FileWithoutModule from file_without_module.rb not found"
+    )
+  end
+end
+
+describe Dependencies, "#load_missing_constant when referencing a file defined outside of the standard Rails directory structure" +
+                       " and the referenced constant is defined in a module OTHER than Object" do
+  it_should_behave_like "Desert::Manager fixture"
+
+  before do
+    dir = File.dirname(__FILE__)
+    Dependencies.load_paths << "#{dir}/../../external_files"
+  end
+  
+  it "when the referenced constant is defined within the file, returns that constant" do
+    ParentModuleNotInApp::ChildModuleNotInApp.should be_loaded
+  end
+  
+  it "when the referenced constant is not defined within the file, raises an error" do
+    proc do
+      ParentModuleNotInApp::ChildFileWithoutModule
+    end.should raise_error(
+      NameError,
+      "Constant ParentModuleNotInApp::ChildFileWithoutModule from parent_module_not_in_app/child_file_without_module.rb not found\n" +
+      "Constant ChildFileWithoutModule from child_file_without_module.rb not found"
+    )
   end
 end

@@ -1,4 +1,5 @@
 describe "Remove Project Constants", :shared => true do
+  attr_reader :original_dependencies_load_once_paths, :original_dependencies_load_paths, :original_loaded_paths
   before do
     [
       :SpiffyHelper,
@@ -13,7 +14,14 @@ describe "Remove Project Constants", :shared => true do
     end
     Dependencies.autoloaded_constants.clear
     $".delete_if {|path| path.include?('spiffy_helper')}
-    Dependencies.load_once_paths.clear
-    Dependencies.loaded.clear
+    @original_dependencies_load_once_paths = Dependencies.load_once_paths
+    @original_dependencies_load_paths = Dependencies.load_paths
+    @original_loaded_paths = Dependencies.loaded.clear
+  end
+
+  after do
+    Dependencies.load_once_paths = original_dependencies_load_once_paths
+    Dependencies.load_paths = original_dependencies_load_paths
+    Dependencies.loaded = original_loaded_paths
   end
 end

@@ -12,7 +12,7 @@ module Desert
       end
     end
 
-    attr_reader :loading_plugin
+    attr_reader :loading_plugin, :plugins_in_registration
 
     def initialize
       @plugins = []
@@ -31,6 +31,9 @@ module Desert
         paths << File.join(component_root, 'app','controllers')
         paths << File.join(component_root, 'app','helpers')
         paths << File.join(component_root, 'lib')
+      end
+      Dependencies.load_paths.reverse.each do |path|
+        paths << path unless paths.include?(path)
       end
       paths
     end

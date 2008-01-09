@@ -7,12 +7,12 @@ module Dependencies
     if define_constant_with_desert_loading(from_mod, const_name, qualified_name, path_suffix)
       return from_mod.const_get(const_name)
     end
-  
+
     if has_parent_module?(from_mod)
       look_for_constant_in_parent_module(from_mod, const_name, qualified_name, path_suffix)
     else
-      attempt_standard_require(from_mod, const_name, qualified_name, path_suffix)
-    end    
+      raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
+    end
   end
   alias_method_chain :load_missing_constant, :desert
 
@@ -53,16 +53,6 @@ module Dependencies
     return from_mod.parent.const_missing(const_name)
   rescue NameError => e
     raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found\n#{e.message}"
-  end
-  
-  def attempt_standard_require(from_mod, const_name, qualified_name, path_suffix)
-    require_without_desert path_suffix
-    unless from_mod.const_defined?(const_name)
-      raise NameError, "Loaded #{path_suffix}.rb, but #{qualified_name} was not defined"
-    end
-    from_mod.const_get(const_name)
-  rescue LoadError => e
-    raise NameError, "Constant #{qualified_name} from #{path_suffix}.rb not found"
   end
 
   def guard_against_anonymous_module(from_mod)
