@@ -46,20 +46,20 @@ describe Migration, "#migrate_plugin"do
     tables = select("show tables")
     tables.each do |row|
       table_name = row.values.first
-      execute "drop table `#{table_name}`"
+      execute_sql "drop table `#{table_name}`"
     end
   end
 
   def select(sql)
     result_set = []
-    stream = execute(sql)
+    stream = execute_sql(sql)
     stream.each_hash do |hash|
       result_set << hash
     end
     result_set
   end
 
-  def execute(sql)
+  def execute_sql(sql)
     Base.connection.execute(sql)
   end
 end

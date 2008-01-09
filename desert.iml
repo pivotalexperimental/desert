@@ -11,7 +11,6 @@
   </component>
   <component name="RModuleContentRootManager">
     <TEST_URLS url="file://$MODULE_DIR$/spec" />
-    file://$MODULE_DIR$/spec
   </component>
   <component name="RModuleSettingsStorage">
     <option name="shouldUseRSpecTestFramework" value="true" />

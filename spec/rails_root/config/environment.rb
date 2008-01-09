@@ -12,7 +12,7 @@ require "desert"
 
 Rails::Initializer.run do |config|
   if Desert::RAILS_VERSION == 2
-    config.action_controller.session = { :session_key => "_myapp_session", :secret => "some secret phrase" }
+    config.action_controller.session = { :session_key => "_myapp_session", :secret => 'a'*31 }
   end
 end
 

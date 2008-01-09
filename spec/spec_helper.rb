@@ -8,6 +8,7 @@ $LOAD_PATH << "#{dir}/external_files"
 RAILS_ROOT = "#{dir}/rails_root"
 RAILS_DEFAULT_LOGGER = Logger.new(StringIO.new(""))
 
+require "test/unit"
 require "spec"
 require "rr"
 require "active_support"
