@@ -11,7 +11,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 require "desert"
 
 Rails::Initializer.run do |config|
-  if Desert::RAILS_VERSION == 2
+  unless Desert::VersionChecker.rails_version_is_below_2?
     config.action_controller.session = { :session_key => "_myapp_session", :secret => 'a'*31 }
   end
 end

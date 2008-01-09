@@ -1,7 +1,7 @@
 class SpecSuite
   def run
     dir = File.dirname(__FILE__)
-    ["2.0.2", "1.2.5"].each do |rails_version|
+    ["2.0.2", "1.99.0", "1.2.5"].each do |rails_version|
       [
         "#{dir}/unit_spec_suite.rb",
         "#{dir}/rails_root/spec/rails_spec_suite.rb"
