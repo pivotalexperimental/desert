@@ -8,7 +8,7 @@ require "#{dir}/desert/plugin"
 require "#{dir}/desert/manager"
 require "#{dir}/desert/version_checker"
 
-if Desert::VersionChecker.rails_version_is_below_2?
+if Desert::VersionChecker.rails_version_is_below_1990?
   require "#{dir}/desert/rails/1.x/initializer"
 else
   require "#{dir}/desert/rails/2.x/plugin"

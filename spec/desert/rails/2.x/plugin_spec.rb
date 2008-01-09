@@ -1,6 +1,6 @@
 require File.expand_path("#{File.dirname(__FILE__)}/../../../spec_helper")
 
-unless Desert::VersionChecker.rails_version_is_below_2?
+unless Desert::VersionChecker.rails_version_is_below_1990?
   module Rails
     describe Plugin, :shared => true do
       it_should_behave_like "Desert::Manager fixture"

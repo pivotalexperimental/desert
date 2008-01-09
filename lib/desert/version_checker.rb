@@ -9,7 +9,7 @@ module Desert
         Gem::Version::Requirement.new([version_requirement]).satisfied_by?(Gem::Version.new(version))
       end
 
-      def rails_version_is_below_2?
+      def rails_version_is_below_1990?
         result = current_rails_version_matches?('<1.99.0')
         result
       end
