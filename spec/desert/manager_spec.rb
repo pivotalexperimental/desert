@@ -213,13 +213,16 @@ describe Manager, "#files_on_load_path" do
   end
   
   it "returns the list of file paths that match the passed in value" do
-    manager.files_on_load_path("spiffy_helper").should == [
-      "#{plugin_root}/acts_as_spiffy/app/helpers/spiffy_helper.rb",
+    files = manager.files_on_load_path("spiffy_helper")
+    files.length.should == 5
+
+    files[0].should == "#{plugin_root}/acts_as_spiffy/app/helpers/spiffy_helper.rb"
+    files[1..3].sort.should == [
       "#{plugin_root}/aa_depends_on_acts_as_spiffy/app/helpers/spiffy_helper.rb",
-      "#{plugin_root}/the_grand_poobah/app/helpers/spiffy_helper.rb",
       "#{plugin_root}/super_spiffy/app/helpers/spiffy_helper.rb",
-      "#{RAILS_ROOT}/app/helpers/spiffy_helper.rb"
+      "#{plugin_root}/the_grand_poobah/app/helpers/spiffy_helper.rb",
     ]
+    files[4].should == "#{RAILS_ROOT}/app/helpers/spiffy_helper.rb"
   end
 end
 
