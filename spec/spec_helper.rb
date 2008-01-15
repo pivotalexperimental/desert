@@ -8,15 +8,15 @@ $LOAD_PATH << "#{dir}/external_files"
 RAILS_ROOT = "#{dir}/rails_root"
 RAILS_DEFAULT_LOGGER = Logger.new(StringIO.new(""))
 
-require "test/unit"
-require "spec"
-require "rr"
-require "pp"
 require "active_support"
 require "initializer"
 require "action_controller"
+
+require "spec"
+require "rr"
+require "pp"
+
 require "desert"
-require "ruby-debug"
 require "spec/spec_helpers/remove_project_constants_helper"
 require "spec/spec_helpers/manager_fixture"
 require "spec/spec_helpers/mock_connection"
