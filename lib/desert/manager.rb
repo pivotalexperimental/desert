@@ -33,7 +33,7 @@ module Desert
         paths << File.join(component_root, 'lib')
       end
       Dependencies.load_paths.reverse.each do |path|
-        paths << path unless paths.include?(path)
+        paths << File.expand_path(path) unless paths.include?(File.expand_path(path))
       end
       paths
     end
