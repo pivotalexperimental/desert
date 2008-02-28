@@ -12,12 +12,15 @@ unless defined?(RAILS_ROOT)
 end
 
 unless defined?(Rails::Initializer)
-  if File.directory?("#{RAILS_ROOT}/vendor/rails")
-    require "#{RAILS_ROOT}/vendor/rails/railties/lib/initializer"
+  if ENV['RAILS_VERSION'] == 'EDGE'
+    Dir["#{RAILS_ROOT}/vendor/edge_rails/*"].each do |path|
+      $:.unshift("#{path}/lib") if File.directory?("#{path}/lib")
+    end
+    require "#{RAILS_ROOT}/vendor/edge_rails/railties/lib/initializer"
   else
     require 'rubygems'
 
-    gem "rails"
+    gem "rails", ENV['RAILS_VERSION']
     require 'initializer'
   end
 

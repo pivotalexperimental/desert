@@ -1,7 +1,7 @@
 class SpecSuite
   def run
     dir = File.dirname(__FILE__)
-    ["2.0.2", "1.99.0", "1.2.5"].each do |rails_version|
+    ["EDGE", "2.0.2", "1.99.0", "1.2.5"].each do |rails_version|
       [
         "#{dir}/unit_spec_suite.rb",
         "#{dir}/rails_root/spec/rails_spec_suite.rb"
@@ -15,10 +15,7 @@ class SpecSuite
 
   protected
   def run_with_rails_version(suite_path, rails_version)
-    cmd = %Q|require "rubygems"; | <<
-          %Q|gem "rails", "=#{rails_version}";| <<
-          %Q|load "#{suite_path}";|
-    system("ruby -e '#{cmd}'")
+    system("export RAILS_VERSION=#{rails_version} && ruby #{suite_path}")
   end
 end
 
