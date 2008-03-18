@@ -1,3 +1,5 @@
+0.1.1
+- Works with edge Rails
 - Fixed double loading issue with not fully expanded load_paths.
 
 0.1.0
