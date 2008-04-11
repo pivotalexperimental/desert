@@ -69,3 +69,8 @@ def tag_release
   svn_user = "#{ENV["SVN_USER"]}@" || ""
   `svn cp svn+ssh://#{svn_user}rubyforge.org/var/svn/pivotalrb/desert/trunk svn+ssh://#{svn_user}rubyforge.org/var/svn/pivotalrb/desert/tags/REL-#{dashed_version} -m 'Version #{PKG_VERSION}'`
 end
+
+desc "Install dependencies to run the build"
+task(:install_dependencies) do
+  
+end
