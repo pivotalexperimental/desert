@@ -1,6 +1,10 @@
 ---
-defaults:
-  install_options: --include-dependencies
 gems:
+- name: rails
+  version: 1.2.5
+- name: rails
+  version: 1.99.0
+- name: rails
+  version: 2.0.2
 - name: rr
   version: 0.4.8

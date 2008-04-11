@@ -70,7 +70,11 @@ def tag_release
   `svn cp svn+ssh://#{svn_user}rubyforge.org/var/svn/pivotalrb/desert/trunk svn+ssh://#{svn_user}rubyforge.org/var/svn/pivotalrb/desert/tags/REL-#{dashed_version} -m 'Version #{PKG_VERSION}'`
 end
 
-desc "Install dependencies to run the build"
+desc "Install dependencies to run the build. This task uses Git."
 task(:install_dependencies) do
-  
+  system("git clone git://github.com/rails/rails.git spec/rails_root/vendor/edge_rails")
+end
+
+desc "Updates the dependencies to run the build. This task uses Git."
+task(:update_dependencies) do
 end

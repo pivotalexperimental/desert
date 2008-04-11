@@ -16,7 +16,7 @@ unless defined?(Rails::Initializer)
     Dir["#{RAILS_ROOT}/vendor/edge_rails/*"].each do |path|
       $:.unshift("#{path}/lib") if File.directory?("#{path}/lib")
     end
-    raise "Edge Rails not in vendor. Run rake install_dependencies" unless  File.exists?("#{RAILS_ROOT}/vendor/edge_rails/railties/lib/initializer")
+    raise "Edge Rails not in vendor. Run rake install_dependencies" unless  File.exists?("#{RAILS_ROOT}/vendor/edge_rails/railties/lib/initializer.rb")
     require "#{RAILS_ROOT}/vendor/edge_rails/railties/lib/initializer"
   else
     require 'rubygems'
