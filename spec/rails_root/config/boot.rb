@@ -21,7 +21,7 @@ unless defined?(Rails::Initializer)
   else
     require 'rubygems'
 
-    gem "rails", ENV['RAILS_VERSION']
+    gem "rails", ENV['RAILS_VERSION'] || '2.0.2'
     require 'initializer'
   end
 
