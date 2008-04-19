@@ -9,6 +9,8 @@ $LOAD_PATH << "#{dir}/external_files"
 RAILS_ROOT = "#{dir}/rails_root"
 RAILS_DEFAULT_LOGGER = Logger.new(StringIO.new(""))
 
+require "#{RAILS_ROOT}/config/boot"
+
 require "active_support"
 require "initializer"
 require "action_controller"

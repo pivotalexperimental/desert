@@ -13,7 +13,8 @@
     <TEST_URLS url="file://$MODULE_DIR$/spec" />
   </component>
   <component name="RModuleSettingsStorage">
-    <option name="shouldUseRSpecTestFramework" value="true" />
+    <RMODULE_SETTINGS_STORAGE_ID NAME="SHOULD_USE_RSPEC_TEST_FRAMEWORK" VALUE="false" />
+    <RMODULE_SETTINGS_STORAGE_ID NAME="NUMBER" VALUE="0" />
   </component>
 </module>
 
