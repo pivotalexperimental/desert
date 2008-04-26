@@ -1,7 +1,9 @@
 class SpecSuite
   def run
     dir = File.dirname(__FILE__)
-    ["EDGE", "2.0.2", "1.99.0", "1.2.5"].each do |rails_version|
+    require "#{dir}/../lib/desert/supported_rails_versions"
+    versions = Desert::SUPPORTED_RAILS_VERSIONS.keys.sort.reverse
+    versions.each do |rails_version|
       [
         "#{dir}/unit_spec_suite.rb",
         "#{dir}/rails_root/spec/rails_spec_suite.rb"
