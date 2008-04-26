@@ -1,14 +1,7 @@
-class ActiveRecord::Migrator
-  module DesertMigrator
-    def latest_version
-      return 0 if migration_classes.empty?
-      migration_classes.last.first
-    end
+dir = File.dirname(__FILE__)
 
-    def migration_classes_with_caching
-      @migration_classes ||= migration_classes_without_caching
-    end
-  end
-  include DesertMigrator
-  alias_method_chain :migration_classes, :caching
+if ActiveRecord::Migrator.private_instance_methods.include?('migration_classes')
+  require "#{dir}/1.2.0/migrator"
+else
+  require "#{dir}/2.1/migrator"
 end

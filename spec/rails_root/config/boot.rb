@@ -12,16 +12,17 @@ unless defined?(RAILS_ROOT)
 end
 
 unless defined?(Rails::Initializer)
-  if ENV['RAILS_VERSION'] == 'EDGE'
-    Dir["#{RAILS_ROOT}/vendor/edge_rails/*"].each do |path|
+  if ENV['RAILS_VERSION']
+    rails_dir = "#{RAILS_ROOT}/vendor/rails/#{ENV['RAILS_VERSION'].downcase}"
+    Dir["#{rails_dir}/*"].each do |path|
       $:.unshift("#{path}/lib") if File.directory?("#{path}/lib")
     end
-    raise "Edge Rails not in vendor. Run rake install_dependencies" unless  File.exists?("#{RAILS_ROOT}/vendor/edge_rails/railties/lib/initializer.rb")
-    require "#{RAILS_ROOT}/vendor/edge_rails/railties/lib/initializer"
+    raise "Edge Rails not in vendor. Run rake install_dependencies" unless  File.exists?("#{rails_dir}/railties/lib/initializer.rb")
+    require "#{rails_dir}/railties/lib/initializer"
   else
     require 'rubygems'
 
-    gem "rails", ENV['RAILS_VERSION'] || '2.0.2'
+    gem "rails", '2.0.2'
     require 'initializer'
   end
 

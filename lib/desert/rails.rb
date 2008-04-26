@@ -6,5 +6,6 @@ else
 end
 require "#{dir}/rails/dependencies"
 require "#{dir}/rails/migration"
+
 require "#{dir}/rails/migrator"
 require "#{dir}/rails/route_set"
