@@ -13,7 +13,6 @@ if Desert::VersionChecker.rails_version_is_below_1990?
         end
 
         mock_plugin = 'mock plugin'
-        stub.instance_of(Desert::Plugin).up_to_date?.returns(true)
       end
     end
 

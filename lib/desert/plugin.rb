@@ -61,12 +61,6 @@ module Desert
       @migration ||= PluginAWeek::PluginMigrations::Migrator.new(:up, migration_path)
     end
 
-    def up_to_date?
-      with_current_plugin do
-        migration.latest_version <= migration.current_version
-      end
-    end
-
     def with_current_plugin
       old_plugin = PluginAWeek::PluginMigrations::Migrator.current_plugin
       begin
