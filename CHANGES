@@ -1,3 +1,4 @@
+0.2.0
 - Works with edge Rails
 - Removed Desert::Plugin#up_to_date?
 - Removed Migrator#latest_version
