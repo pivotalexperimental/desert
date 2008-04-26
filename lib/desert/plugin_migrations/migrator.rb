@@ -10,12 +10,16 @@ module PluginAWeek #:nodoc:
         # Runs the migrations from a plugin, up (or down) to the version given
         def migrate_plugin(plugin, version = nil)
           self.current_plugin = plugin
+          if ActiveRecord::Base.connection.respond_to?(:initialize_schema_migrations_table)
+            ActiveRecord::Base.connection.initialize_schema_migrations_table
+          end
           migrate(plugin.migration_path, version)
         end
 
         def schema_info_table_name #:nodoc:
           ActiveRecord::Base.table_name_prefix + 'plugin_schema_info' + ActiveRecord::Base.table_name_suffix
         end
+        alias_method :schema_migrations_table_name, :schema_info_table_name
 
         def current_version #:nodoc:
           result = ActiveRecord::Base.connection.select_one("SELECT version FROM #{schema_info_table_name} WHERE plugin_name = '#{current_plugin.name}'")
@@ -38,6 +42,7 @@ module PluginAWeek #:nodoc:
           ActiveRecord::Base.connection.update("UPDATE #{self.class.schema_info_table_name} SET version = #{version} WHERE plugin_name = '#{current_plugin.name}'")
         end
       end
+      alias_method :record_version_state_after_migrating, :set_schema_version
     end
   end
 end

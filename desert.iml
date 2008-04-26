@@ -4,6 +4,9 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/spec/rails_root/log" />
       <excludeFolder url="file://$MODULE_DIR$/spec/rails_root/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/spec/rails_root/vendor/rails" />
+      <excludeFolder url="file://$MODULE_DIR$/spec/rails_root/vendor/rails_versions/1.2.5" />
+      <excludeFolder url="file://$MODULE_DIR$/spec/rails_root/vendor/rails_versions/1.99.0" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

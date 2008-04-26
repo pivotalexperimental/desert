@@ -1,6 +1,5 @@
 ENV["RAILS_ENV"] ||= "test"
 dir = File.dirname(__FILE__)
-RAILS_GEM_VERSION = '1.2.3'
 $LOAD_PATH.unshift("#{dir}/../../../lib")
 require "#{dir}/../config/environment"
 
