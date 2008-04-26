@@ -72,17 +72,16 @@ end
 
 desc "Install dependencies to run the build. This task uses Git."
 task(:install_dependencies) do
+  require "lib/desert/supported_rails_versions"
   system("git clone git://github.com/rails/rails.git spec/rails_root/vendor/rails_versions/edge")
   Dir.chdir("spec/rails_root/vendor/rails_versions/edge") do
     begin
-      system("git checkout v1.2.5")
-      system("cp -R ../edge ../1.2.5")
-
-      system("git checkout v2.0.0_RC1")
-      system("cp -R ../edge ../1.99.0")
-
-      system("git checkout v2.0.2")
-      system("cp -R ../edge ../2.0.2")
+      Desert::SUPPORTED_RAILS_VERSIONS.each do |version, data|
+        unless version == 'edge'
+          system("git checkout #{data['git_tag']}")
+          system("cp -R ../edge ../#{version}")
+        end
+      end
     ensure
       system("git checkout master")
     end
