@@ -13,12 +13,22 @@ end
 
 unless defined?(Rails::Initializer)
   if ENV['RAILS_VERSION']
-    rails_dir = "#{RAILS_ROOT}/vendor/rails/#{ENV['RAILS_VERSION'].downcase}"
+    rails_versions_dir = "#{RAILS_ROOT}/vendor/rails_versions/#{ENV['RAILS_VERSION'].downcase}"
+    rails_dir = "#{RAILS_ROOT}/vendor/rails"
+
+    system("rm -f #{rails_dir}")
+    system("ln -s #{rails_versions_dir} #{rails_dir}")
+
     Dir["#{rails_dir}/*"].each do |path|
       $:.unshift("#{path}/lib") if File.directory?("#{path}/lib")
     end
     raise "Edge Rails not in vendor. Run rake install_dependencies" unless  File.exists?("#{rails_dir}/railties/lib/initializer.rb")
-    require "#{rails_dir}/railties/lib/initializer"
+
+    if ENV['RAILS_VERSION'] == "EDGE"
+      require "#{rails_dir}/railties/environments/boot"
+    else
+      require "#{rails_dir}/railties/lib/initializer"
+    end
   else
     require 'rubygems'
 

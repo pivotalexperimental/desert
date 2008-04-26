@@ -72,8 +72,8 @@ end
 
 desc "Install dependencies to run the build. This task uses Git."
 task(:install_dependencies) do
-  system("git clone git://github.com/rails/rails.git spec/rails_root/vendor/rails/edge")
-  Dir.chdir("spec/rails_root/vendor/rails/edge") do
+  system("git clone git://github.com/rails/rails.git spec/rails_root/vendor/rails_versions/edge")
+  Dir.chdir("spec/rails_root/vendor/rails_versions/edge") do
     begin
       system("git checkout v1.2.5")
       system("cp -R ../edge ../1.2.5")
