@@ -75,3 +75,15 @@ You can run your plugin tests/specs like so:
 
 Leaving off the PLUGIN environment variable will cause it to run all the test/specs for
 all installed plugins, which may not be what you want.
+
+== Running Desert tests
+
+Desert is a library that heavily monkey patches Rails. To ensure that Desert works with
+multiple versions of Rails, its tests are run against the supported versions of Rails.
+
+To set up the different supported versions of Rails, run `rake install_dependencies`.
+
+This will clone the Rails git repo and export the supported versions of rails into the
+respective directories.
+
+`rake update_dependencies` will update the clones repo on your machine.
