@@ -1,3 +1,7 @@
+- Works with edge Rails
+- Removed Desert::Plugin#up_to_date?
+- Removed Migrator#latest_version
+
 0.1.1
 - Works with edge Rails
 - Fixed double loading issue with not fully expanded load_paths.
