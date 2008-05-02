@@ -17,7 +17,8 @@ class SpecSuite
 
   protected
   def run_with_rails_version(suite_path, rails_version)
-    system("export RAILS_VERSION=#{rails_version} && ruby #{suite_path}")
+    system("export RAILS_VERSION=#{rails_version} && ruby #{suite_path}") ||
+      raise("Failed for version #{rails_version}")
   end
 end
 
