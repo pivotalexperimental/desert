@@ -89,5 +89,5 @@ end
 
 desc "Updates the dependencies to run the build. This task uses Git."
 task(:update_dependencies) do
-  system "cd spec/rails_root/vendor/edge_rails; git pull origin"
+  system "cd spec/rails_root/vendor/rails_versions/edge; git pull origin"
 end
