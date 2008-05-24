@@ -12,31 +12,26 @@ unless defined?(RAILS_ROOT)
 end
 
 unless defined?(Rails::Initializer)
+  rails_dir = "#{RAILS_ROOT}/vendor/rails"
   if ENV['RAILS_VERSION']
     rails_versions_dir = "#{RAILS_ROOT}/vendor/rails_versions/#{ENV['RAILS_VERSION'].downcase}"
-    rails_dir = "#{RAILS_ROOT}/vendor/rails"
 
     system("rm -f #{rails_dir}")
     system("ln -s #{rails_versions_dir} #{rails_dir}")
+  end
 
-    Dir["#{rails_dir}/*"].each do |path|
-      $:.unshift("#{path}/lib") if File.directory?("#{path}/lib")
-    end
-    initializer_path = "#{rails_dir}/railties/lib/initializer.rb"
-    unless File.exists?(initializer_path)
-      raise "#{initializer_path} not in vendor. Run rake install_dependencies"
-    end
+  Dir["#{rails_dir}/*"].each do |path|
+    $:.unshift("#{path}/lib") if File.directory?("#{path}/lib")
+  end
+  initializer_path = "#{rails_dir}/railties/lib/initializer.rb"
+  unless File.exists?(initializer_path)
+    raise "#{initializer_path} not in vendor. Run rake install_dependencies"
+  end
 
-    if ENV['RAILS_VERSION'] == "edge"
-      require "#{rails_dir}/railties/environments/boot"
-    else
-      require "#{rails_dir}/railties/lib/initializer"
-    end
+  if ENV['RAILS_VERSION'] == "edge"
+    require "#{rails_dir}/railties/environments/boot"
   else
-    require 'rubygems'
-
-    gem "rails", '2.0.2'
-    require 'initializer'
+    require "#{rails_dir}/railties/lib/initializer"
   end
 
   Rails::Initializer.run(:set_load_path)
