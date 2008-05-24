@@ -1,3 +1,6 @@
 *.iws
 *.ipr
 *.iml
+spec/rails_root/log
+spec/rails_root/vendor/rails
+spec/rails_root/vendor/rails_versions

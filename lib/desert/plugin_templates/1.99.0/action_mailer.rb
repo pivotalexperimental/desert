@@ -2,11 +2,15 @@ module ActionMailer #:nodoc
   class Base #:nodoc:
     private
       def template_path_with_plugin_routing
-        template_paths = [template_path_without_plugin_routing]
-        Desert::Manager.plugins.reverse.each do |plugin|
-          template_paths << "#{plugin.templates_path}/#{mailer_name}"
+        result = nil
+        Desert::Manager.plugins_and_app.reverse.each do |plugin|
+          relative_path = "#{plugin.templates_path}/#{mailer_name}"
+          unless Dir["#{relative_path}/#{@template}.*"].empty?
+            result = relative_path
+            break
+          end
         end
-        "{#{template_paths * ','}}"
+        result || template_path_without_plugin_routing
       end
       alias_method_chain :template_path, :plugin_routing
 
