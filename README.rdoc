@@ -18,45 +18,59 @@ Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable
 
 == Installation
 
+  gem install desert
+
+NOTE: desert will not work as a plugin
+
 == Using desert
 
 To use Desert, you need to do only a few things:
 
-* require 'desert' before Rails::Initializer.run in environment.rb
+* require 'desert' between 'boot' and Rails::Initializer.run in environment.rb
 
-  environment.rb
-    require 'desert'
-    Rails::Initializer.run do
-    end
+  # File: config/environment.rb
+
+  require File.join(File.dirname(__FILE__), 'boot')
+
+  require 'desert'
+
+  Rails::Initializer.run do |config|
+  end
+
+* Generate your desert plugin
+
+  script/generate desert_plugin my_plugin_app
 
 * Install your desert plugin routes in routes.rb
 
-  map.routes_from_plugin(:spiffy)
-
+  map.routes_from_plugin(:my_plugin_app)
 
 == Example
+
 Say you want to create a plugin named acts_as_spiffy.
+
 Desert allows Spiffy to have a set of features that can be reused and extended in several projects.
 
 The Spiffy project has a:
+
 * SpiffyController
 * Spiffy model
 * SpiffyHelper
 * spiffy.rhtml
 * SpiffyLib library class
 
-The Spiffy plugin acts as its own mini Rails application.
-Here is the directory structure:
+The Spiffy plugin acts as its own mini Rails application.  Here is the directory structure:
+
   RAILS_ROOT/vendor/plugins/spiffy/app/controllers/spiffy_controller.rb
   RAILS_ROOT/vendor/plugins/spiffy/app/models/spiffy.rb
   RAILS_ROOT/vendor/plugins/spiffy/app/helpers/spiffy_helper.rb
   RAILS_ROOT/vendor/plugins/spiffy/app/views/spiffy/spiffy.rhtml
   RAILS_ROOT/vendor/plugins/spiffy/lib/spiffy_lib.rb
 
-Now, say there is a Spiffy Store rails application that uses acts_as_spiffy.
-The Rails app can open up any of the Spiffy classes and override any of the methods.
+Now, say there is a Spiffy Store rails application that uses acts_as_spiffy.  The Rails app can open up any of the Spiffy classes and override any of the methods.
 
 Say spiffy.rb in the Spiffy plugin is defined as:
+
   class Spiffy < ActiveRecord::Base
     def why?
       "I just am Spiffy"
@@ -64,12 +78,12 @@ Say spiffy.rb in the Spiffy plugin is defined as:
   end
 
 The Spiffy#why method can be overridden in RAILS_ROOT/app/models/spiffy.rb
+
   class Spiffy < ActiveRecord::Base
     def why?
       "I sell Spiffy stuff"
     end
   end
-
 
 == Running plugin tests
 
@@ -77,8 +91,8 @@ You can run your plugin tests/specs like so:
 
   rake desert:testspec:plugins PLUGIN=spiffy
 
-Leaving off the PLUGIN environment variable will cause it to run all the test/specs for
-all installed plugins, which may not be what you want.
+Leaving off the PLUGIN environment variable will cause it to run all the 
+test/specs for all installed plugins, which may not be what you want.
 
 == Running Desert tests
 
