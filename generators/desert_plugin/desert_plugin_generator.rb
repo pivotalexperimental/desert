@@ -18,7 +18,7 @@ class DesertPluginGenerator < Rails::Generator::NamedBase
 
       m.directory "vendor/plugins/#{file_name}/db"
       m.directory "vendor/plugins/#{file_name}/db/migrate"
-      m.template "plugin_migration.rb", "vendor/plugins/#{file_name}/db/migrate/001_init_#{file_name}_plugin.rb" 
+      # m.template "plugin_migration.rb", "vendor/plugins/#{file_name}/db/migrate/001_init_#{file_name}_plugin.rb" 
 
       m.directory "vendor/plugins/#{file_name}/lib"
 
@@ -53,7 +53,7 @@ module Desert #:nodoc:
 
     module Destroy
       def map_route_from_plugin
-        look_for = "map.routes_from_plugin(:#{file_name})"
+        look_for = "\n  map.routes_from_plugin(:#{file_name})\n"
         logger.route "removing map.routes_from_plugin(:#{file_name}) from routes.rb"
         gsub_file 'config/routes.rb', /(#{Regexp.escape(look_for)})/mi, ''
       end
