@@ -26,7 +26,7 @@ NOTE: desert will not work as a plugin
 
 To use Desert, you need to do only a few things:
 
-* require 'desert' between 'boot' and Rails::Initializer.run in environment.rb
+1. Require 'desert' between 'boot' and Rails::Initializer.run in environment.rb
 
   # File: config/environment.rb
 
@@ -37,11 +37,11 @@ To use Desert, you need to do only a few things:
   Rails::Initializer.run do |config|
   end
 
-* Generate your desert plugin
+2. Generate your desert plugin
 
   script/generate desert_plugin my_plugin_app
 
-* Install your desert plugin routes in routes.rb
+3. Install your desert plugin routes in routes.rb
 
   map.routes_from_plugin(:my_plugin_app)
 
