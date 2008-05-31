@@ -1,6 +1,6 @@
-module PluginAWeek #:nodoc:
+module Desert #:nodoc:
   module PluginMigrations
-    # Responsible for migrating plugins.  PluginAWeek::PluginMigrations.Migrator.current_plugin
+    # Responsible for migrating plugins.  Desert::PluginMigrations.Migrator.current_plugin
     # indicates which plugin is currently being migrated
     class Migrator < ActiveRecord::Migrator
       # We need to be able to set the current plugin being migrated.

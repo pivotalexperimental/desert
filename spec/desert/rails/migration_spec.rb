@@ -16,7 +16,7 @@ describe ActiveRecord::Migration::DesertMigration do
   it "test_migrate_plugin" do
     fake_plugin = "i am a plugin"
     stub(Desert::Manager).find_plugin("my_plugin") {fake_plugin}
-    mock(PluginAWeek::PluginMigrations::Migrator).migrate_plugin(fake_plugin, 3)
+    mock(Desert::PluginMigrations::Migrator).migrate_plugin(fake_plugin, 3)
 
     fixture.migrate_plugin("my_plugin", 3)
   end
@@ -26,10 +26,10 @@ describe ActiveRecord::Migration::DesertMigration do
     fake_migrator = "fake migrator"
     stub(Desert::Manager).find_plugin("my_plugin") {fake_plugin}
     
-    mock(PluginAWeek::PluginMigrations::Migrator).allocate {fake_migrator}
+    mock(Desert::PluginMigrations::Migrator).allocate {fake_migrator}
     mock(fake_migrator).set_schema_version(3)
 
     fixture.schema_version_equivalent_to("my_plugin", 3)
-    PluginAWeek::PluginMigrations::Migrator.current_plugin.should == fake_plugin
+    Desert::PluginMigrations::Migrator.current_plugin.should == fake_plugin
   end
 end
