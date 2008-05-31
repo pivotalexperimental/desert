@@ -1,6 +1,7 @@
 = Desert
 
 Desert is a component framework for Rails that allows you to seamlessly define in your plugins:
+
 * Models
 * Controllers
 * Views
@@ -10,9 +11,12 @@ Desert is a component framework for Rails that allows you to seamlessly define i
 * Plugin Dependencies
 
 Classes are automatically mixed in with your own or other plugins' classes.
+
 This allows you to make full featured composable components.
+
 Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable_plugins).
 
+== Installation
 
 == Using desert
 
