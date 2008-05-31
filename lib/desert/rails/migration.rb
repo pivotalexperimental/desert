@@ -16,7 +16,7 @@ class ActiveRecord::Migration
 
     protected
     def find_plugin(plugin_name)
-      plugin = Desert::Manager.find_plugin(plugin_name)
+      plugin = Desert::Manager.find_plugin(plugin_name.to_s)
       return plugin if plugin
       raise ArgumentError, "No plugin found named #{plugin_name}"
     end

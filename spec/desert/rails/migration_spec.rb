@@ -21,6 +21,14 @@ describe ActiveRecord::Migration::DesertMigration do
     fixture.migrate_plugin("my_plugin", 3)
   end
 
+  it "test_migrate_plugin_with_symbol" do
+    fake_plugin = "i am a plugin"
+    stub(Desert::Manager).find_plugin('my_plugin') {fake_plugin}
+    mock(Desert::PluginMigrations::Migrator).migrate_plugin(fake_plugin, 3)
+
+    fixture.migrate_plugin(:my_plugin, 3)
+  end
+
   it "test_schema_version_equivalent_to" do
     fake_plugin = "i am a plugin"
     fake_migrator = "fake migrator"
