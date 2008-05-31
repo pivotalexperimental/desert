@@ -7,7 +7,9 @@
 # Specifies gem version of Rails to use when vendor/rails is not present
 
 # Bootstrap the Rails environment, frameworks, and default configuration
-require File.join(File.dirname(__FILE__), 'boot')
+dir = File.dirname(__FILE__)
+require File.join(dir, 'boot')
+$LOAD_PATH.unshift(File.expand_path("#{dir}/../../../lib"))
 require "desert"
 
 Rails::Initializer.run do |config|
