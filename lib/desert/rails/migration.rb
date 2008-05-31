@@ -2,7 +2,7 @@ class ActiveRecord::Migration
   module DesertMigration
     def migrate_plugin(plugin_name, version)
       plugin = find_plugin(plugin_name)
-      PluginAWeek::PluginMigrations::Migrator.migrate_plugin(
+      Desert::PluginMigrations::Migrator.migrate_plugin(
         plugin,
         version
       )
@@ -10,8 +10,8 @@ class ActiveRecord::Migration
 
     def schema_version_equivalent_to(plugin_name, version)
       plugin = find_plugin(plugin_name)
-      PluginAWeek::PluginMigrations::Migrator.current_plugin = plugin
-      PluginAWeek::PluginMigrations::Migrator.allocate.set_schema_version(version)
+      Desert::PluginMigrations::Migrator.current_plugin = plugin
+      Desert::PluginMigrations::Migrator.allocate.set_schema_version(version)
     end
 
     protected
