@@ -4,3 +4,5 @@
 spec/rails_root/log
 spec/rails_root/vendor/rails
 spec/rails_root/vendor/rails_versions
+pkg/
+.DS_Store
