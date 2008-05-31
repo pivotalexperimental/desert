@@ -39,9 +39,54 @@ To use Desert, you need to do only a few things:
 
   script/generate desert_plugin my_plugin_app
 
-3. Install your desert plugin routes in routes.rb
+which will create the following directory structure in vendor/plugins/my_app:
+
+  |-- app
+  |   |-- controllers
+  |   |-- helpers
+  |   |-- models
+  |   `-- views
+  |-- config
+  |   `-- routes.rb
+  |-- db
+  |   `-- migrate
+  |       `-- 001_init_my_app_plugin.rb
+  |-- init.rb
+  |-- lib
+  `-- spec
+      |-- controllers
+      |-- fixtures
+      |-- models
+      |-- spec_helper.rb
+      `-- views
+
+== Adding Routes
+
+If you look in your RAILS_ROOT/config/routes.rb file you will notice that the generator added a new line to the top:
 
   map.routes_from_plugin(:my_plugin_app)
+
+This line connects your routes to the app.  The only difference between your plugin's 
+routes file and the standard config/routes.rb file is that you don't need to write "map" - it's implicit.
+
+So what would be
+
+  map.resources :posts
+  
+in config/routes.rb becomes just
+
+  resources :posts
+  
+in my_app/config/routes.rb.  All standard routing methods are available, such as:
+
+  namespace :admin do |admin|
+    admin.resources :posts
+  end
+
+== Running migrations
+
+Desert uses a separate table to manage migration version to maintain backwards compatibility with Rails 1.x.
+Your plugin app's migration live in your_plugin/db/migrate.
 
 == Example
 
