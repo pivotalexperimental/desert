@@ -58,16 +58,16 @@ module Desert
     end
 
     def migration
-      @migration ||= PluginAWeek::PluginMigrations::Migrator.new(:up, migration_path)
+      @migration ||= Desert::PluginMigrations::Migrator.new(:up, migration_path)
     end
 
     def with_current_plugin
-      old_plugin = PluginAWeek::PluginMigrations::Migrator.current_plugin
+      old_plugin = Desert::PluginMigrations::Migrator.current_plugin
       begin
-        PluginAWeek::PluginMigrations::Migrator.current_plugin = self
+        Desert::PluginMigrations::Migrator.current_plugin = self
         yield
       ensure
-        PluginAWeek::PluginMigrations::Migrator.current_plugin = old_plugin
+        Desert::PluginMigrations::Migrator.current_plugin = old_plugin
       end
     end
   end

@@ -3,7 +3,7 @@ ActiveRecord::ConnectionAdapters::SchemaStatements.module_eval do
     initialize_schema_migrations_table_without_plugins
 
     begin
-      execute "CREATE TABLE #{PluginAWeek::PluginMigrations::Migrator.schema_info_table_name} (plugin_name #{type_to_sql(:string)}, version #{type_to_sql(:integer)})"
+      execute "CREATE TABLE #{Desert::PluginMigrations::Migrator.schema_info_table_name} (plugin_name #{type_to_sql(:string)}, version #{type_to_sql(:integer)})"
     rescue ActiveRecord::StatementInvalid
       # Schema has been initialized
     end
