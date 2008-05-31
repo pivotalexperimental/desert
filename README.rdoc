@@ -85,7 +85,27 @@ in my_app/config/routes.rb.  All standard routing methods are available, such as
 == Running migrations
 
 Desert uses a separate table to manage migration version to maintain backwards compatibility with Rails 1.x.
-Your plugin app's migration live in your_plugin/db/migrate.
+Your plugin app's migration live in your_plugin/db/migrate.  To run migrations, follow these steps:
+
+* Create a new migration in your main app
+
+    script/generate migration migrate_my_plugin_to_045
+  
+* Add the custom `migrate_plugin` method
+
+    class MigrateMyPluginTo045 < ActiveRecord::Migration
+      def self.up
+        migrate_plugin(:my_plugin, 20080530223548)
+      end
+
+      def self.down
+        migrate_plugin(:my_plugin, 0)
+      end
+    end
+
+* Run your migrations normally
+
+    rake db:migrate
 
 == Example
 
@@ -136,14 +156,27 @@ You can run your plugin tests/specs like so:
 Leaving off the PLUGIN environment variable will cause it to run all the 
 test/specs for all installed plugins, which may not be what you want.
 
-== Running Desert tests
+== Running Desert Specs
 
+To run specs, you need to:
+
+* Make sure you have the necessary gems installed (rr, rspec)
+* Install git http://git.or.cz/
+* Create a database named desert_test
+* Update the database.yml file in `spec/rails_root/config/database.yml`
+* Install the dependencies
+* Run the specs
+  
 Desert is a library that heavily monkey patches Rails. To ensure that Desert works with
 multiple versions of Rails, its tests are run against the supported versions of Rails.
 
-To set up the different supported versions of Rails, run `rake install_dependencies`.
+To set up the different supported versions of Rails, run 
+
+  rake install_dependencies
 
 This will clone the Rails git repo and export the supported versions of rails into the
 respective directories.
 
-`rake update_dependencies` will update the clones repo on your machine.
+  rake update_dependencies 
+
+will update the clones repo on your machine.
