@@ -1,5 +1,4 @@
-dir = File.dirname(__FILE__)
-require "#{dir}/../rails_spec_helper"
+require File.expand_path("#{File.dirname(__FILE__)}/../rails_spec_helper")
 
 module ActionMailer
   describe Base do

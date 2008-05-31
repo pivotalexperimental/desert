@@ -1,5 +1,4 @@
-dir = File.dirname(__FILE__)
-require "#{dir}/../rails_spec_helper"
+require File.expand_path("#{File.dirname(__FILE__)}/../rails_spec_helper")
 
 describe Dependencies, ".require_dependency" do
   it_should_behave_like "Remove Project Constants"
