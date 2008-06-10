@@ -82,24 +82,24 @@ Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable
 
 * Install the gem
 
-  sudo gem install desert
+    sudo gem install desert
 
 * Require 'desert' between 'boot' and Rails::Initializer.run in environment.rb
 
-  # File: config/environment.rb
+    # File: config/environment.rb
 
-  require File.join(File.dirname(__FILE__), 'boot')
+    require File.join(File.dirname(__FILE__), 'boot')
 
-  require 'desert'
+    require 'desert'
 
-  Rails::Initializer.run do |config|
-  end
+    Rails::Initializer.run do |config|
+    end
   
 NOTE: you may have to require rubygems before requiring desert.
 
 * Generate your desert plugin
 
-  script/generate desert_plugin my_plugin_app
+    script/generate desert_plugin my_plugin_app
 
 == Manage Plugin Dependencies
 
