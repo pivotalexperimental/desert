@@ -1,6 +1,6 @@
 require File.expand_path("#{File.dirname(__FILE__)}/../rails_spec_helper")
 
-describe Dependencies, ".require_dependency" do
+describe 'Dependencies', ".require_dependency" do
   it_should_behave_like "Remove Project Constants"
   before do
     SpiffyHelper
@@ -18,13 +18,13 @@ describe Dependencies, ".require_dependency" do
   end
 end
 
-describe Dependencies, ".require_dependency when constants are unloaded" do
+describe 'Dependencies', ".require_dependency when constants are unloaded" do
   it_should_behave_like "Remove Project Constants"
   before do
     Object.const_defined?(:SpiffyHelper).should be_false
     require_dependency 'spiffy_helper'
     Object.const_defined?(:SpiffyHelper).should be_true
-    Dependencies.clear
+    dependencies.clear
     Object.const_defined?(:SpiffyHelper).should be_false
   end
 

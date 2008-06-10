@@ -5,7 +5,7 @@ describe Module, "#const_missing when constants are unloaded" do
   before do
     SpiffyHelper
     Object.const_defined?(:SpiffyHelper).should be_true
-    Dependencies.clear
+    dependencies.clear
     Object.const_defined?(:SpiffyHelper).should be_false
   end
 

@@ -14,3 +14,9 @@ require "#{dir}/spec_helpers/remove_project_constants_helper"
 Spec::Runner.configure do |config|
   config.mock_with RR::Adapters::Rspec
 end
+
+Spec::Example::ExampleMethods.module_eval do
+  def dependencies
+    ActiveSupport.const_defined?(:Dependencies) ? ActiveSupport::Dependencies : Dependencies
+  end
+end
