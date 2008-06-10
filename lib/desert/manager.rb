@@ -32,7 +32,7 @@ module Desert
         paths << File.join(component_root, 'app','helpers')
         paths << File.join(component_root, 'lib')
       end
-      Dependencies.load_paths.reverse.each do |path|
+      dependencies.load_paths.reverse.each do |path|
         paths << File.expand_path(path) unless paths.include?(File.expand_path(path))
       end
       paths
@@ -44,9 +44,9 @@ module Desert
 
       yield if block_given?
 
-      Dependencies.load_paths << plugin.models_path
-      Dependencies.load_paths << plugin.controllers_path
-      Dependencies.load_paths << plugin.helpers_path
+      dependencies.load_paths << plugin.models_path
+      dependencies.load_paths << plugin.controllers_path
+      dependencies.load_paths << plugin.helpers_path
 
       @plugins_in_registration.pop
 
@@ -101,6 +101,10 @@ module Desert
     end
 
     protected
+    def dependencies
+      @dependencies ||= ActiveSupport.const_defined?(:Dependencies) ? ActiveSupport::Dependencies : Dependencies
+    end
+
     def plugin_paths
       plugins_and_app.collect { |plugin| plugin.path }
     end

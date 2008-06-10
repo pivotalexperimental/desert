@@ -27,3 +27,9 @@ require "spec/spec_helpers/mock_connection"
 Spec::Runner.configure do |config|
   config.mock_with RR::Adapters::Rspec
 end
+
+Spec::Example::ExampleMethods.module_eval do
+  def dependencies
+    ActiveSupport.const_defined?(:Dependencies) ? ActiveSupport::Dependencies : Dependencies
+  end
+end
