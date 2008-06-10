@@ -1,4 +1,5 @@
-module Dependencies
+dependencies = ActiveSupport.const_defined?(:Dependencies) ? ActiveSupport::Dependencies : Dependencies
+dependencies.module_eval do
   def load_missing_constant_with_desert(from_mod, const_name)
     from_mod = guard_against_anonymous_module(from_mod)
     qualified_name = qualified_name_for from_mod, const_name

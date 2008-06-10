@@ -1,10 +1,10 @@
 require File.expand_path("#{File.dirname(__FILE__)}/../../spec_helper")
 
-describe Dependencies, "#load_missing_constant", :shared => true do
+describe 'Dependencies', "#load_missing_constant", :shared => true do
   it_should_behave_like "Desert::Manager fixture"
 
   before do
-    Dependencies.load_once_paths << "#{RAILS_ROOT}/vendor/plugins/load_me_once"
+    dependencies.load_once_paths << "#{RAILS_ROOT}/vendor/plugins/load_me_once"
   end
 
   it "loads the project" do
@@ -22,7 +22,7 @@ describe Dependencies, "#load_missing_constant", :shared => true do
       "Spiffy::SpiffyController",
     ]
 
-    constants_to_check = Dependencies.autoloaded_constants
+    constants_to_check = dependencies.autoloaded_constants
     constants_to_check.delete_if do |name|
       !expected_constant_order.include?(name)
     end
@@ -32,7 +32,7 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   it "does not add constants on the load_once_paths to autoloaded_constants" do
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/load_me_once"
     LoadMeOnce
-    Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
+    dependencies.autoloaded_constants.should_not include("LoadMeOnce")
   end
 
   it "returns module defined in parent module" do
@@ -61,9 +61,9 @@ describe Dependencies, "#load_missing_constant", :shared => true do
   end
 end
 
-describe Dependencies, " with one plugin", :shared => true do
+describe 'Dependencies', " with one plugin", :shared => true do
   before do
-    Dependencies.load_paths.clear
+    dependencies.load_paths.clear
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
   end
 
@@ -96,21 +96,21 @@ describe Dependencies, " with one plugin", :shared => true do
   end
 end
 
-describe Dependencies, "#load_missing_constant with one plugin" do
+describe 'Dependencies', "#load_missing_constant with one plugin" do
   it_should_behave_like "Dependencies#load_missing_constant"
   it_should_behave_like "Dependencies with one plugin"
 
   before do
-    Dependencies.load_missing_constant(Object, :SpiffyHelper)
+    dependencies.load_missing_constant(Object, :SpiffyHelper)
   end
 end
 
-describe Dependencies, "#depend_on with one plugin" do
+describe 'Dependencies', "#depend_on with one plugin" do
   it_should_behave_like "Desert::Manager fixture"
   it_should_behave_like "Dependencies with one plugin"
 
   before do
-    Dependencies.depend_on "spiffy_helper"
+    dependencies.depend_on "spiffy_helper"
     Object.should be_const_defined(:SpiffyHelper)
     dir = File.dirname(__FILE__)
     $LOAD_PATH.unshift("#{dir}/../../external_files")
@@ -127,7 +127,7 @@ describe Dependencies, "#depend_on with one plugin" do
   end
 end
 
-describe Dependencies, " with two plugins", :shared => true do
+describe 'Dependencies', " with two plugins", :shared => true do
   before do
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/super_spiffy"
@@ -149,7 +149,7 @@ describe Dependencies, " with two plugins", :shared => true do
   it "does not add constants on the load_once_paths to autoloaded_constants" do
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/load_me_once"
     LoadMeOnce
-    Dependencies.autoloaded_constants.should_not include("LoadMeOnce")
+    dependencies.autoloaded_constants.should_not include("LoadMeOnce")
   end
 
   it "loads constants from Object when referenced in a module" do
@@ -165,31 +165,31 @@ describe Dependencies, " with two plugins", :shared => true do
   end
 end
 
-describe Dependencies, "#load_missing_constant with two plugins" do
+describe 'Dependencies', "#load_missing_constant with two plugins" do
   it_should_behave_like "Dependencies#load_missing_constant"
   it_should_behave_like "Dependencies with two plugins"
 
   before do
-    Dependencies.load_missing_constant(Object, :SpiffyHelper)
+    dependencies.load_missing_constant(Object, :SpiffyHelper)
   end
 end
 
-describe Dependencies, "#depend_on with two plugins" do
+describe 'Dependencies', "#depend_on with two plugins" do
   it_should_behave_like "Desert::Manager fixture"
   it_should_behave_like "Dependencies with two plugins"
 
   before do
-    Dependencies.depend_on "spiffy_helper"
+    dependencies.depend_on "spiffy_helper"
     Object.should be_const_defined(:SpiffyHelper)
   end
 end
 
-describe Dependencies, "#load_missing_constant when referencing a file defined outside of the standard Rails directory structure" +
+describe 'Dependencies', "#load_missing_constant when referencing a file defined outside of the standard Rails directory structure" +
                        " and the referenced constant is defined in Object" do
   it_should_behave_like "Desert::Manager fixture"
 
   before do
-    Dependencies.load_paths << "#{RAILS_ROOT}/spec/external_files"
+    dependencies.load_paths << "#{RAILS_ROOT}/spec/external_files"
   end
 
   it "when the referenced constant is defined within the file, returns that constant" do
@@ -205,13 +205,13 @@ describe Dependencies, "#load_missing_constant when referencing a file defined o
   end
 end
 
-describe Dependencies, "#load_missing_constant when referencing a file defined outside of the standard Rails directory structure" +
+describe 'Dependencies', "#load_missing_constant when referencing a file defined outside of the standard Rails directory structure" +
                        " and the referenced constant is defined in a module OTHER than Object" do
   it_should_behave_like "Desert::Manager fixture"
 
   before do
     dir = File.dirname(__FILE__)
-    Dependencies.load_paths << "#{dir}/../../external_files"
+    dependencies.load_paths << "#{dir}/../../external_files"
   end
   
   it "when the referenced constant is defined within the file, returns that constant" do
