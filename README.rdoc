@@ -279,7 +279,7 @@ To run specs, you need to:
 * Update the database.yml file in <tt>spec/rails_root/config/database.yml</tt>
 * Install the dependencies
 * Run the specs
- 
+
 Desert is a library that heavily monkey patches Rails. To ensure that Desert works with
 multiple versions of Rails, its tests are run against the supported versions of Rails.
 

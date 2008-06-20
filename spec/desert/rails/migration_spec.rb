@@ -32,9 +32,9 @@ describe ActiveRecord::Migration::DesertMigration do
       stub(Desert::Manager).find_plugin("my_plugin") {fake_plugin}
       mock(Desert::PluginMigrations::Migrator).allocate {fake_migrator}
       mock(fake_migrator).set_schema_version(3)
-
       fixture.schema_version_equivalent_to("my_plugin", 3)
       Desert::PluginMigrations::Migrator.current_plugin.should == fake_plugin
     end
   end
+
 end
