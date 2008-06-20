@@ -20,5 +20,9 @@ Spec::Example::ExampleMethods.module_eval do
     ActiveSupport.const_defined?(:Dependencies) ? ActiveSupport::Dependencies : Dependencies
   end
 end
-
+puts "#{__FILE__}:#{__LINE__}"
+tables_to_drop = ActiveRecord::Base.connection.tables - ['sqlite_sequence']
+tables_to_drop.each do |table|
+  ActiveRecord::Base.connection.execute("drop table #{table}")
+end
 ActiveRecord::Migrator.migrate(File.expand_path("#{dir}/../db/migrate"))
