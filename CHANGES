@@ -1,3 +1,4 @@
+0.2.2
 - Fixed script/destroy not removing the routes [From Jeff Dean]
 - gem includes the Rails generator files [From Jeff Dean]
 - Fixed readding the route to config/routes.rb in the script/destroy task [From Jeff Dean]

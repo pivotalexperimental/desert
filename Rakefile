@@ -26,7 +26,7 @@ task(:tag_release) do
 end
 
 PKG_NAME = "desert"
-PKG_VERSION = "0.2.1"
+PKG_VERSION = "0.2.2"
 PKG_FILES = FileList[
   '[A-Z]*',
   '*.rb',
