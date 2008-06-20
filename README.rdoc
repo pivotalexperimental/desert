@@ -146,9 +146,32 @@ Notice that there is no need to call methods on map in the plugin route files, b
 
 All standard routing methods are available in your plugin's routes file, such as:
 
+<<<<<<< HEAD:README.rdoc
     namespace :admin do |admin|
       admin.resources :posts
+=======
+Desert uses a separate table to manage migration version to maintain backwards compatibility with Rails 1.x.
+Your plugin app's migration live in your_plugin/db/migrate.  To run migrations, follow these steps:
+
+* Create a new migration in your main app
+
+  script/generate migration migrate_my_plugin_to_045
+  
+* Add the custom `migrate_plugin` method
+
+  class MigrateMyPluginTo045 < ActiveRecord::Migration
+    def self.up
+      migrate_plugin(:my_plugin, 20080530223548)
     end
+
+    def self.down
+      migrate_plugin(:my_plugin, 0)
+    end
+  end
+
+* Run your migrations normally
+
+  rake db:migrate
 
     connect "/signup", :controller => "users", :action => "signup"
 
