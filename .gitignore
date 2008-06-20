@@ -5,5 +5,5 @@ spec/rails_root/log
 spec/rails_root/vendor/rails
 spec/rails_root/vendor/rails_versions
 spec/rails_root/db/test.sqlite3
-pkg/
+pkg
 .DS_Store
