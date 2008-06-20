@@ -1,11 +1,13 @@
-0.2.2
+0.3.1
+- Fix migration issue with Rails 2.1.0 using timestamps.
+
+0.3.0
 - Fixed script/destroy not removing the routes [From Jeff Dean]
 - gem includes the Rails generator files [From Jeff Dean]
 - Fixed readding the route to config/routes.rb in the script/destroy task [From Jeff Dean]
 - Github now properly formats readme [From Jeff Dean]
 - Updated the gemspec so rdoc includes it and updated it to add installation and setup instructions [From Jeff Dean]
 - Removed sample route from generator [From Jeff Dean]
-- Fix migration issue with Rails 2.1.0 using timestamps.
 
 0.2.1
 - Fixed ActionMailer rendering in Rails 1.99.0
