@@ -146,10 +146,10 @@ Notice that there is no need to call methods on map in the plugin route files, b
 
 All standard routing methods are available in your plugin's routes file, such as:
 
-<<<<<<< HEAD:README.rdoc
     namespace :admin do |admin|
       admin.resources :posts
-=======
+    end
+
 Desert uses a separate table to manage migration version to maintain backwards compatibility with Rails 1.x.
 Your plugin app's migration live in your_plugin/db/migrate.  To run migrations, follow these steps:
 
@@ -279,7 +279,7 @@ To run specs, you need to:
 * Update the database.yml file in <tt>spec/rails_root/config/database.yml</tt>
 * Install the dependencies
 * Run the specs
-
+ 
 Desert is a library that heavily monkey patches Rails. To ensure that Desert works with
 multiple versions of Rails, its tests are run against the supported versions of Rails.
 

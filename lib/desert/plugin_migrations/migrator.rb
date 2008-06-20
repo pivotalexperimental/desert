@@ -9,7 +9,7 @@ module Desert #:nodoc:
       class << self
         # Runs the migrations from a plugin, up (or down) to the version given
         def migrate_plugin(plugin, version = nil)
-          self.current_plugin = plugin.to_s
+          self.current_plugin = plugin
           if ActiveRecord::Base.connection.respond_to?(:initialize_schema_migrations_table)
             ActiveRecord::Base.connection.initialize_schema_migrations_table
           end
