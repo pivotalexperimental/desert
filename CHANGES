@@ -4,7 +4,7 @@
 - Github now properly formats readme [From Jeff Dean]
 - Updated the gemspec so rdoc includes it and updated it to add installation and setup instructions [From Jeff Dean]
 - Removed sample route from generator [From Jeff Dean]
-I just commented that out, and added some instructions. For those whose resources don't match the name of the plugin they have one less thing to delete [From Jeff Dean]
+- Fix migration issue with Rails 2.1.0 using timestamps.
 
 0.2.1
 - Fixed ActionMailer rendering in Rails 1.99.0
