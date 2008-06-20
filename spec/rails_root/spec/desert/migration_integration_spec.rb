@@ -25,46 +25,37 @@ module ActiveRecord
       describe "after 2.0.2" do
         it "migrates the data" do
           Migration.migrate_plugin('acts_as_spiffy', 2)
-          tables = select("show tables")
-          table_names = tables.collect do |row|
-            row.values.first
-          end
-          table_names.should == [
+          table_names = ActiveRecord::Base.connection.tables
+          table_names.sort.should == [
             "companies",
             "employees",
             "plugin_schema_info",
             "schema_migrations"
-          ]
+          ].sort
         end
       end
     else
       describe "up to 2.0.2" do
         it "migrates the data" do
           Migration.migrate_plugin('acts_as_spiffy', 2)
-          tables = select("show tables")
-          table_names = tables.collect do |row|
-            row.values.first
-          end
-          table_names.should == [
-            "companies",
-            "employees",
-            "plugin_schema_info",
-            "schema_info"
-          ]
+          table_names = ActiveRecord::Base.connection.tables
+          table_names.should include('companies')
+          table_names.should include('employees')
+          table_names.should include('plugin_schema_info')
+          table_names.should include('schema_info')
         end
       end
     end
 
     it "raises error when invalid plugin name passed in" do
-      proc do
+      lambda do
         Migration.migrate_plugin('acts_as_absent', 2)
       end.should raise_error(ArgumentError, "No plugin found named acts_as_absent")
     end
 
     def drop_tables
-      tables = select("show tables")
-      tables.each do |row|
-        table_name = row.values.first
+      tables = ActiveRecord::Base.connection.tables - ['sqlite_sequence']
+      tables.each do |table_name|
         execute_sql "drop table `#{table_name}`"
       end
     end
@@ -72,8 +63,14 @@ module ActiveRecord
     def select(sql)
       result_set = []
       stream = execute_sql(sql)
-      stream.each_hash do |hash|
-        result_set << hash
+      if stream.respond_to?(:each_hash)
+        stream.each_hash do |hash|
+          result_set << hash
+        end
+      else
+        stream.each do |hash|
+          result_set << {'plugin_name' => hash['plugin_name'], 'version' => hash['version']}
+        end
       end
       result_set
     end

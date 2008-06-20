@@ -18,7 +18,7 @@ unless Desert::VersionChecker.rails_version_is_below_1990?
 
       it "raises error when passed a plugin that doesn't exist" do
         @plugin.load(@initializer)
-        proc do
+        lambda do
           @plugin.require_plugin "i_dont_exist"
         end.should raise_error(RuntimeError, "Plugin 'i_dont_exist' does not exist")
       end

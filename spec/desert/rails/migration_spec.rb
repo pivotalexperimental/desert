@@ -9,7 +9,7 @@ describe ActiveRecord::Migration::DesertMigration do
 
   context "when plugin has an invalid name" do
     it "raises an error" do
-      proc do
+      lambda do
         path_for_plugin("non_existent_plugin")
       end.should raise_error
     end

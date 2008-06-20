@@ -20,3 +20,5 @@ Spec::Example::ExampleMethods.module_eval do
     ActiveSupport.const_defined?(:Dependencies) ? ActiveSupport::Dependencies : Dependencies
   end
 end
+
+ActiveRecord::Migrator.migrate(File.expand_path("#{dir}/../db/migrate"))

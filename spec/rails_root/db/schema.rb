@@ -4,4 +4,7 @@
 
 ActiveRecord::Schema.define() do
 
+# Could not dump table "sqlite_sequence" because of following StandardError
+#   Unknown type '' for column 'name'
+
 end

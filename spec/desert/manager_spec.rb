@@ -205,7 +205,9 @@ module Desert
 
       it "returns the list of file paths that match the passed in value" do
         files = manager.files_on_load_path("spiffy_helper")
-        files.length.should == 5
+        unless files.length == 5
+          raise "Expected manager.files_on_load_path to return 5 files. It returned #{files.length}.\n#{files.join("\n")}"
+        end
 
         [
           "#{plugin_root}/aa_depends_on_acts_as_spiffy/app/helpers/spiffy_helper.rb",
