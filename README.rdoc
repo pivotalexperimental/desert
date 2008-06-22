@@ -1,251 +1,62 @@
-= Desert - It doesn't get any DRYer than this
+= Desert
 
-Desert is a Rails plugin framework that makes it easy to share models, views, 
-controllers, helpers, routes, and migrations across your applications.
+Desert is a component framework for Rails that allows you to seamlessly define in your plugins:
 
-With Desert, reusability doesn't come at the cost of extensibility: it's trivial to extend 
-the functionality of a plugin - both in your application _and_ in other plugins.
+* Models
+* Controllers
+* Views
+* Helpers
+* Routes
+* Migrations
+* Plugin Dependencies
 
 Classes are automatically mixed in with your own or other plugins' classes.
+
 This allows you to make full featured composable components.
 
 Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable_plugins).
 
-== Anatomy of a desert plugin
+== Installation
 
-  |-- app
-  |   |-- controllers
-  |   |   |-- application.rb
-  |   |   `-- blogs_controller.rb
-  |   |-- helpers
-  |   |   |-- application_helper.rb
-  |   |   `-- blogs_helper.rb
-  |   |-- models
-  |   |   `-- user.rb
-  |   `-- views
-  |       |-- blogs
-  |       |-- layouts
-  |       |   `-- users.html.erb
-  |       `-- users
-  |           |-- index.html.erb
-  |           `-- show.html.erb
-  |-- db
-  |   `-- migrate
-  |       `-- 001_migrate_users_to_001.rb
-  |-- lib
-  |   `-- current_user.rb
-  |-- spec
-  |   |-- controllers
-  |   |   `-- blogs_controller_spec.rb
-  |   |-- fixtures
-  |   |-- models
-  |   |-- spec_helper.rb
-  |   `-- views
-  |       `-- blogs
-  `-- vendor
-      `-- plugins
-          `-- user
-              |-- app
-              |   |-- controllers
-              |   |   `-- users_controller.rb
-              |   |-- helpers
-              |   |   `-- users_helper.rb
-              |   |-- models
-              |   |   `-- user.rb
-              |   `-- views
-              |       `-- users
-              |           |-- edit.html.erb
-              |           |-- index.html.erb
-              |           |-- new.html.erb
-              |           `-- show.html.erb
-              |-- config
-              |   `-- routes.rb
-              |-- db
-              |   `-- migrate
-              |       `-- 001_create_users.rb
-              |-- init.rb
-              |-- lib
-              |   `-- current_user.rb
-              |-- spec
-              |   |-- controllers
-              |   |   `-- user_controller_spec.rb
-              |   |-- fixtures
-              |   |   `-- users.yml
-              |   |-- models
-              |   |   `-- user_spec.rb
-              |   |-- spec_helper.rb
-              |   `-- views
-              |       `-- users
-              `-- tasks
+== Using desert
 
-== Installation and Usage
+To use Desert, you need to do only a few things:
 
-* Install the gem
+* require 'desert' before Rails::Initializer.run in environment.rb
 
-    sudo gem install desert
-
-* Require 'desert' between 'boot' and Rails::Initializer.run in environment.rb
-
-    # File: config/environment.rb
-
-    require File.join(File.dirname(__FILE__), 'boot')
-
+  environment.rb
     require 'desert'
-
-    Rails::Initializer.run do |config|
-    end
-  
-NOTE: you may have to require rubygems before requiring desert.
-
-* Generate your desert plugin
-
-    script/generate desert_plugin my_plugin_app
-
-== Manage Plugin Dependencies
-
-By default, Rails loads plugins in alphabetical order, making it tedious to manage dependencies.
-Desert will automatically load plugins in the proper order when you declare their dependencies like this:
-
-    # File: vendor/plugins/blogs/init.rb
-
-    require_plugin 'user'
-    require_plugin 'will_paginate'
-
-Here <tt>user</tt> and <tt>will_paginate</tt> will always be loaded before <tt>blogs<tt>. Note that any plugin can be declared as a dependency.
-
-== Share Routes
-
-When you share controllers, you'll want to share their routes too.  
-If you look in your RAILS_ROOT/config/routes.rb file you will notice that the generator added a new line to the top:
-
-    map.routes_from_plugin(:my_plugin_app)
-
-In the <tt>user</tt> plugin: 
-
-    # File: vendor/plugins/user/config/routes.rb
-
-    resource :users
-
-In the <tt>blogs</tt> plugin:
-
-    File: vendor/plugins/blogs/config/routes.rb
-
-    resource :blogs
-
-In the application:
-  
-    # File: config/routes.rb
-
-    ActionController::Routing::Routes.draw do |map|
-      map.routes_from_plugin :blogs
-      map.routes_from_plugin :user
+    Rails::Initializer.run do
     end
 
-Here the application adds the <tt>users</tt> resource from the <tt>user</tt> plugin and the <tt>blogs</tt> resource from the <tt>blogs</tt> plugin.
-Notice that there is no need to call methods on map in the plugin route files, because they are instance eval'd in the map object.
+* Install your desert plugin routes in routes.rb
 
-All standard routing methods are available in your plugin's routes file, such as:
+  map.routes_from_plugin(:spiffy)
 
-    namespace :admin do |admin|
-      admin.resources :posts
-    end
 
-Desert uses a separate table to manage migration version to maintain backwards compatibility with Rails 1.x.
-Your plugin app's migration live in your_plugin/db/migrate.  To run migrations, follow these steps:
-
-* Create a new migration in your main app
-
-    script/generate migration migrate_my_plugin_to_045
-  
-* Add the custom `migrate_plugin` method
-
-    class MigrateMyPluginTo045 < ActiveRecord::Migration
-      def self.up
-        migrate_plugin(:my_plugin, 20080530223548)
-      end
-
-      def self.down
-        migrate_plugin(:my_plugin, 0)
-      end
-    end
-
-* Run your migrations normally
-
-    rake db:migrate
-
-    connect "/signup", :controller => "users", :action => "signup"
-
-== Share Migrations
-
-Sharing models means sharing schema fragments, and that means sharing migrations:
-
-In the <tt>user</tt> plugin:
-
-  vendor/plugins/user/db/migrate/
-    001_create_user_table.rb
-
-In the <tt>blogs</tt> plugin:
-
-    vendor/plugins/blogs/db/migrate/
-      001_create_user_table.rb
-      002_add_became_a_blogger_at_to_user.rb
-
-Here the <tt>blogs</tt> plugin needs to add a column to the <tt>users</tt> table. No problem!
-It just includes a migration in its <tt>db/migrate</tt> directory, just like a regular Rails application.
-When the application developer installs the plugin, he migrates the plugin in his own migration:
-
-<tt>application_root/db/migrate/009_install_user_and_blogs_plugins.rb</tt>
-
-    class InstallUserAndBlogsPlugins < ActiveRecord::Migration
-      def self.up
-        migrate_plugin 'user', 1
-        migrate_plugin :blogs, 2
-      end
-
-      def self.down
-        migrate_plugin 'user', 0
-        migrate_plugin :blogs, 0
-      end
-    end
-
-Here the application migrates the <tt>user</tt> plugin to version 1 and the <tt>blogs</tt> plugin to version 2.
-If a subsequent version of the plugin introduces new migrations, the application developer has full control over when to apply them to his schema.
-
-== Share Views
-
-To share views, just create templates and partials in the plugin's <tt>app/views</tt> directory, just as you would with a Rails application.
-
-<tt>application_root/app/views/blogs/index.html.erb</tt>
-
-    <%= @blog.posts.each do |post| %>
-      ...
-    <% end %>
-
-== Customize / extend behavior in each installation
-
+== Example
 Say you want to create a plugin named acts_as_spiffy.
 Desert allows Spiffy to have a set of features that can be reused and extended in several projects.
 
 The Spiffy project has a:
-
 * SpiffyController
 * Spiffy model
 * SpiffyHelper
-* spiffy.html.erb
+* spiffy.rhtml
 * SpiffyLib library class
 
-The Spiffy plugin acts as its own mini Rails application.  Here is the directory structure:
-
+The Spiffy plugin acts as its own mini Rails application.
+Here is the directory structure:
   RAILS_ROOT/vendor/plugins/spiffy/app/controllers/spiffy_controller.rb
   RAILS_ROOT/vendor/plugins/spiffy/app/models/spiffy.rb
   RAILS_ROOT/vendor/plugins/spiffy/app/helpers/spiffy_helper.rb
   RAILS_ROOT/vendor/plugins/spiffy/app/views/spiffy/spiffy.rhtml
   RAILS_ROOT/vendor/plugins/spiffy/lib/spiffy_lib.rb
 
-Now, say there is a Spiffy Store rails application that uses acts_as_spiffy.  The Rails app can open up any of the Spiffy classes and override any of the methods.
+Now, say there is a Spiffy Store rails application that uses acts_as_spiffy.
+The Rails app can open up any of the Spiffy classes and override any of the methods.
 
 Say spiffy.rb in the Spiffy plugin is defined as:
-
   class Spiffy < ActiveRecord::Base
     def why?
       "I just am Spiffy"
@@ -253,12 +64,12 @@ Say spiffy.rb in the Spiffy plugin is defined as:
   end
 
 The Spiffy#why method can be overridden in RAILS_ROOT/app/models/spiffy.rb
-
   class Spiffy < ActiveRecord::Base
     def why?
       "I sell Spiffy stuff"
     end
   end
+
 
 == Running plugin tests
 
@@ -266,30 +77,17 @@ You can run your plugin tests/specs like so:
 
   rake desert:testspec:plugins PLUGIN=spiffy
 
-Leaving off the PLUGIN environment variable will cause it to run all the
-test/specs for all installed plugins, which may not be what you want.
+Leaving off the PLUGIN environment variable will cause it to run all the test/specs for
+all installed plugins, which may not be what you want.
 
-== Running Desert Specs
-
-To run specs, you need to:
-
-* Make sure you have the necessary gems installed (rr, rspec)
-* Install git http://git.or.cz/
-* Create a database named desert_test
-* Update the database.yml file in <tt>spec/rails_root/config/database.yml</tt>
-* Install the dependencies
-* Run the specs
+== Running Desert tests
 
 Desert is a library that heavily monkey patches Rails. To ensure that Desert works with
 multiple versions of Rails, its tests are run against the supported versions of Rails.
 
-To set up the different supported versions of Rails, run
-
-  rake install_dependencies
+To set up the different supported versions of Rails, run `rake install_dependencies`.
 
 This will clone the Rails git repo and export the supported versions of rails into the
 respective directories.
 
-  rake update_dependencies
-
-will update the clones repo on your machine.
+`rake update_dependencies` will update the clones repo on your machine.
