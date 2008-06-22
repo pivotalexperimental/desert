@@ -50,7 +50,6 @@ which will create the following directory structure in vendor/plugins/my_app:
   |   `-- routes.rb
   |-- db
   |   `-- migrate
-  |       `-- 001_init_my_app_plugin.rb
   |-- init.rb
   |-- lib
   `-- spec
