@@ -72,7 +72,7 @@ Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable
               |   |-- fixtures
               |   |   `-- users.yml
               |   |-- models
-              |   |   `-- user_spec.rb
+              |   |   `-- user.rb
               |   |-- spec_helper.rb
               |   `-- views
               |       `-- users
@@ -146,10 +146,10 @@ Notice that there is no need to call methods on map in the plugin route files, b
 
 All standard routing methods are available in your plugin's routes file, such as:
 
-<<<<<<< HEAD:README.rdoc
     namespace :admin do |admin|
       admin.resources :posts
-=======
+    end
+
 Desert uses a separate table to manage migration version to maintain backwards compatibility with Rails 1.x.
 Your plugin app's migration live in your_plugin/db/migrate.  To run migrations, follow these steps:
 
@@ -293,15 +293,3 @@ respective directories.
   rake update_dependencies
 
 will update the clones repo on your machine.
-
-== Community
-
-* (Desert on Github)[http://www.github.com/pivotal/desert]
-* (Desert on Rubyforge)[http://rubyforge.org/projects/desert]
-* (Desert Mailing List Preferences)[http://rubyforge.org/mail/?group_id=6426]
-
-=== Mailing List
-
-You can subscribe to the Desert mailing list at:
-* (desert-users@rubyforge.org)[mailto:desert-users@rubyforge.org]
-* ( desert-devel@rubyforge.org)[mailto:desert-devel@rubyforge.org]
