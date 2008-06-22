@@ -171,7 +171,7 @@ Your plugin app's migration live in your_plugin/db/migrate.  To run migrations, 
 
 * Run your migrations normally
 
-  rake db:migrate
+    rake db:migrate
 
     connect "/signup", :controller => "users", :action => "signup"
 
