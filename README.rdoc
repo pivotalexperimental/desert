@@ -115,12 +115,12 @@ Here <tt>user</tt> and <tt>will_paginate</tt> will always be loaded before <tt>b
 
 == Share Routes
 
-When you share controllers, you'll want to share their routes too.  
+When you share controllers, you'll want to share their routes too.
 If you look in your RAILS_ROOT/config/routes.rb file you will notice that the generator added a new line to the top:
 
     map.routes_from_plugin(:my_plugin_app)
 
-In the <tt>user</tt> plugin: 
+In the <tt>user</tt> plugin:
 
     # File: vendor/plugins/user/config/routes.rb
 
@@ -128,7 +128,7 @@ In the <tt>user</tt> plugin:
 
 In the <tt>blogs</tt> plugin:
 
-    File: vendor/plugins/blogs/config/routes.rb
+    # File: vendor/plugins/blogs/config/routes.rb
 
     resource :blogs
 
