@@ -18,9 +18,15 @@ Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable
 
 == Installation
 
-  gem install desert
+If you have git installed:
 
-NOTE: desert will not work as a plugin
+  script/plugin install git://github.com/pivotal/desert.git
+
+If you do not have git installed
+
+* Go to http://github.com/pivotal/desert/tree/master
+* Click download tarball
+* Untar and expand the file to vendor/plugins/desert
 
 == Using desert
 
