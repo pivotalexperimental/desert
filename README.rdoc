@@ -155,19 +155,19 @@ Your plugin app's migration live in your_plugin/db/migrate.  To run migrations, 
 
 * Create a new migration in your main app
 
-  script/generate migration migrate_my_plugin_to_045
+    script/generate migration migrate_my_plugin_to_045
   
 * Add the custom `migrate_plugin` method
 
-  class MigrateMyPluginTo045 < ActiveRecord::Migration
-    def self.up
-      migrate_plugin(:my_plugin, 20080530223548)
-    end
+    class MigrateMyPluginTo045 < ActiveRecord::Migration
+      def self.up
+        migrate_plugin(:my_plugin, 20080530223548)
+      end
 
-    def self.down
-      migrate_plugin(:my_plugin, 0)
+      def self.down
+        migrate_plugin(:my_plugin, 0)
+      end
     end
-  end
 
 * Run your migrations normally
 
