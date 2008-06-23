@@ -1,9 +1,9 @@
 = Desert - It doesn't get any DRYer than this
 
-Desert is a Rails plugin framework that makes it easy to share models, views, 
+Desert is a Rails plugin framework that makes it easy to share models, views,
 controllers, helpers, routes, and migrations across your applications.
 
-With Desert, reusability doesn't come at the cost of extensibility: it's trivial to extend 
+With Desert, reusability doesn't come at the cost of extensibility: it's trivial to extend
 the functionality of a plugin - both in your application _and_ in other plugins.
 
 Classes are automatically mixed in with your own or other plugins' classes.
@@ -94,7 +94,7 @@ Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable
 
     Rails::Initializer.run do |config|
     end
-  
+
 NOTE: you may have to require rubygems before requiring desert.
 
 * Generate your desert plugin
@@ -133,7 +133,7 @@ In the <tt>blogs</tt> plugin:
     resource :blogs
 
 In the application:
-  
+
     # File: config/routes.rb
 
     ActionController::Routing::Routes.draw do |map|
@@ -156,7 +156,7 @@ Your plugin app's migration live in your_plugin/db/migrate.  To run migrations, 
 * Create a new migration in your main app
 
     script/generate migration migrate_my_plugin_to_045
-  
+
 * Add the custom `migrate_plugin` method
 
     class MigrateMyPluginTo045 < ActiveRecord::Migration
