@@ -8,12 +8,6 @@ class ActiveRecord::Migration
       )
     end
 
-    def schema_version_equivalent_to(plugin_name, version)
-      plugin = find_plugin(plugin_name)
-      Desert::PluginMigrations::Migrator.current_plugin = plugin
-      Desert::PluginMigrations::Migrator.allocate.set_schema_version(version)
-    end
-
     protected
     def find_plugin(plugin_name)
       plugin = Desert::Manager.find_plugin(plugin_name.to_s)
