@@ -40,7 +40,6 @@ end
 module Desert #:nodoc:
   module Generator #:nodoc:
     module Commands #:nodoc:
-
       module Create
         def map_route_from_plugin
           logger.route "adding map.routes_from_plugin(:#{file_name}) to top of routes.rb"
@@ -58,7 +57,7 @@ module Desert #:nodoc:
           gsub_file 'config/routes.rb', /(#{Regexp.escape(look_for)})/mi, ''
         end
       end
-
+      
       module List
         def map_route_from_plugin
           logger.route "adding map.routes_from_plugin(:#{file_name}) to top of routes.rb"
