@@ -223,6 +223,53 @@ To share views, just create templates and partials in the plugin's <tt>app/views
 
 == Customize / extend behavior in each installation
 
+<<<<<<< HEAD:README.rdoc
+=======
+This line connects your routes to the app.  The only difference between your plugin's 
+routes file and the standard config/routes.rb file is that you don't need to write "map" - it's implicit.
+
+So what would be
+
+  map.resources :posts
+  
+in config/routes.rb becomes just
+
+  resources :posts
+  
+in my_app/config/routes.rb.  All standard routing methods are available, such as:
+
+  namespace :admin do |admin|
+    admin.resources :posts
+  end
+
+== Running migrations
+
+Desert uses a separate table to manage migration version to maintain backwards compatibility with Rails 1.x.
+Your plugin app's migration live in your_plugin/db/migrate.  To run migrations, follow these steps:
+
+* Create a new migration in your main app
+
+    script/generate migration migrate_my_plugin_to_045
+  
+* Add the custom `migrate_plugin` method
+
+    class MigrateMyPluginTo045 < ActiveRecord::Migration
+      def self.up
+        migrate_plugin(:my_plugin, 20080530223548)
+      end
+
+      def self.down
+        migrate_plugin(:my_plugin, 0)
+      end
+    end
+
+* Run your migrations normally
+
+    rake db:migrate
+
+== Example
+
+>>>>>>> Merge branch 'master' of git://github.com/zilkey/desert:README.rdoc
 Say you want to create a plugin named acts_as_spiffy.
 Desert allows Spiffy to have a set of features that can be reused and extended in several projects.
 
@@ -272,6 +319,7 @@ test/specs for all installed plugins, which may not be what you want.
 == Running Desert Specs
 
 To run specs, you need to:
+<<<<<<< HEAD:README.rdoc
 
 * Make sure you have the necessary gems installed (rr, rspec)
 * Install git http://git.or.cz/
@@ -279,17 +327,34 @@ To run specs, you need to:
 * Update the database.yml file in <tt>spec/rails_root/config/database.yml</tt>
 * Install the dependencies
 * Run the specs
+=======
+>>>>>>> Merge branch 'master' of git://github.com/zilkey/desert:README.rdoc
 
+* Make sure you have the necessary gems installed (rr, rspec)
+* Install git http://git.or.cz/
+* Create a database named desert_test
+* Update the database.yml file in `spec/rails_root/config/database.yml`
+* Install the dependencies
+* Run the specs
+  
 Desert is a library that heavily monkey patches Rails. To ensure that Desert works with
 multiple versions of Rails, its tests are run against the supported versions of Rails.
 
+<<<<<<< HEAD:README.rdoc
 To set up the different supported versions of Rails, run
+=======
+To set up the different supported versions of Rails, run 
+>>>>>>> Merge branch 'master' of git://github.com/zilkey/desert:README.rdoc
 
   rake install_dependencies
 
 This will clone the Rails git repo and export the supported versions of rails into the
 respective directories.
 
+<<<<<<< HEAD:README.rdoc
   rake update_dependencies
+=======
+  rake update_dependencies 
+>>>>>>> Merge branch 'master' of git://github.com/zilkey/desert:README.rdoc
 
 will update the clones repo on your machine.
