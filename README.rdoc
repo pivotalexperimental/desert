@@ -293,3 +293,15 @@ respective directories.
   rake update_dependencies
 
 will update the clones repo on your machine.
+
+== Community
+
+* (Desert on Github)[http://www.github.com/pivotal/desert]
+* (Desert on Rubyforge)[http://rubyforge.org/projects/desert]
+* (Desert Mailing List Preferences)[http://rubyforge.org/mail/?group_id=6426]
+
+=== Mailing List
+
+You can subscribe to the Desert mailing list at:
+* (desert-users@rubyforge.org)[mailto:desert-users@rubyforge.org]
+* ( desert-devel@rubyforge.org)[mailto:desert-devel@rubyforge.org]
