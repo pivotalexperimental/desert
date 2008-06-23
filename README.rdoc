@@ -72,7 +72,7 @@ Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable
               |   |-- fixtures
               |   |   `-- users.yml
               |   |-- models
-              |   |   `-- user.rb
+              |   |   `-- user_spec.rb
               |   |-- spec_helper.rb
               |   `-- views
               |       `-- users
