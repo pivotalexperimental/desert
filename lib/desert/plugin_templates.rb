@@ -8,3 +8,4 @@ else
   require "#{dir}/plugin_templates/2.0.0/action_mailer"
 end
 require "#{dir}/plugin_templates/action_view"
+require "#{dir}/plugin_templates/view_paths"

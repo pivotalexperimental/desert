@@ -2,7 +2,37 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define() do
+ActiveRecord::Schema.define(:version => 2) do
+
+  create_table "articles", :force => true do |t|
+    t.column "title",     :string,  :null => false
+    t.column "content",   :text,    :null => false
+    t.column "author_id", :integer, :null => false
+  end
+
+  create_table "authors", :force => true do |t|
+    t.column "name", :string, :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.column "content",    :string,  :null => false
+    t.column "article_id", :integer, :null => false
+  end
+
+  create_table "companies", :force => true do |t|
+    t.column "name", :string, :null => false
+  end
+
+  create_table "employees", :force => true do |t|
+    t.column "company_id", :integer, :null => false
+    t.column "first_name", :string,  :null => false
+    t.column "last_name",  :string,  :null => false
+  end
+
+  create_table "plugin_schema_info", :id => false, :force => true do |t|
+    t.column "plugin_name", :string
+    t.column "version",     :integer
+  end
 
 # Could not dump table "sqlite_sequence" because of following StandardError
 #   Unknown type '' for column 'name'
