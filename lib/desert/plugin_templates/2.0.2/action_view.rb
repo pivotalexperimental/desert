@@ -4,7 +4,7 @@ module ActionView #:nodoc:
       initialize_without_desert_plugins *args
 
       Desert::Manager.plugins.reverse.each do |plugin|
-        view_paths << plugin.templates_path
+        append_view_path plugin.templates_path
       end
     end
     alias_method_chain :initialize, :desert_plugins
