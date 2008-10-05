@@ -1,4 +1,5 @@
 # Don't change this file. Configuration is done in config/environment.rb and config/environments/*.rb
+require "fileutils"
 
 unless defined?(RAILS_ROOT)
   root_path = File.join(File.dirname(__FILE__), '..')
@@ -14,10 +15,15 @@ end
 unless defined?(Rails::Initializer)
   rails_dir = "#{RAILS_ROOT}/vendor/rails"
   if ENV['RAILS_VERSION']
+    rails_version = ENV['RAILS_VERSION']
     rails_versions_dir = "#{RAILS_ROOT}/vendor/rails_versions/#{ENV['RAILS_VERSION'].downcase}"
 
     system("rm -f #{rails_dir}")
     system("ln -s #{rails_versions_dir} #{rails_dir}")
+  else
+    FileUtils.cd(rails_dir) do
+      rails_version = File.basename(Dir.pwd)
+    end
   end
 
   Dir["#{rails_dir}/*"].each do |path|
@@ -28,7 +34,7 @@ unless defined?(Rails::Initializer)
     raise "#{initializer_path} not in vendor. Run rake install_dependencies"
   end
 
-  if ENV['RAILS_VERSION'] == "edge" || ENV['RAILS_VERSION'] == '2.1.0'
+  if rails_version == "edge" || rails_version == '2.1.0'
     require "#{rails_dir}/railties/environments/boot"
   else
     require "#{rails_dir}/railties/lib/initializer"
