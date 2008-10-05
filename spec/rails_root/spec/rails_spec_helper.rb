@@ -5,7 +5,6 @@ require "#{dir}/../config/environment"
 
 require "action_controller/test_process"
 require "spec"
-require "ruby-debug"
 require "rr"
 require "rr/adapters/rspec"
 

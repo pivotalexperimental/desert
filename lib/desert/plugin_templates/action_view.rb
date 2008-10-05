@@ -1,4 +1,5 @@
 dir = File.dirname(__FILE__)
+
 if ActionView.const_defined?(:TemplateFinder)
   require "#{dir}/2.1.0/action_view"
 else
