@@ -6,9 +6,11 @@ namespace :desert do
       t.verbose = true
     end
 
-    Spec::Rake::SpecTask.new("plugins") do |t|
-      t.libs << "spec"
-      t.pattern = "vendor/plugins/#{ENV['PLUGIN'] || '**'}/**/*_spec.rb"
+    if Object.const_defined?(:Spec)
+      Spec::Rake::SpecTask.new("plugins") do |t|
+        t.libs << "spec"
+        t.pattern = "vendor/plugins/#{ENV['PLUGIN'] || '**'}/**/*_spec.rb"
+      end
     end
 
     Rake::Task['desert:testspec:plugins'].comment = "Run the plugin tests and specs in vendor/plugins/** (or specify with PLUGIN=name)"
