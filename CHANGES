@@ -1,3 +1,4 @@
+0.3.2
 - Fixed exception in testspec.rake when rspec is not loaded
 - Fix template loading on Edge Rails and on Rails 2.1.0
 
