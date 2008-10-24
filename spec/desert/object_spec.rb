@@ -17,7 +17,7 @@ describe Object, " one plugin", :shared => true do
   it_should_behave_like "Object"
 
   before do
-    Dependencies.load_paths.clear
+    dependencies.load_paths.clear
     @manager.register_plugin "#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy"
   end
 
@@ -60,7 +60,7 @@ describe Object, "#require" do
   it_should_behave_like "Desert::Manager fixture"
 
   before do
-    Dependencies.load_paths.clear
+    dependencies.load_paths.clear
   end
   
   it "loads the project" do

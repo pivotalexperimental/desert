@@ -64,7 +64,7 @@ module Desert
       attr_accessor :manager
 
       before do
-        Dependencies.load_paths << "#{RAILS_ROOT}/spec/external_files"
+        dependencies.load_paths << "#{RAILS_ROOT}/spec/external_files"
 
         @other_load_path = "#{RAILS_ROOT}/app/helpers/another_dir"
         $LOAD_PATH << @other_load_path
@@ -76,7 +76,7 @@ module Desert
 
       it "does not double load load_paths that are in the plugin paths and are not expanded" do
         not_expanded_load_path = "#{RAILS_ROOT}/spec/../spec/external_files"
-        Dependencies.load_paths << not_expanded_load_path
+        dependencies.load_paths << not_expanded_load_path
 
         manager.load_paths.should_not include(not_expanded_load_path)
         manager.load_paths.should include(File.expand_path(not_expanded_load_path))
