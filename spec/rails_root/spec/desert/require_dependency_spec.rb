@@ -22,7 +22,7 @@ describe 'Dependencies', ".require_dependency when constants are unloaded" do
   it_should_behave_like "Remove Project Constants"
   before do
     Object.const_defined?(:SpiffyHelper).should be_false
-    require_dependency 'spiffy_helper'
+    SpiffyHelper
     Object.const_defined?(:SpiffyHelper).should be_true
     dependencies.clear
     Object.const_defined?(:SpiffyHelper).should be_false
