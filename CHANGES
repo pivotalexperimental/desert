@@ -1,3 +1,5 @@
+- Fixed [#20770] Can't get specs to run for desert-based plugin bug (http://rubyforge.org/tracker/index.php?func=detail&aid=20770&group_id=6426&atid=24920)
+
 0.3.2
 - Fixed exception in testspec.rake when rspec is not loaded
 - Fix template loading on Edge Rails and on Rails 2.1.0
