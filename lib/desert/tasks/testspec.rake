@@ -1,5 +1,7 @@
 namespace :desert do
+  desc "Run all of the tests and specs in the plugins"
   namespace :testspec do
+    desc "Run the plugin tests and specs in vendor/plugins/** (or specify with PLUGIN=name)"
     Rake::TestTask.new("plugins") do |t|
       t.libs << "test"
       t.pattern = "vendor/plugins/#{ENV['PLUGIN'] || '**'}/**/*_test.rb"
@@ -12,8 +14,6 @@ namespace :desert do
         t.pattern = "vendor/plugins/#{ENV['PLUGIN'] || '**'}/**/*_spec.rb"
       end
     end
-
-    Rake::Task['desert:testspec:plugins'].comment = "Run the plugin tests and specs in vendor/plugins/** (or specify with PLUGIN=name)"
 
     desc "Test all plugins in config/plugins_to_test.yml"
     task :all_plugins do
