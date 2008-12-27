@@ -34,7 +34,7 @@ unless defined?(Rails::Initializer)
     raise "#{initializer_path} not in vendor. Run rake install_dependencies"
   end
 
-  if rails_version == "edge" || rails_version == '2.1.0'
+  if rails_version == "edge" || (rails_version.split(".").map {|version| Integer(version)} <=> [2, 1, 0]) >= 0
     require "#{rails_dir}/railties/environments/boot"
   else
     require "#{rails_dir}/railties/lib/initializer"
