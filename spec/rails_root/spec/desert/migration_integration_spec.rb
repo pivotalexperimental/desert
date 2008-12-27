@@ -10,32 +10,43 @@ module ActiveRecord
       drop_tables
     end
 
-    it "creates plugin schema info table" do
-      Migration.migrate_plugin('acts_as_spiffy', 2)
-      results = select("select * from plugin_schema_info;")
-      results.should == [
-        {
-          'plugin_name' => 'acts_as_spiffy',
-          'version' => '2'
-        },
-      ]
-    end
-
     if ActiveRecord::Migrator.respond_to?(:schema_migrations_table_name)
       describe "after 2.0.2" do
+        it "creates plugin schema migrations table" do
+          Migration.migrate_plugin('acts_as_spiffy', 2)
+          results = select("select * from plugin_schema_migrations;")
+          results.should == [
+            {
+              'plugin_name' => 'acts_as_spiffy',
+              'version' => '2'
+            },
+          ]
+        end
+
         it "migrates the data" do
           Migration.migrate_plugin('acts_as_spiffy', 2)
           table_names = ActiveRecord::Base.connection.tables
           table_names.sort.should == [
             "companies",
             "employees",
-            "plugin_schema_info",
+            "plugin_schema_migrations",
             "schema_migrations"
           ].sort
         end
       end
     else
       describe "up to 2.0.2" do
+        it "creates plugin schema info table" do
+          Migration.migrate_plugin('acts_as_spiffy', 2)
+          results = select("select * from plugin_schema_info;")
+          results.should == [
+            {
+              'plugin_name' => 'acts_as_spiffy',
+              'version' => '2'
+            },
+          ]
+        end        
+
         it "migrates the data" do
           Migration.migrate_plugin('acts_as_spiffy', 2)
           table_names = ActiveRecord::Base.connection.tables
