@@ -19,6 +19,10 @@ module ActiveRecord
             results.should == [
               {
                 'plugin_name' => 'acts_as_spiffy',
+                'version' => '1'
+              },
+              {
+                'plugin_name' => 'acts_as_spiffy',
                 'version' => '2'
               },
             ]

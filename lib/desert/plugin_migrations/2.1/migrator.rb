@@ -3,7 +3,7 @@ module Desert #:nodoc:
     class Migrator < ActiveRecord::Migrator
       class << self
         def current_version #:nodoc:
-          result = ActiveRecord::Base.connection.select_one("SELECT version FROM #{schema_migrations_table_name} WHERE plugin_name = '#{current_plugin.name}'")
+          result = ActiveRecord::Base.connection.select_one("SELECT version FROM #{schema_migrations_table_name} WHERE plugin_name = '#{current_plugin.name}' order by version desc")
           if result
             result['version'].to_i
           else
@@ -11,19 +11,25 @@ module Desert #:nodoc:
             0
           end
         end
-      end
 
-      def set_schema_version(version)
-        version = down? ? version.to_i - 1 : version.to_i
-
-        if ActiveRecord::Base.connection.select_one("SELECT version FROM #{self.class.schema_migrations_table_name} WHERE plugin_name = '#{current_plugin.name}'").nil?
-          # We need to create the entry since it doesn't exist
-          ActiveRecord::Base.connection.execute("INSERT INTO #{self.class.schema_migrations_table_name} (version, plugin_name) VALUES (#{version},'#{current_plugin.name}')")
-        else
-          ActiveRecord::Base.connection.update("UPDATE #{self.class.schema_migrations_table_name} SET version = #{version} WHERE plugin_name = '#{current_plugin.name}'")
+        def get_all_versions
+          ActiveRecord::Base.connection.select_values("SELECT version FROM #{schema_migrations_table_name} where plugin_name='#{current_plugin.name}'").map(&:to_i).sort
         end
       end
-      alias_method :record_version_state_after_migrating, :set_schema_version
+
+      def record_version_state_after_migrating(version)
+        sm_table = self.class.schema_migrations_table_name
+
+        if down?
+          ActiveRecord::Base.connection.update("DELETE FROM #{sm_table} WHERE version = '#{version}' WHERE plugin_name = '#{current_plugin.name}'")
+        else
+          ActiveRecord::Base.connection.insert("INSERT INTO #{sm_table} (plugin_name, version) VALUES ('#{current_plugin.name}', '#{version}')")
+        end
+      end
+
+      def migrated
+        self.class.get_all_versions
+      end
     end
   end
 end

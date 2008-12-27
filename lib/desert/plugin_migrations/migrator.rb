@@ -24,11 +24,6 @@ module Desert #:nodoc:
           ActiveRecord::Base.table_name_prefix + 'plugin_schema_migrations' + ActiveRecord::Base.table_name_suffix
         end
       end
-
-      def migrated
-        current_plugin_version = self.class.current_version
-        (1..current_plugin_version).to_a
-      end
     end
   end
 end

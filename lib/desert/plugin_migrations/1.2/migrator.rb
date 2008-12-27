@@ -23,7 +23,11 @@ module Desert #:nodoc:
           ActiveRecord::Base.connection.update("UPDATE #{self.class.schema_info_table_name} SET version = #{version} WHERE plugin_name = '#{current_plugin.name}'")
         end
       end
-      alias_method :record_version_state_after_migrating, :set_schema_version
+
+      def migrated
+        current_plugin_version = self.class.current_version
+        (1..current_plugin_version).to_a
+      end
     end
   end
 end
