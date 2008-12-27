@@ -1,6 +1,7 @@
 - Fixed [#20770] Can't get specs to run for desert-based plugin bug (http://rubyforge.org/tracker/index.php?func=detail&aid=20770&group_id=6426&atid=24920)
 - Fixed [#21564] Can't see desert rake tasks (http://rubyforge.org/tracker/index.php?func=detail&aid=21564&group_id=6426&atid=24920)
 - Renamed plugin_schema_info to plugin_schema_migrations when using Rails >= 2.1
+- Migrater#migrated are now properly implemented for plugin_schema_migrations for Rails >= 2.1.0
 
 0.3.2
 - Fixed exception in testspec.rake when rspec is not loaded
