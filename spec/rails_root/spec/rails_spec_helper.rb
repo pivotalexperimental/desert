@@ -10,6 +10,8 @@ require "rr/adapters/rspec"
 
 require "#{dir}/spec_helpers/remove_project_constants_helper"
 
+gem 'sqlite3-ruby' # required for tests to work on OSX
+
 Spec::Runner.configure do |config|
   config.mock_with RR::Adapters::Rspec
 end

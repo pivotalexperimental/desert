@@ -6,12 +6,12 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 desc "Runs the Rspec suite"
-task(:default) do
+task :default do
   run_suite
 end
 
 desc "Runs the Rspec suite"
-task(:spec) do
+task :spec do
   run_suite
 end
 
@@ -21,7 +21,7 @@ def run_suite
 end
 
 desc "Copies the trunk to a tag with the name of the current release"
-task(:tag_release) do
+task :tag_release do
   tag_release
 end
 
@@ -70,7 +70,7 @@ def tag_release
 end
 
 desc "Install dependencies to run the build. This task uses Git."
-task(:install_dependencies) do
+task :install_dependencies do
   require "lib/desert/supported_rails_versions"
   system("git clone git://github.com/rails/rails.git spec/rails_root/vendor/rails_versions/edge")
   Dir.chdir("spec/rails_root/vendor/rails_versions/edge") do
@@ -88,6 +88,12 @@ task(:install_dependencies) do
 end
 
 desc "Updates the dependencies to run the build. This task uses Git."
-task(:update_dependencies) do
+task :update_dependencies do
   system "cd spec/rails_root/vendor/rails_versions/edge; git pull origin"
 end
+
+desc "Runs the CI build"
+task :cruise => :install_dependencies do
+  run_suite
+end
+

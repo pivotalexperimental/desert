@@ -2,3 +2,8 @@
 gems:
 - name: rr
   version: 0.4.8
+- name: rspec
+  version: 1.1.12
+- name: sqlite3-ruby # required for rails tests
+  version: 1.2.4     # This may be required on OSX: sudo env ARCHFLAGS="-arch i386" gem install sqlite3-ruby
+  
