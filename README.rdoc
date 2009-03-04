@@ -273,12 +273,29 @@ test/specs for all installed plugins, which may not be what you want.
 
 To run specs, you need to:
 
-* Make sure you have the necessary gems installed (rr, rspec)
+* Make sure you have the necessary gems installed: 
+
+  sudo geminstaller
+
+* On OSX, you may have to manually install sqlite3-ruby gem 
+
+  sudo env ARCHFLAGS="-arch i386" gem install sqlite3-ruby
+
+* If sqlite3-ruby fails to compile, install it.
+
+  OSX: sudo port install sqlite3
+  Debian: sudo aptitude install sqlite sqlite3 libsqlite-dev libsqlite3-dev
+  
 * Install git http://git.or.cz/
-* Create a database named desert_test
-* Update the database.yml file in <tt>spec/rails_root/config/database.yml</tt>
 * Install the dependencies
+
+  rake install_dependencies
+
 * Run the specs
+
+  rake
+
+== Notes on Rails version dependencies
 
 Desert is a library that heavily monkey patches Rails. To ensure that Desert works with
 multiple versions of Rails, its tests are run against the supported versions of Rails.
