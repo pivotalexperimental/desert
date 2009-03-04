@@ -15,6 +15,12 @@ task(:spec) do
   run_suite
 end
 
+desc "Runs the CI build"
+task(:cruise) do
+  install_dependencies
+  run_suite
+end
+
 def run_suite
   dir = File.dirname(__FILE__)
   system("ruby #{dir}/spec/spec_suite.rb") || raise("Example Suite failed")
