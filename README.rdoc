@@ -11,6 +11,10 @@ This allows you to make full featured composable components.
 
 Desert is a replacement for Appable Plugins (http://wiki.pluginaweek.org/Appable_plugins).
 
+== Bug/Feature Tracker
+
+Pivotal Tracker: http://www.pivotaltracker.com/projects/358
+
 == Anatomy of a desert plugin
 
   |-- app
