@@ -9,3 +9,4 @@ pkg
 .DS_Store
 scratch.rb
 schema.rb
+desert-*.gem

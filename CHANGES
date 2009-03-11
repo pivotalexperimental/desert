@@ -1,3 +1,7 @@
+0.3.4
+- Fix problems with plugin migrations numbered higher than 7
+- Cleanups to specs: cruise rake task, improved docs, and specs run on OSX
+
 0.3.3
 - Fixed [#20770] Can't get specs to run for desert-based plugin bug (http://rubyforge.org/tracker/index.php?func=detail&aid=20770&group_id=6426&atid=24920)
 - Fixed [#21564] Can't see desert rake tasks (http://rubyforge.org/tracker/index.php?func=detail&aid=21564&group_id=6426&atid=24920)
