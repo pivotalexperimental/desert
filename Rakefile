@@ -19,11 +19,6 @@ def run_suite
   system("ruby #{dir}/spec/spec_suite.rb") || raise("Example Suite failed")
 end
 
-desc "Copies the trunk to a tag with the name of the current release"
-task :tag_release do
-  tag_release
-end
-
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
@@ -50,12 +45,6 @@ rescue LoadError
   puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
 
-
-def tag_release
-  dashed_version = PKG_VERSION.gsub('.', '-')
-  svn_user = "#{ENV["SVN_USER"]}@" || ""
-  `svn cp svn+ssh://#{svn_user}rubyforge.org/var/svn/pivotalrb/desert/trunk svn+ssh://#{svn_user}rubyforge.org/var/svn/pivotalrb/desert/tags/REL-#{dashed_version} -m 'Version #{PKG_VERSION}'`
-end
 
 desc "Install dependencies to run the build. This task uses Git."
 task :install_dependencies do
