@@ -39,7 +39,7 @@ begin
     s.extra_rdoc_files = [ "README.rdoc", "CHANGES" ]
     s.rdoc_options = ["--main", "README.rdoc", "--inline-source", "--line-numbers"]
     s.test_files = Dir.glob('spec/*_spec.rb')
-    s.rubyforge_project = "pivotalrb"
+    s.rubyforge_project = "desert"
   end
 rescue LoadError
   puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
