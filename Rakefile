@@ -1,5 +1,4 @@
 require "rake"
-require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 require 'rake/clean'
 require 'rake/testtask'
@@ -25,55 +24,32 @@ task :tag_release do
   tag_release
 end
 
-PKG_NAME = "desert"
-PKG_VERSION = "0.3.4"
-PKG_FILES = FileList[
-  '[A-Z]*',
-  '*.rb',
-  'lib/**/*.rb',
-  'generators/**/*',
-  'generators/**/templates/*',
-  'examples/**/*.rb'
-]
-
-def gemspec
-  Gem::Specification.new do |s|
-    s.name = PKG_NAME
-    s.version = PKG_VERSION
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |s|
+    s.name = "desert"
     s.summary = "Desert is a component framework for Rails that allows your plugins to be packaged as mini Rails apps."
-    s.test_files = "examples/spec_suite.rb"
-    s.description = s.summary
-
-    s.files = PKG_FILES.to_a
-    s.require_path = 'lib'
-
-    s.has_rdoc = true
-    s.extra_rdoc_files = [ "README.rdoc", "CHANGES" ]
-    s.rdoc_options = ["--main", "README.rdoc", "--inline-source", "--line-numbers"]
-
-    s.test_files = Dir.glob('spec/*_spec.rb')
-    s.require_path = 'lib'
-    s.author = "Pivotal Labs"
     s.email = "opensource@pivotallabs.com"
     s.homepage = "http://pivotallabs.com"
+    s.description = "Desert is a component framework for Rails that allows your plugins to be packaged as mini Rails apps."
+    s.authors = ["Pivotal Labs", "Brian Takita", "Parker Thompson", "Adam Milligan"]
+    s.files =  FileList[
+      '[A-Z]*',
+      '*.rb',
+      'lib/**/*.rb',
+      'generators/**/*',
+      'generators/**/templates/*',
+      'examples/**/*.rb'
+    ].to_a
+    s.extra_rdoc_files = [ "README.rdoc", "CHANGES" ]
+    s.rdoc_options = ["--main", "README.rdoc", "--inline-source", "--line-numbers"]
+    s.test_files = Dir.glob('spec/*_spec.rb')
     s.rubyforge_project = "pivotalrb"
   end
+rescue LoadError
+  puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
 
-desc 'Generate updated gemspec with unique version, which will cause gem to be auto-built on github.'
-task :update_gemspec do
-  spec = gemspec
-  spec.version = PKG_VERSION + '.' + Time.now.strftime('%Y%m%d%H%M%S')
-  File.open('desert.gemspec', 'w') do |output|
-    output << spec.to_ruby
-  end
-end
-
-Rake::GemPackageTask.new(gemspec) do |pkg|
-  Rake::Task['update_gemspec'].invoke
-  pkg.need_zip = true
-  pkg.need_tar = true
-end
 
 def tag_release
   dashed_version = PKG_VERSION.gsub('.', '-')
