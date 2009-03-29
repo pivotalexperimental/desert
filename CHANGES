@@ -1,3 +1,5 @@
+- Added Desert::Manager.require_all_files and Desert::Manager.all_files
+
 0.3.4
 - Fix problems with plugin migrations numbered higher than 7
 - Cleanups to specs: cruise rake task, improved docs, and specs run on OSX

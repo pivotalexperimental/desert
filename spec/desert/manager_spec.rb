@@ -96,7 +96,6 @@ module Desert
           ]
         end
 
-        rails_root = File.expand_path(RAILS_ROOT)
         expected_load_paths.concat [
           "#{rails_root}/app",
           "#{rails_root}/app/models",
@@ -233,6 +232,37 @@ module Desert
           "#{@super_spiffy_path}/app/views/layouts",
             "#{@acts_as_spiffy_path}/app/views/layouts",
         ]
+      end
+    end
+
+    describe "#require_all_files" do
+      before do
+        @acts_as_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
+        @manager.register_plugin @acts_as_spiffy_path
+        @super_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/super_spiffy")
+        @manager.register_plugin @super_spiffy_path
+      end
+
+      it "requires all files" do
+        @manager.all_files.each do |file|
+          mock(@manager).require(file)
+        end
+        @manager.require_all_files
+      end
+    end
+
+    describe "#all_files" do
+      before do
+        @acts_as_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/acts_as_spiffy")
+        @manager.register_plugin @acts_as_spiffy_path
+        @super_spiffy_path = File.expand_path("#{RAILS_ROOT}/vendor/plugins/super_spiffy")
+        @manager.register_plugin @super_spiffy_path
+      end
+
+      it "returns all files in the plugin directories and project in Desert's load order" do
+        @manager.all_files.should =~ (Dir["#{rails_root}/vendor/plugins/acts_as_spiffy/{app,lib}/**/*.rb"] +
+          Dir["#{rails_root}/vendor/plugins/super_spiffy/{app,lib}/**/*.rb"] +
+          Dir["#{rails_root}/{app,lib}/**/*.rb"]).uniq
       end
     end
   end

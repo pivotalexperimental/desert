@@ -99,6 +99,19 @@ module Desert
       end
       layout_paths
     end
+    
+    def require_all_files
+      all_files.each do |file|
+        require file
+      end
+    end
+
+    def all_files
+      Desert::Manager.load_paths.inject([]) do |all, load_path|
+        all |= Dir["#{load_path}/**/*.rb"]
+        all
+      end
+    end
 
     protected
     def dependencies

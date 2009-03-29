@@ -16,6 +16,7 @@ require "initializer"
 require "action_controller"
 
 require "spec"
+require "spec/autorun"
 require "rr"
 require "pp"
 
@@ -28,8 +29,12 @@ Spec::Runner.configure do |config|
   config.mock_with RR::Adapters::Rspec
 end
 
-Spec::Example::ExampleMethods.module_eval do
+class Spec::ExampleGroup
   def dependencies
     ActiveSupport.const_defined?(:Dependencies) ? ActiveSupport::Dependencies : Dependencies
+  end
+
+  def rails_root
+    File.expand_path(RAILS_ROOT)
   end
 end
