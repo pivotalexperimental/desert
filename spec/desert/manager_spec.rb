@@ -260,8 +260,7 @@ module Desert
       end
 
       it "returns all files in the plugin directories and project in Desert's load order" do
-        @manager.all_files.should =~ (Dir["#{rails_root}/vendor/plugins/acts_as_spiffy/{app,lib}/**/*.rb"] +
-          Dir["#{rails_root}/vendor/plugins/super_spiffy/{app,lib}/**/*.rb"] +
+        @manager.all_files.should =~ (Dir["#{rails_root}/vendor/plugins/*/{app,lib}/**/*.rb"] +
           Dir["#{rails_root}/{app,lib}/**/*.rb"]).uniq
       end
     end
