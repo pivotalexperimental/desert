@@ -1,8 +1,7 @@
-- Added Desert::Manager.require_all_files and Desert::Manager.all_files
-
-Edge
+0.5.0
 - Rails 2.2.3 support
 - routes.rb becomes desert_routes.rb
+- Added Desert::Manager.require_all_files and Desert::Manager.all_files
 
 0.3.4
 - Fix problems with plugin migrations numbered higher than 7
