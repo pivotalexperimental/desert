@@ -63,7 +63,7 @@ Pivotal Tracker: http://www.pivotaltracker.com/projects/358
               |           |-- new.html.erb
               |           `-- show.html.erb
               |-- config
-              |   `-- routes.rb
+              |   `-- desert_routes.rb
               |-- db
               |   `-- migrate
               |       `-- 001_create_users.rb
@@ -126,19 +126,19 @@ If you look in your RAILS_ROOT/config/routes.rb file you will notice that the ge
 
 In the <tt>user</tt> plugin:
 
-    # File: vendor/plugins/user/config/routes.rb
+    # File: vendor/plugins/user/config/desert_routes.rb
 
     resource :users
 
 In the <tt>blogs</tt> plugin:
 
-    # File: vendor/plugins/blogs/config/routes.rb
+    # File: vendor/plugins/blogs/config/desert_routes.rb
 
     resource :blogs
 
 In the application:
 
-    # File: config/routes.rb
+    # File: config/desert_routes.rb
 
     ActionController::Routing::Routes.draw do |map|
       map.routes_from_plugin :blogs

@@ -9,7 +9,7 @@ module Desert
         name = name.to_s
         routes_path = File.join(
           Desert::Manager.plugin_path(name),
-          "config/routes.rb"
+          "config/desert_routes.rb"
         )
         RAILS_DEFAULT_LOGGER.debug "Loading routes from #{routes_path}."
         eval(IO.read(routes_path), binding, routes_path) if File.file?(routes_path)
