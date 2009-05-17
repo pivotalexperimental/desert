@@ -10,7 +10,7 @@ else
       require "#{dir}/2.0.2/action_view"
     end
   elsif ActionView.const_defined?(:PathSet)
-    require "#{dir}/edge/action_view"
+    require "#{dir}/2.2.0/action_view"
   else
     require "#{dir}/1.2.0/action_view"
   end
