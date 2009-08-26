@@ -1,3 +1,4 @@
+p 'loading old'
 module ActionMailer #:nodoc
   class Base #:nodoc:
     private
@@ -11,9 +12,9 @@ module ActionMailer #:nodoc
       alias_method_chain :template_path, :plugin_routing
 
       def initialize_template_class(assigns)
-        self.view_paths = Dir[template_path].collect do |path|
+        view_paths = Dir[template_path].collect do |path|
           File.dirname(path)
-        end if self.view_paths.empty?
+        end
         returning(template = ActionView::Base.new(view_paths, assigns, self)) do
           template.extend ApplicationHelper
           template.extend self.class.master_helper_module

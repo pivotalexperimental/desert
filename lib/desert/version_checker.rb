@@ -21,6 +21,10 @@ module Desert
       def rails_version_is_1991?
         current_rails_version_matches?('=1.99.1')
       end
+
+      def rails_version_is_below_220?
+        current_rails_version_matches?('<2.2.0')
+      end
     end
   end
 end
