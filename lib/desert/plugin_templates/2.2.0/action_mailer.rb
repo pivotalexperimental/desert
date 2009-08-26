@@ -1,4 +1,3 @@
-p 'loading new'
 module ActionMailer #:nodoc
   class Base #:nodoc:
     private
