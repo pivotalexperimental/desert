@@ -15,7 +15,6 @@ ActionController::Routing::Routes.draw do |map|
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
-
   map.routes_from_plugin :load_me_once
   map.routes_from_plugin :super_spiffy
 

@@ -28,7 +28,7 @@ begin
     s.email = "opensource@pivotallabs.com"
     s.homepage = "http://pivotallabs.com"
     s.description = "Desert is a component framework for Rails that allows your plugins to be packaged as mini Rails apps."
-    s.authors = ["Pivotal Labs", "Brian Takita", "Parker Thompson", "Adam Milligan"]
+    s.authors = ["Pivotal Labs", "Brian Takita", "Parker Thompson", "Adam Milligan, Joe Moore"]
     s.files =  FileList[
       '[A-Z]*',
       '*.rb',
@@ -50,7 +50,7 @@ end
 desc "Install dependencies to run the build. This task uses Git."
 task :install_dependencies do
   require "lib/desert/supported_rails_versions"
-  system("git clone git://github.com/rails/rails.git spec/rails_root/vendor/rails_versions/edge")
+  system("git clone git://github.com/rails/rails.git /Users/pivotal/workspace/desert/spec/rails_root/vendor/rails_versions/edge")
   Dir.chdir("spec/rails_root/vendor/rails_versions/edge") do
     begin
       Desert::SUPPORTED_RAILS_VERSIONS.each do |version, data|

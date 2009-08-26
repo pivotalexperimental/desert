@@ -11,9 +11,9 @@ module ActionMailer #:nodoc
       alias_method_chain :template_path, :plugin_routing
 
       def initialize_template_class(assigns)
-        view_paths = Dir[template_path].collect do |path|
+        self.view_paths = Dir[template_path].collect do |path|
           File.dirname(path)
-        end
+        end if self.view_paths.empty?
         returning(template = ActionView::Base.new(view_paths, assigns, self)) do
           template.extend ApplicationHelper
           template.extend self.class.master_helper_module

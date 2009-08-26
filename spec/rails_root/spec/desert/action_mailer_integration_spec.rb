@@ -14,4 +14,11 @@ module ActionMailer
       end
     end
   end
+  describe "view_paths" do
+    it "should be memoized" do
+      ActionMailer::Base.view_paths = []
+      SpiffyMailer.deliver_spiffy_mail
+      ActionMailer::Base.view_paths.should_not be_nil
+    end
+  end
 end
