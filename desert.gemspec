@@ -47,6 +47,7 @@ Gem::Specification.new do |s|
      "lib/desert/plugin_templates/2.0.0/action_mailer.rb",
      "lib/desert/plugin_templates/2.0.2/action_view.rb",
      "lib/desert/plugin_templates/2.1.0/action_view.rb",
+     "lib/desert/plugin_templates/2.2.0/action_mailer.rb",
      "lib/desert/plugin_templates/2.2.0/action_view.rb",
      "lib/desert/plugin_templates/action_controller.rb",
      "lib/desert/plugin_templates/action_view.rb",
