@@ -92,6 +92,7 @@ module Desert
             "#{plugin_root}/app/models",
             "#{plugin_root}/app/controllers",
             "#{plugin_root}/app/helpers",
+            "#{plugin_root}/app/sweepers",
             "#{plugin_root}/lib"
           ]
         end
@@ -101,6 +102,7 @@ module Desert
           "#{rails_root}/app/models",
           "#{rails_root}/app/controllers",
           "#{rails_root}/app/helpers",
+          "#{rails_root}/app/sweepers",
           "#{rails_root}/lib",
           "#{rails_root}/spec/external_files"
         ]
@@ -214,7 +216,7 @@ module Desert
           "#{plugin_root}/super_spiffy/app/helpers/spiffy_helper.rb",
           "#{plugin_root}/the_grand_poobah/app/helpers/spiffy_helper.rb"
         ].each {|path| files.should include(path) }
-        
+
         files.last.should == "#{RAILS_ROOT}/app/helpers/spiffy_helper.rb"
       end
     end
