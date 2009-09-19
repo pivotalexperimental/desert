@@ -21,7 +21,7 @@ module Desert #:nodoc:
         sm_table = self.class.schema_migrations_table_name
 
         if down?
-          ActiveRecord::Base.connection.update("DELETE FROM #{sm_table} WHERE version = '#{version}' WHERE plugin_name = '#{current_plugin.name}'")
+          ActiveRecord::Base.connection.update("DELETE FROM #{sm_table} WHERE version = '#{version}' AND plugin_name = '#{current_plugin.name}'")
         else
           ActiveRecord::Base.connection.insert("INSERT INTO #{sm_table} (plugin_name, version) VALUES ('#{current_plugin.name}', '#{version}')")
         end
