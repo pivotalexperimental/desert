@@ -1,3 +1,7 @@
+0.5.3
+- optimize load_paths, use uniq!
+- correct bad SQL for recording migrations in plugin_schema_migrations
+
 0.5.0
 - Rails 2.2.3 support
 - routes.rb becomes desert_routes.rb
