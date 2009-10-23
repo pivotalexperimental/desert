@@ -30,12 +30,13 @@ module Desert
         paths << File.join(component_root, 'app','models')
         paths << File.join(component_root, 'app','controllers')
         paths << File.join(component_root, 'app','helpers')
-        paths << File.join(component_root, 'app','sweepers')        
+        paths << File.join(component_root, 'app','sweepers')
         paths << File.join(component_root, 'lib')
       end
-      dependencies.load_paths.reverse.each do |path|
-        paths << File.expand_path(path) unless paths.include?(File.expand_path(path))
+      dependencies.load_paths.reverse_each do |path|
+        paths << File.expand_path(path)
       end
+      paths.uniq!
       paths
     end
 
