@@ -10,7 +10,9 @@ else
       require "#{dir}/2.0.2/action_view"
     end
   elsif ActionView.const_defined?(:PathSet)
-    require "#{dir}/2.2.0/action_view"
+    unless Rails::Plugin.instance_methods.include?('engine?')
+      require "#{dir}/2.2.0/action_view"
+    end
   else
     require "#{dir}/1.2.0/action_view"
   end
