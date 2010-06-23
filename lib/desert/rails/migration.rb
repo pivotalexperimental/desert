@@ -15,19 +15,10 @@ class ActiveRecord::Migration
       raise ArgumentError, "No plugin found named #{plugin_name}"
     end
 
-    def table_exists?(table_name)
-      vals = select_all("DESC #{table_name}")
-      return true
-    rescue ActiveRecord::StatementInvalid
-      return false
-    end
-
     def column_exists?(table_name, column_name)
-      val = select_one("select #{column_name} from #{table_name}")
-      return true
-    rescue ActiveRecord::StatementInvalid
-      return false
+      !ActiveRecord::Base.connection.columns(table_name).detect {|c| c.name == column_name }.nil?
     end
+    
     def table_exists?(table_name)
       ActiveRecord::Base.connection.tables.include? table_name
     end

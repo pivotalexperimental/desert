@@ -3,7 +3,11 @@ module Desert #:nodoc:
     class Migrator < ActiveRecord::Migrator
       class << self
         def current_version #:nodoc:
-          result = ActiveRecord::Base.connection.select_one("SELECT version FROM #{schema_info_table_name} WHERE plugin_name = '#{current_plugin.name}'")
+          if legacy_schema_table_exists?
+            result = ActiveRecord::Base.connection.select_one("SELECT version FROM #{schema_info_table_name} WHERE plugin_name = '#{current_plugin.name}'")
+          else
+            result = nil
+          end
           if result
             result['version'].to_i
           else
@@ -16,11 +20,13 @@ module Desert #:nodoc:
       def set_schema_version(version)
         version = down? ? version.to_i - 1 : version.to_i
 
-        if ActiveRecord::Base.connection.select_one("SELECT version FROM #{self.class.schema_info_table_name} WHERE plugin_name = '#{current_plugin.name}'").nil?
-          # We need to create the entry since it doesn't exist
-          ActiveRecord::Base.connection.execute("INSERT INTO #{self.class.schema_info_table_name} (version, plugin_name) VALUES (#{version},'#{current_plugin.name}')")
-        else
-          ActiveRecord::Base.connection.update("UPDATE #{self.class.schema_info_table_name} SET version = #{version} WHERE plugin_name = '#{current_plugin.name}'")
+        if self.class.legacy_schema_table_exists?
+          if ActiveRecord::Base.connection.select_one("SELECT version FROM #{self.class.schema_info_table_name} WHERE plugin_name = '#{current_plugin.name}'").nil?
+            # We need to create the entry since it doesn't exist
+            ActiveRecord::Base.connection.execute("INSERT INTO #{self.class.schema_info_table_name} (version, plugin_name) VALUES (#{version},'#{current_plugin.name}')")
+          else
+            ActiveRecord::Base.connection.update("UPDATE #{self.class.schema_info_table_name} SET version = #{version} WHERE plugin_name = '#{current_plugin.name}'")
+          end
         end
       end
 

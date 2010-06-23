@@ -2,10 +2,8 @@ ActiveRecord::ConnectionAdapters::SchemaStatements.module_eval do
   def initialize_schema_information_with_plugins
     initialize_schema_information_without_plugins
 
-    begin
+    unless Desert::PluginMigrations::Migrator.legacy_schema_table_exists?
       execute "CREATE TABLE #{Desert::PluginMigrations::Migrator.schema_info_table_name} (plugin_name #{type_to_sql(:string)}, version #{type_to_sql(:integer)})"
-    rescue ActiveRecord::StatementInvalid
-      # Schema has been initialized
     end
   end
   alias_method_chain :initialize_schema_information, :plugins
@@ -16,7 +14,7 @@ ActiveRecord::ConnectionAdapters::SchemaStatements.module_eval do
     dump = dump_schema_information_without_plugins
     schema_information << dump if dump
 
-    begin
+    if Desert::PluginMigrations::Migrator.legacy_schema_table_exists?
       plugins = ActiveRecord::Base.connection.select_all("SELECT * FROM #{Desert::PluginMigrations::Migrator.schema_info_table_name}")
       plugins.each do |plugin|
         if (version = plugin['version'].to_i) > 0
@@ -24,8 +22,6 @@ ActiveRecord::ConnectionAdapters::SchemaStatements.module_eval do
           schema_information << "INSERT INTO #{Desert::PluginMigrations::Migrator.schema_info_table_name} (plugin_name, version) VALUES (#{plugin_name}, #{version})"
         end
       end
-    rescue ActiveRecord::StatementInvalid
-      # No Schema Info
     end
 
     schema_information.join(";\n")

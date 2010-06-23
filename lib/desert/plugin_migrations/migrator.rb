@@ -23,6 +23,10 @@ module Desert #:nodoc:
         def schema_migrations_table_name
           ActiveRecord::Base.table_name_prefix + 'plugin_schema_migrations' + ActiveRecord::Base.table_name_suffix
         end
+
+        def legacy_schema_table_exists?
+          ActiveRecord::Base.connection.tables.include? schema_info_table_name
+        end
       end
     end
   end
