@@ -9,6 +9,7 @@ class SpecSuite
         "#{dir}/rails_root/spec/rails_spec_suite.rb"
       ].each do |suite_file|
         Desert::SUPPORTED_RAILS_VERSIONS[rails_version]['databases'].each do |db|
+          next unless (ENV["DATABASES_TO_TEST"] || "sqlite").split(",").include?(db)
           puts "Running #{suite_file} for Rails version #{rails_version} and database #{db}"
           run_with_rails_version(suite_file, rails_version, db) || "Suite failed for Rails version #{rails_version}"
         end

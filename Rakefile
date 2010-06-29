@@ -4,14 +4,25 @@ require 'rake/clean'
 require 'rake/testtask'
 require 'rake/rdoctask'
 
-desc "Runs the Rspec suite"
-task :default do
-  run_suite
-end
+desc "Runs the Rspec suite in sqlite (the default)"
+task :default => "spec:sqlite"
 
-desc "Runs the Rspec suite"
-task :spec do
-  run_suite
+desc "Runs the Rspec suite in sqlite (the default)"
+task :spec => :default
+
+namespace :spec do
+  task :default => :sqlite
+
+  desc "Runs the Rspec suite in sqlite (the default)"
+  task :sqlite do
+    run_suite
+  end
+
+  desc "Runs the Rspec suite in all databases"
+  task :all_databases do
+    ENV["DATABASES_TO_TEST"] = "sqlite,postgres"
+    run_suite
+  end
 end
 
 def run_suite
@@ -72,6 +83,6 @@ end
 
 desc "Runs the CI build"
 task :cruise => :install_dependencies do
-  run_suite
+  Rake::Task["spec:sqlite"].execute #TODO: change to spec:all_databases
 end
 
