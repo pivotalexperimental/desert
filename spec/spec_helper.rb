@@ -16,7 +16,6 @@ require "initializer"
 require "action_controller"
 
 require "spec"
-require "spec/autorun"
 require "rr"
 require "pp"
 

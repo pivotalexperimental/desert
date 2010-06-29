@@ -2,7 +2,9 @@
 *.ipr
 *.iml
 .idea
+.rvmrc
 spec/rails_root/log
+spec/rails_root/config/database.yml
 spec/rails_root/vendor/rails
 spec/rails_root/vendor/rails_versions
 *.sqlite3

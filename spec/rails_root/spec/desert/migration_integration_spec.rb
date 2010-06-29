@@ -95,7 +95,7 @@ module ActiveRecord
       def drop_tables
         tables = ActiveRecord::Base.connection.tables - ['sqlite_sequence']
         tables.each do |table_name|
-          execute_sql "drop table `#{table_name}`"
+          execute_sql "drop table #{table_name}"
         end
       end
 

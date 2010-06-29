@@ -1,0 +1,10 @@
+development: &development
+  adapter: postgresql
+  database: desert_dev
+  username: postgres
+  password: password
+  host: localhost
+
+test:
+  <<: *development
+  database: desert_test
