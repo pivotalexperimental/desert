@@ -314,3 +314,5 @@ respective directories.
   rake update_dependencies
 
 will update the clones repo on your machine.
+
+Copyright (c) 2010 Pivotal Labs. This software is licensed under the MIT License.
