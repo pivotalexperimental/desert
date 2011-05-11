@@ -1,2 +1,5 @@
 --- 
-:version: 0.5.4
+:build: 
+:minor: 5
+:patch: 5
+:major: 0
