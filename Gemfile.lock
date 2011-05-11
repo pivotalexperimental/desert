@@ -1,0 +1,16 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    pg (0.9.0)
+    rr (0.4.8)
+    rspec (1.1.12)
+    sqlite3-ruby (1.2.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  pg (= 0.9.0)
+  rr (= 0.4.8)
+  rspec (= 1.1.12)
+  sqlite3-ruby (= 1.2.4)

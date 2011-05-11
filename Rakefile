@@ -31,7 +31,7 @@ def run_suite
 end
 
 begin
-  gem "pivotal-jeweler"
+  gem "jeweler"
   require 'jeweler'
   Jeweler::Tasks.new do |s|
     s.name = "desert"
